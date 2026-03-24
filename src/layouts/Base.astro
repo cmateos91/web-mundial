@@ -1,0 +1,18 @@
+---
+import '../styles/global.css'
+import Navbar from '../components/Navbar.astro'
+
+const { titulo } = Astro.props  // Astro.props son los datos que una página le pasa al layout. Como argumentos de una función
+---
+
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>{titulo}</title>
+    </head>
+    <body>
+        <Navbar />
+        <slot />  <!-- Hueco donde se inserta el contenido de cada página -->
+    </body>
+</html>
