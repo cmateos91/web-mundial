@@ -1,8 +1,23 @@
 ---
 import Base from '../layouts/Base.astro'
+import { grupos } from '../data/grupos'
 ---
 
 <Base titulo="Grupos">
 	<h1 class="text-4xl font-bold">Grupos</h1>
 	<p>Mira como va tu equipo en el mundial</p>
+	<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+	{grupos.map(grupo => (
+		<div class="p-4 border rounded">
+			<h2 class="text-xl font-bold mb-2">{grupo.nombre}</h2>
+			{grupo.equipos.map(equipo =>(
+				<ul class="list-disc ml-4">
+					<li>
+						{equipo}
+					</li>
+				</ul>
+			))}
+		</div>
+	))}
+	</div>
 </Base>

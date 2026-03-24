@@ -11,7 +11,7 @@ const { titulo } = Astro.props  // Astro.props son los datos que una página le 
         <meta name="viewport" content="width=device-width" />
         <title>{titulo}</title>
     </head>
-    <body>
+    <body class="max-w-5xl mx-auto px-4">
         <Navbar />
         <slot />  <!-- Hueco donde se inserta el contenido de cada página -->
     </body>
