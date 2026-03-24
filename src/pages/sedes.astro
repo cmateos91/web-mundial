@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro'
 import { sedes } from '../data/sedes.ts'
+import GruposSedes from '../components/GruposSedes.astro'
 
 const formatNum = (n: number) => n.toLocaleString('es-Es')
 
@@ -12,34 +13,7 @@ const sedesCanada = sedes.filter(sede => sede.pais === "Canadá")
 <Base titulo="Sedes">
 	<h1 class="text-4xl font-bold">Sedes</h1>
 	<p>Aquí veras las sedes</p>
-    <h2 class="text-2xl font-bold mt-8 mb-2">México</h2>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {sedesMexico.map(sede =>(
-            <div class="p-4 border rounded">
-                <h3 class="text-lg font-semibold">{sede.ciudad}</h3>
-                <p>{sede.estadio}</p>
-                <p>{formatNum(sede.capacidad)} espectadores</p>
-            </div>
-        ))}
-    </div>
-    <h2 class="text-2xl font-bold mt-8 mb-2">USA</h2>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {sedesUSA.map(sede =>(
-            <div class="p-4 border rounded">
-                <h3 class="text-lg font-semibold">{sede.ciudad}</h3>
-                <p>{sede.estadio}</p>
-                <p>{formatNum(sede.capacidad)} espectadores</p>
-            </div>
-        ))}
-    </div>
-    <h2 class="text-2xl font-bold mt-8 mb-2">Canadá</h2>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {sedesCanada.map(sede =>(
-            <div class="p-4 border rounded">
-                <h3 class="text-lg font-semibold">{sede.ciudad}</h3>
-                <p>{sede.estadio}</p>
-                <p>{formatNum(sede.capacidad)} espectadores</p>
-            </div>
-        ))}
-    </div>
+    <GruposSedes pais='México' sedes={sedesMexico} />
+    <GruposSedes pais='USA' sedes={sedesUSA} />
+    <GruposSedes pais='Canadá' sedes={sedesCanada} />
 </Base>
