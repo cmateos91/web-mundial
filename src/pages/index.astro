@@ -1,8 +1,42 @@
 ---
 import Base from '../layouts/Base.astro'
+import { jornadas } from '../data/partidos';
+
+const proximosPartidos = jornadas[0].partidos
 ---
 
 <Base titulo="Mundial 2026">
-	<h1 class="text-4xl font-bold">Mundial 2026</h1>
-	<p>Canadá - México - Estados Unidos</p>
+	<section class="text-center py-16">
+		<h1 class="text-6xl font-bold">Mundial 2026</h1>
+		<p>Canadá - México - Estados Unidos</p>
+		<p class="text-gray-500 mt-2">11 de Junio - 19 de Julio de 2026</p>
+	</section>
+
+	<section>
+		<h2 class="text-2xl font-bold mb-2">Primeros partidos</h2>
+		{proximosPartidos.map(partido => (
+			<div class="p-3 border rounded mb-2">
+				{partido.hora} - {partido.equipo1} vs{" "} {partido.equipo2}
+				<p class="text-sm">{partido.estadio}, {partido.ciudad}</p> 
+			</div>
+		))}
+		<a class="inline-block mt-4 text-blue-500 hover:underline" href="/partidos">Ver todos los partidos</a>
+	</section>
+
+	<section class="mt-12">
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-2">
+			<a href="/grupos" class="p-6 border rounded hover:bg-gray-100" >
+				<h3 class="text-xl font-bold">Grupos</h3>
+				<p class="text-gray-500">Los 12 grupos del mundial</p>
+			</a>
+			<a href="/partidos" class="p-6 border rounded hover:bg-gray-100" >
+				<h3 class="text-xl font-bold">Partidos</h3>
+				<p class="text-gray-500">Consulta los partidos</p>
+			</a>
+			<a href="/sedes" class="p-6 border rounded hover:bg-gray-100" >
+				<h3 class="text-xl font-bold">Sedes</h3>
+				<p class="text-gray-500">Todas las sedes del mundial</p>
+			</a>
+		</div>
+	</section>
 </Base>
