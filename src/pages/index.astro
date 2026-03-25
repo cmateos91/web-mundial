@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro'
 import { jornadas } from '../data/partidos';
+import BuscadorEquipos from '../components/BuscadorEquipos';
+import { grupos } from '../data/grupos';
 
 const proximosPartidos = jornadas[0].partidos
 ---
@@ -11,7 +13,7 @@ const proximosPartidos = jornadas[0].partidos
 		<p>Canadá - México - Estados Unidos</p>
 		<p class="text-gray-500 mt-2">11 de Junio - 19 de Julio de 2026</p>
 	</section>
-
+	<BuscadorEquipos client:load grupos={grupos} />
 	<section>
 		<h2 class="text-2xl font-bold mb-2">Primeros partidos</h2>
 		{proximosPartidos.map(partido => (
