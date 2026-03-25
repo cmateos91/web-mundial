@@ -1,8 +1,29 @@
 ---
-import Base from '../layouts/Base.astro'
+import Base from "../layouts/Base.astro";
+import { jornadas } from "../data/partidos";
 ---
 
 <Base titulo="Partidos">
 	<h1 class="text-4xl font-bold">Partidos</h1>
 	<p>Próximos enfrentamientos</p>
+	{
+		jornadas.map((jornada) => (
+			<div>
+				<h2 class="text-2xl font-bold mt-8 mb-2">{jornada.fecha}</h2>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+					{jornada.partidos.map((partido) => (
+						<div class="p-3 border rounded">
+							<p class="font-semibold">
+								{partido.hora} - {partido.equipo1} vs{" "}
+								{partido.equipo2}
+							</p>
+							<p class="text-sm">
+								{partido.estadio}, {partido.ciudad}
+							</p>
+						</div>
+					))}
+				</div>
+			</div>
+		))
+	}
 </Base>

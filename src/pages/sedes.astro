@@ -3,8 +3,6 @@ import Base from '../layouts/Base.astro'
 import { sedes } from '../data/sedes.ts'
 import GruposSedes from '../components/GruposSedes.astro'
 
-const formatNum = (n: number) => n.toLocaleString('es-Es')
-
 const sedesMexico = sedes.filter(sede => sede.pais === "México")
 const sedesUSA = sedes.filter(sede => sede.pais === "USA")
 const sedesCanada = sedes.filter(sede => sede.pais === "Canadá")
