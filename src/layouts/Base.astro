@@ -9,10 +9,14 @@ const { titulo } = Astro.props  // Astro.props son los datos que una página le 
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
+        <meta name="description" content="Toda la información del mundial 2026: grupos, partidos, sedes y más" />
         <title>{titulo}</title>
     </head>
     <body class="max-w-5xl mx-auto px-4">
         <Navbar />
-        <slot />  <!-- Hueco donde se inserta el contenido de cada página -->
+        <main>
+            <slot />  <!-- Hueco donde se inserta el contenido de cada página -->
+        </main>
+        
     </body>
 </html>
