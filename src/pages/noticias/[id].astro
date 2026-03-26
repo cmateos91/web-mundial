@@ -15,7 +15,7 @@ const { Content } = await render(noticia)
 ---
 
 <Base titulo={noticia.data.titulo}>
-    <article>
+    <article class="space-y-4">
         <h1 class="text-4xl font-bold">{noticia.data.titulo}</h1>
         <p class="text-gray-500 mb-8">{noticia.data.fecha}</p>
         <Content />

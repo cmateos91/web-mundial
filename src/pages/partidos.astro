@@ -12,7 +12,7 @@ import { jornadas } from "../data/partidos";
 				<h2 class="text-2xl font-bold mt-8 mb-2">{jornada.fecha}</h2>
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 					{jornada.partidos.map((partido) => (
-						<div class="p-3 border rounded">
+						<div class="p-3 border border-[#006847]/20 rounded">
 							<p class="font-semibold">
 								{partido.hora} - {partido.equipo1} vs{" "}
 								{partido.equipo2}

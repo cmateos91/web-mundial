@@ -8,10 +8,13 @@ const proximosPartidos = jornadas[0].partidos
 ---
 
 <Base titulo="Mundial 2026">
-	<section class="text-center py-16">
+	<section class="text-center py-16 bg-[#1a1a1a] text-white py-24 rounded-lg mt-8">
 		<h1 class="text-6xl font-bold">Mundial 2026</h1>
 		<p>Canadá - México - Estados Unidos</p>
 		<p class="text-gray-500 mt-2">11 de Junio - 19 de Julio de 2026</p>
+		<a href="/partidos" class="inline-block mt-6 px-6 py-3 bg-[#006847] text-white rounded hover:bg-[#004d35]">
+    Ver calendario de partidos
+  </a>
 	</section>
 	<BuscadorEquipos client:load grupos={grupos} />
 	<section>
@@ -27,15 +30,15 @@ const proximosPartidos = jornadas[0].partidos
 
 	<section class="mt-12">
 		<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-2">
-			<a href="/grupos" class="p-6 border rounded hover:bg-gray-100" >
+			<a href="/grupos" class="p-6 border rounded hover:bg-gray-200 border-l-4 border-l-[#006847]" >
 				<h3 class="text-xl font-bold">Grupos</h3>
 				<p class="text-gray-500">Los 12 grupos del mundial</p>
 			</a>
-			<a href="/partidos" class="p-6 border rounded hover:bg-gray-100" >
+			<a href="/partidos" class="p-6 border rounded hover:bg-gray-200 border-l-4 border-l-[#CE1126]" >
 				<h3 class="text-xl font-bold">Partidos</h3>
 				<p class="text-gray-500">Consulta los partidos</p>
 			</a>
-			<a href="/sedes" class="p-6 border rounded hover:bg-gray-100" >
+			<a href="/sedes" class="p-6 border rounded hover:bg-gray-200 border-l-4 border-l-[#002868]" >
 				<h3 class="text-xl font-bold">Sedes</h3>
 				<p class="text-gray-500">Todas las sedes del mundial</p>
 			</a>
