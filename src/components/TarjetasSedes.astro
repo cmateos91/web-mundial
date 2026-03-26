@@ -1,0 +1,50 @@
+---
+interface Sede {
+    ciudad: string
+    estadio: string
+    capacidad: number
+}
+
+interface Props {
+    pais: string
+    bandera: string
+    sedes: Sede[]
+    capacidadMax: number
+    partidosPorEstadio: Map<string, number>
+}
+
+const { pais, bandera, sedes, capacidadMax, partidosPorEstadio } = Astro.props
+const formatNum = (n: number) => n.toLocaleString('es-ES')
+---
+
+<section class="mb-10">
+    <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+        <span class="text-3xl">{bandera}</span> {pais}
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {sedes.map(sede => {
+            const porcentaje = Math.round((sede.capacidad / capacidadMax) * 100)
+            const numPartidos = partidosPorEstadio.get(sede.estadio) ?? 0
+            return (
+                <div class="tarjeta p-5">
+                    <h3 class="font-bold">{sede.ciudad}</h3>
+                    <p class="text-sm texto-secundario">{sede.estadio}</p>
+                    <div class="mt-3">
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="texto-secundario">Capacidad</span>
+                            <span class="font-semibold">{formatNum(sede.capacidad)}</span>
+                        </div>
+                        <div class="h-2 rounded-full fondo-superficie overflow-hidden">
+                            <div class="h-full rounded-full bg-[var(--color-verde)]" style={`width: ${porcentaje}%`}></div>
+                        </div>
+                    </div>
+                    {numPartidos > 0 && (
+                        <a href={`/partidos?sede=${encodeURIComponent(sede.estadio)}`} class="inline-block mt-3 text-xs text-[var(--color-verde)] hover:underline">
+                            {numPartidos} {numPartidos === 1 ? 'partido' : 'partidos'} programados →
+                        </a>
+                    )}
+                </div>
+            )
+        })}
+    </div>
+</section>

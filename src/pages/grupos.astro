@@ -1,23 +1,45 @@
 ---
 import Base from '../layouts/Base.astro'
 import { grupos } from '../data/grupos'
+import { jornadas } from '../data/partidos'
+
+// Mapa de partidos por equipo para links cruzados
+const partidosPorEquipo = new Map<string, number>()
+for (const jornada of jornadas) {
+	for (const p of jornada.partidos) {
+		partidosPorEquipo.set(p.equipo1, (partidosPorEquipo.get(p.equipo1) ?? 0) + 1)
+		partidosPorEquipo.set(p.equipo2, (partidosPorEquipo.get(p.equipo2) ?? 0) + 1)
+	}
+}
 ---
 
-<Base titulo="Grupos">
-	<h1 class="text-4xl font-bold">Grupos</h1>
-	<p>Mira como va tu equipo en el mundial</p>
-	<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-	{grupos.map(grupo => (
-		<div class="p-4 border border-[#006847]/20 rounded">
-			<h2 class="text-xl font-bold mb-2">{grupo.nombre}</h2>
-			{grupo.equipos.map(equipo =>(
-				<ul class="list-disc ml-4">
-					<li>
-						{equipo}
-					</li>
+<Base titulo="Grupos — Mundial 2026">
+	<div class="mb-8">
+		<h1 class="text-4xl font-extrabold">Grupos</h1>
+		<p class="texto-secundario mt-1">48 selecciones repartidas en 12 grupos. Los dos primeros de cada grupo y los 8 mejores terceros avanzan a dieciseisavos.</p>
+	</div>
+	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+		{grupos.map(grupo => (
+			<div class="tarjeta overflow-hidden">
+				<div class="bg-[var(--color-verde)] text-white px-4 py-2.5 font-bold text-sm tracking-wide">
+					{grupo.nombre}
+				</div>
+				<ul class="divide-y divide-[var(--color-borde)]">
+					{grupo.equipos.map((equipo, i) => (
+						<li class="px-4 py-2.5 flex items-center justify-between text-sm">
+							<span>
+								<span class="texto-secundario mr-2">{i + 1}.</span>
+								{equipo}
+							</span>
+							{partidosPorEquipo.has(equipo) && (
+								<a href={`/partidos?equipo=${encodeURIComponent(equipo)}`} class="text-xs text-[var(--color-verde)] hover:underline">
+									ver partidos
+								</a>
+							)}
+						</li>
+					))}
 				</ul>
-			))}
-		</div>
-	))}
+			</div>
+		))}
 	</div>
 </Base>

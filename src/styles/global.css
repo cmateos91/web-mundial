@@ -1,1 +1,58 @@
 @import "tailwindcss";
+
+/* === Colores del Mundial 2026 === */
+:root {
+  --color-verde: #006847;
+  --color-verde-hover: #004d35;
+  --color-rojo: #CE1126;
+  --color-azul: #002868;
+
+  /* Tema claro */
+  --color-fondo: #f9fafb;
+  --color-texto: #111827;
+  --color-texto-secundario: #6b7280;
+  --color-tarjeta: #ffffff;
+  --color-borde: #e5e7eb;
+  --color-superficie: #f3f4f6;
+}
+
+.dark {
+  --color-fondo: #0f1117;
+  --color-texto: #f3f4f6;
+  --color-texto-secundario: #9ca3af;
+  --color-tarjeta: #1a1d27;
+  --color-borde: #2a2d37;
+  --color-superficie: #23262f;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* === Estilos base === */
+body {
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* === Utilidades reutilizables === */
+@utility tarjeta {
+  background-color: var(--color-tarjeta);
+  border: 1px solid var(--color-borde);
+  border-radius: 0.75rem;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+@utility tarjeta-hover {
+  &:hover {
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.08);
+    border-color: var(--color-verde);
+  }
+}
+
+@utility texto-secundario {
+  color: var(--color-texto-secundario);
+}
+
+@utility fondo-superficie {
+  background-color: var(--color-superficie);
+}

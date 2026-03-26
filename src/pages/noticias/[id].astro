@@ -5,8 +5,8 @@ import Base from '../../layouts/Base.astro'
 export async function getStaticPaths() {
     const noticias = await getCollection('noticias')
     return noticias.map(noticia => ({
-    params: { id: noticia.id },
-    props: { noticia }
+        params: { id: noticia.id },
+        props: { noticia }
     }))
 }
 
@@ -14,10 +14,15 @@ const { noticia } = Astro.props
 const { Content } = await render(noticia)
 ---
 
-<Base titulo={noticia.data.titulo}>
-    <article class="space-y-4">
-        <h1 class="text-4xl font-bold">{noticia.data.titulo}</h1>
-        <p class="text-gray-500 mb-8">{noticia.data.fecha}</p>
-        <Content />
+<Base titulo={`${noticia.data.titulo} — Mundial 2026`}>
+    <article class="max-w-3xl mx-auto">
+        <a href="/noticias" class="inline-flex items-center text-sm text-[var(--color-verde)] hover:underline mb-6">
+            ← Volver a noticias
+        </a>
+        <h1 class="text-4xl font-extrabold">{noticia.data.titulo}</h1>
+        <time class="block texto-secundario text-sm mt-2 mb-8">{noticia.data.fecha}</time>
+        <div class="prose prose-lg dark:prose-invert max-w-none space-y-4">
+            <Content />
+        </div>
     </article>
 </Base>

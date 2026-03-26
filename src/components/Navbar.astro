@@ -1,7 +1,130 @@
-<nav class="flex gap-4 bg-black p-4 justify-center gap-8 text-white">
-    <a href="/" class="hover:text-[#006847]">Index</a>
-    <a href="/partidos" class="hover:text-[#006847]">Partidos</a>
-    <a href="/sedes" class="hover:text-[#006847]">Sedes</a>
-    <a href="/grupos" class="hover:text-[#006847]">Grupos</a>
-    <a href="/noticias" class="hover:text-[#006847]">Noticias</a>
+---
+interface Props {
+    rutaActual: string
+}
+
+const { rutaActual } = Astro.props
+
+const enlaces = [
+    { href: '/', texto: 'Inicio' },
+    { href: '/partidos', texto: 'Partidos' },
+    { href: '/grupos', texto: 'Grupos' },
+    { href: '/sedes', texto: 'Sedes' },
+    { href: '/noticias', texto: 'Noticias' },
+]
+
+function esActivo(href: string, ruta: string): boolean {
+    if (href === '/') return ruta === '/'
+    return ruta.startsWith(href)
+}
+---
+
+<nav class="sticky top-0 z-50 bg-[var(--color-tarjeta)] border-b border-[var(--color-borde)] backdrop-blur-sm">
+    <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
+        <!-- Logo / nombre -->
+        <a href="/" class="text-lg font-bold tracking-tight">
+            <span class="text-[var(--color-verde)]">Mundial</span> 2026
+        </a>
+
+        <!-- Links desktop -->
+        <div class="hidden md:flex items-center gap-1">
+            {enlaces.map(({ href, texto }) => (
+                <a
+                    href={href}
+                    class:list={[
+                        'px-3 py-2 rounded-lg text-sm font-medium transition-colors',
+                        esActivo(href, rutaActual)
+                            ? 'bg-[var(--color-verde)] text-white'
+                            : 'hover:bg-[var(--color-superficie)]'
+                    ]}
+                >
+                    {texto}
+                </a>
+            ))}
+            <button
+                id="btn-tema"
+                class="ml-2 p-2 rounded-lg hover:bg-[var(--color-superficie)] transition-colors"
+                aria-label="Cambiar tema"
+            >
+                <span id="icono-tema-sol" class="hidden">&#9728;</span>
+                <span id="icono-tema-luna" class="hidden">&#9790;</span>
+            </button>
+        </div>
+
+        <!-- Botón hamburguesa móvil -->
+        <div class="flex items-center gap-2 md:hidden">
+            <button
+                id="btn-tema-movil"
+                class="p-2 rounded-lg hover:bg-[var(--color-superficie)] transition-colors"
+                aria-label="Cambiar tema"
+            >
+                <span id="icono-tema-sol-movil" class="hidden">&#9728;</span>
+                <span id="icono-tema-luna-movil" class="hidden">&#9790;</span>
+            </button>
+            <button
+                id="btn-menu"
+                class="p-2 rounded-lg hover:bg-[var(--color-superficie)] transition-colors"
+                aria-label="Abrir menú"
+            >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path id="icono-menu" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    <path id="icono-cerrar" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Menú móvil -->
+    <div id="menu-movil" class="hidden md:hidden border-t border-[var(--color-borde)] pb-2">
+        {enlaces.map(({ href, texto }) => (
+            <a
+                href={href}
+                class:list={[
+                    'block px-4 py-2.5 text-sm font-medium transition-colors',
+                    esActivo(href, rutaActual)
+                        ? 'bg-[var(--color-verde)] text-white mx-2 rounded-lg'
+                        : 'hover:bg-[var(--color-superficie)]'
+                ]}
+            >
+                {texto}
+            </a>
+        ))}
+    </div>
 </nav>
+
+<script is:inline>
+    // --- Menú hamburguesa ---
+    const btnMenu = document.getElementById('btn-menu')
+    const menuMovil = document.getElementById('menu-movil')
+    const iconoMenu = document.getElementById('icono-menu')
+    const iconoCerrar = document.getElementById('icono-cerrar')
+
+    btnMenu.addEventListener('click', () => {
+        menuMovil.classList.toggle('hidden')
+        iconoMenu.classList.toggle('hidden')
+        iconoCerrar.classList.toggle('hidden')
+    })
+
+    // --- Dark mode toggle ---
+    function actualizarIconosTema() {
+        const esDark = document.documentElement.classList.contains('dark')
+        // Desktop
+        document.getElementById('icono-tema-sol').classList.toggle('hidden', !esDark)
+        document.getElementById('icono-tema-luna').classList.toggle('hidden', esDark)
+        // Móvil
+        document.getElementById('icono-tema-sol-movil').classList.toggle('hidden', !esDark)
+        document.getElementById('icono-tema-luna-movil').classList.toggle('hidden', esDark)
+    }
+
+    function alternarTema() {
+        document.documentElement.classList.toggle('dark')
+        const esDark = document.documentElement.classList.contains('dark')
+        localStorage.setItem('dark', String(esDark))
+        actualizarIconosTema()
+    }
+
+    document.getElementById('btn-tema').addEventListener('click', alternarTema)
+    document.getElementById('btn-tema-movil').addEventListener('click', alternarTema)
+
+    actualizarIconosTema()
+</script>

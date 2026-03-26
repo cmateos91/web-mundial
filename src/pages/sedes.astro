@@ -1,17 +1,30 @@
 ---
 import Base from '../layouts/Base.astro'
 import { sedes } from '../data/sedes'
-import GruposSedes from '../components/GruposSedes.astro'
+import { jornadas } from '../data/partidos'
+import TarjetasSedes from '../components/TarjetasSedes.astro'
 
 const sedesMexico = sedes.filter(sede => sede.pais === "México")
 const sedesUSA = sedes.filter(sede => sede.pais === "USA")
 const sedesCanada = sedes.filter(sede => sede.pais === "Canadá")
+
+// Mapa de partidos por estadio para links cruzados
+const partidosPorEstadio = new Map<string, number>()
+for (const jornada of jornadas) {
+	for (const p of jornada.partidos) {
+		partidosPorEstadio.set(p.estadio, (partidosPorEstadio.get(p.estadio) ?? 0) + 1)
+	}
+}
+
+const capacidadMax = Math.max(...sedes.map(s => s.capacidad))
 ---
 
-<Base titulo="Sedes">
-	<h1 class="text-4xl font-bold">Sedes</h1>
-	<p>Aquí veras las sedes</p>
-    <GruposSedes pais='México' sedes={sedesMexico} />
-    <GruposSedes pais='USA' sedes={sedesUSA} />
-    <GruposSedes pais='Canadá' sedes={sedesCanada} />
+<Base titulo="Sedes — Mundial 2026">
+	<div class="mb-8">
+		<h1 class="text-4xl font-extrabold">Sedes</h1>
+		<p class="texto-secundario mt-1">16 estadios en 3 países albergarán los 104 partidos del Mundial 2026.</p>
+	</div>
+	<TarjetasSedes pais="México" bandera="🇲🇽" sedes={sedesMexico} capacidadMax={capacidadMax} partidosPorEstadio={partidosPorEstadio} />
+	<TarjetasSedes pais="Estados Unidos" bandera="🇺🇸" sedes={sedesUSA} capacidadMax={capacidadMax} partidosPorEstadio={partidosPorEstadio} />
+	<TarjetasSedes pais="Canadá" bandera="🇨🇦" sedes={sedesCanada} capacidadMax={capacidadMax} partidosPorEstadio={partidosPorEstadio} />
 </Base>

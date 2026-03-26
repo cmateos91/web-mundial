@@ -1,8 +1,9 @@
 ---
 import '../styles/global.css'
 import Navbar from '../components/Navbar.astro'
+import PiePagina from '../components/PiePagina.astro'
 
-const { titulo } = Astro.props  // Astro.props son los datos que una página le pasa al layout. Como argumentos de una función
+const { titulo } = Astro.props
 ---
 
 <html lang="es">
@@ -11,12 +12,18 @@ const { titulo } = Astro.props  // Astro.props son los datos que una página le 
         <meta name="viewport" content="width=device-width" />
         <meta name="description" content="Toda la información del mundial 2026: grupos, partidos, sedes y más" />
         <title>{titulo}</title>
+        <!-- Dark mode sin FOUC: se ejecuta antes del render -->
+        <script is:inline>
+            if (localStorage.getItem('dark') === 'true') {
+                document.documentElement.classList.add('dark')
+            }
+        </script>
     </head>
-    <body class="max-w-5xl mx-auto px-4">
-        <Navbar />
-        <main>
-            <slot />  <!-- Hueco donde se inserta el contenido de cada página -->
+    <body class="min-h-screen flex flex-col">
+        <Navbar rutaActual={Astro.url.pathname} />
+        <main class="max-w-6xl mx-auto px-4 py-8 w-full flex-1">
+            <slot />
         </main>
-        
+        <PiePagina />
     </body>
 </html>
