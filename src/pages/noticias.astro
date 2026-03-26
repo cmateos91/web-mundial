@@ -1,0 +1,19 @@
+---
+import { getCollection } from "astro:content";
+import Base from '../layouts/Base.astro'
+
+const noticias = await getCollection('noticias')
+---
+
+<Base titulo="Noticias - Mundial 2026">
+    <h1 class="text-4xl font-bold">Noticias</h1>
+    <div>
+        {noticias.map(noticia => (
+            <a href={`/noticias/${noticia.id}`} class="block p-4 border rounded mb-4 hover:bg-gray-200">
+                <h2 class="text-xl font-bold">{noticia.data.titulo}</h2>
+                <p class="text-sm text-gray-500">{noticia.data.fecha}</p>
+                <p>{noticia.data.resumen}</p>
+            </a>
+        ))}
+    </div>
+</Base>
