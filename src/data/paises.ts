@@ -58,5 +58,3 @@ export const paises: Pais[] = [
   { nombre: "Nueva Zelanda", zona: "Pacific/Auckland", bandera: "🇳🇿" },
 ]
 
-// Lookup rápido: nombre del país → zona horaria
-export const zonasPorPais = new Map(paises.map(p => [p.nombre, p.zona]))

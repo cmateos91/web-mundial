@@ -4,21 +4,14 @@ import { grupos } from './grupos'
 export function slugificar(nombre: string): string {
   return nombre
     .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '') // quitar acentos
+    .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')    // espacios y símbolos → guiones
-    .replace(/^-|-$/g, '')           // quitar guiones al inicio/final
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
 }
 
-// Todos los equipos con su slug
-const todosLosEquipos = grupos.flatMap(g => g.equipos)
-
-// Lookup: slug → nombre original
-export const equipoPorSlug = new Map(
-  todosLosEquipos.map(e => [slugificar(e), e])
-)
-
 // Lookup: nombre → slug
+const todosLosEquipos = grupos.flatMap(g => g.equipos)
 export const slugPorEquipo = new Map(
   todosLosEquipos.map(e => [e, slugificar(e)])
 )

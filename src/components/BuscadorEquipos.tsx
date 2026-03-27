@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'preact/hooks'
+import { useState, useEffect, useMemo } from 'preact/hooks'
 
 interface Grupo {
   nombre: string
@@ -21,16 +21,16 @@ export default function BuscadorEquipos({ grupos, slugs }: Props) {
     } catch {}
   }, [])
 
-  const resultados = busqueda.length > 0
-    ? grupos
-        .map(grupo => ({
-          ...grupo,
-          equiposFiltrados: grupo.equipos.filter(e =>
-            e.toLowerCase().includes(busqueda.toLowerCase())
-          )
-        }))
-        .filter(g => g.equiposFiltrados.length > 0)
-    : []
+  const resultados = useMemo(() => {
+    if (busqueda.length === 0) return []
+    const texto = busqueda.toLowerCase()
+    return grupos
+      .map(grupo => ({
+        ...grupo,
+        equiposFiltrados: grupo.equipos.filter(e => e.toLowerCase().includes(texto))
+      }))
+      .filter(g => g.equiposFiltrados.length > 0)
+  }, [busqueda, grupos])
 
   return (
     <div>

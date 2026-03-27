@@ -1,20 +1,12 @@
 ---
 import Base from '../layouts/Base.astro'
 import { sedes } from '../data/sedes'
-import { jornadas } from '../data/partidos'
+import { partidosPorEstadio } from '../data/conteos'
 import TarjetasSedes from '../components/TarjetasSedes.astro'
 
-const sedesMexico = sedes.filter(sede => sede.pais === "México")
-const sedesUSA = sedes.filter(sede => sede.pais === "USA")
-const sedesCanada = sedes.filter(sede => sede.pais === "Canadá")
-
-// Mapa de partidos por estadio para links cruzados
-const partidosPorEstadio = new Map<string, number>()
-for (const jornada of jornadas) {
-	for (const p of jornada.partidos) {
-		partidosPorEstadio.set(p.estadio, (partidosPorEstadio.get(p.estadio) ?? 0) + 1)
-	}
-}
+const sedesMexico = sedes.filter(sede => sede.pais === 'México')
+const sedesUSA = sedes.filter(sede => sede.pais === 'Estados Unidos')
+const sedesCanada = sedes.filter(sede => sede.pais === 'Canadá')
 
 const capacidadMax = Math.max(...sedes.map(s => s.capacidad))
 ---

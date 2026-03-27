@@ -4,7 +4,7 @@ import { grupos } from '../../data/grupos'
 import { jornadas } from '../../data/partidos'
 import { paises } from '../../data/paises'
 import { calcularClasificacion, grupoPorEquipo } from '../../data/clasificacion'
-import { slugificar, equipoPorSlug, slugPorEquipo } from '../../data/slugs'
+import { slugificar, slugPorEquipo } from '../../data/slugs'
 
 export function getStaticPaths() {
 	const equipos = grupos.flatMap(g => g.equipos)

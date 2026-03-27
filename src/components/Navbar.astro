@@ -1,20 +1,12 @@
 ---
 import SelectorPais from './SelectorPais.astro'
+import { enlaces } from '../data/navegacion'
 
 interface Props {
     rutaActual: string
 }
 
 const { rutaActual } = Astro.props
-
-const enlaces = [
-    { href: '/', texto: 'Inicio' },
-    { href: '/partidos', texto: 'Partidos' },
-    { href: '/grupos', texto: 'Grupos' },
-    { href: '/eliminatorias', texto: 'Eliminatorias' },
-    { href: '/sedes', texto: 'Sedes' },
-    { href: '/noticias', texto: 'Noticias' },
-]
 
 function esActivo(href: string, ruta: string): boolean {
     if (href === '/') return ruta === '/'

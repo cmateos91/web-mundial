@@ -20,67 +20,67 @@ export const sedes = [
   {
     ciudad: "Arlington",
     estadio: "AT&T Stadium",
-    pais: "USA",
+    pais: "Estados Unidos",
     capacidad: 94000
   },
   {
     ciudad: "East Rutherford",
     estadio: "MetLife Stadium",
-    pais: "USA",
+    pais: "Estados Unidos",
     capacidad: 82500
   },
   {
     ciudad: "Kansas City",
     estadio: "GEHA Field at Arrowhead Stadium",
-    pais: "USA",
+    pais: "Estados Unidos",
     capacidad: 76416
   },
   {
     ciudad: "Atlanta",
     estadio: "Mercedes-Benz Stadium",
-    pais: "USA",
+    pais: "Estados Unidos",
     capacidad: 75000
   },
   {
     ciudad: "Houston",
     estadio: "NRG Stadium",
-    pais: "USA",
+    pais: "Estados Unidos",
     capacidad: 72220
   },
   {
     ciudad: "Santa Clara",
     estadio: "Levi's Stadium",
-    pais: "USA",
+    pais: "Estados Unidos",
     capacidad: 71000
   },
   {
     ciudad: "Inglewood",
     estadio: "SoFi Stadium",
-    pais: "USA",
+    pais: "Estados Unidos",
     capacidad: 70240
   },
   {
     ciudad: "Filadelfia",
     estadio: "Lincoln Financial Field",
-    pais: "USA",
+    pais: "Estados Unidos",
     capacidad: 69796
   },
   {
     ciudad: "Seattle",
     estadio: "Lumen Field",
-    pais: "USA",
+    pais: "Estados Unidos",
     capacidad: 69000
   },
   {
     ciudad: "Foxborough",
     estadio: "Gillette Stadium",
-    pais: "USA",
+    pais: "Estados Unidos",
     capacidad: 65878
   },
   {
     ciudad: "Miami Gardens",
     estadio: "Hard Rock Stadium",
-    pais: "USA",
+    pais: "Estados Unidos",
     capacidad: 64767
   },
   {
