@@ -7,9 +7,10 @@ interface Grupo {
 
 interface Props {
   grupos: Grupo[]
+  slugs: Record<string, string>
 }
 
-export default function BuscadorEquipos({ grupos }: Props) {
+export default function BuscadorEquipos({ grupos, slugs }: Props) {
   const [busqueda, setBusqueda] = useState('')
   const [paisFavorito, setPaisFavorito] = useState<string | null>(null)
 
@@ -105,7 +106,9 @@ export default function BuscadorEquipos({ grupos }: Props) {
                       } : {}),
                     }}
                   >
-                    {equipo}
+                    <a href={`/equipos/${slugs[equipo] || ''}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                      {equipo} <span style={{ fontSize: '0.7rem', color: 'var(--color-verde)' }}>→</span>
+                    </a>
                   </li>
                 ))}
               </ul>

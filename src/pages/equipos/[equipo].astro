@@ -1,0 +1,139 @@
+---
+import Base from '../../layouts/Base.astro'
+import { grupos } from '../../data/grupos'
+import { jornadas } from '../../data/partidos'
+import { paises } from '../../data/paises'
+import { calcularClasificacion, grupoPorEquipo } from '../../data/clasificacion'
+import { slugificar, equipoPorSlug, slugPorEquipo } from '../../data/slugs'
+
+export function getStaticPaths() {
+	const equipos = grupos.flatMap(g => g.equipos)
+	return equipos.map(equipo => ({
+		params: { equipo: slugificar(equipo) },
+		props: { nombre: equipo }
+	}))
+}
+
+const { nombre } = Astro.props
+
+// Datos del equipo
+const paisInfo = paises.find(p => p.nombre === nombre)
+const bandera = paisInfo?.bandera ?? ''
+const nombreGrupo = grupoPorEquipo.get(nombre) ?? ''
+const grupo = grupos.find(g => g.nombre === nombreGrupo)
+
+// Clasificación de su grupo
+const clasificacion = calcularClasificacion()
+const tablaGrupo = clasificacion.get(nombreGrupo) ?? []
+const posicion = tablaGrupo.findIndex(e => e.equipo === nombre) + 1
+
+// Partidos del equipo
+const partidosEquipo = jornadas.flatMap(j =>
+	j.partidos
+		.filter(p => p.equipo1 === nombre || p.equipo2 === nombre)
+		.map(p => ({ ...p, fecha: j.fecha }))
+)
+
+// Sedes donde juega
+const sedesUnicas = [...new Set(
+	partidosEquipo
+		.filter(p => p.estadio !== 'Por confirmar')
+		.map(p => `${p.estadio}, ${p.ciudad}`)
+)]
+---
+
+<Base titulo={`${nombre} — Mundial 2026`}>
+	<!-- Cabecera -->
+	<div class="mb-8">
+		<a href="/grupos" class="inline-flex items-center text-sm text-[var(--color-verde)] hover:underline mb-4">
+			← Volver a grupos
+		</a>
+		<div class="flex items-center gap-4">
+			{bandera && <span class="text-6xl">{bandera}</span>}
+			<div>
+				<h1 class="text-4xl font-extrabold" data-equipo={nombre}>{nombre}</h1>
+				<p class="texto-secundario mt-1">
+					{nombreGrupo} · Posición actual: {posicion}º
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+		<!-- Columna izquierda: Tabla del grupo -->
+		<div>
+			<h2 class="text-xl font-bold mb-3">{nombreGrupo}</h2>
+			<div class="tarjeta overflow-hidden">
+				<div class="overflow-x-auto">
+					<table class="w-full text-sm">
+						<thead>
+							<tr class="fondo-superficie text-xs texto-secundario">
+								<th class="text-left px-3 py-2 font-medium">Equipo</th>
+								<th class="px-1.5 py-2 font-medium">PJ</th>
+								<th class="px-1.5 py-2 font-medium">GF</th>
+								<th class="px-1.5 py-2 font-medium">GC</th>
+								<th class="px-1.5 py-2 font-medium font-bold">Pts</th>
+							</tr>
+						</thead>
+						<tbody class="divide-y divide-[var(--color-borde)]">
+							{tablaGrupo.map((e, i) => (
+								<tr class={e.equipo === nombre ? 'bg-[color-mix(in_srgb,var(--color-verde)_10%,transparent)]' : ''}>
+									<td class="px-3 py-2 font-medium">
+										{e.equipo === nombre
+											? <span class="font-bold" data-equipo={e.equipo}>{e.equipo}</span>
+											: <a href={`/equipos/${slugPorEquipo.get(e.equipo)}`} class="hover:text-[var(--color-verde)]" data-equipo={e.equipo}>{e.equipo}</a>
+										}
+									</td>
+									<td class="text-center px-1.5 py-2">{e.pj}</td>
+									<td class="text-center px-1.5 py-2">{e.gf}</td>
+									<td class="text-center px-1.5 py-2">{e.gc}</td>
+									<td class="text-center px-1.5 py-2 font-bold">{e.pts}</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			{sedesUnicas.length > 0 && (
+				<div class="mt-6">
+					<h2 class="text-xl font-bold mb-3">Sedes</h2>
+					<div class="space-y-2">
+						{sedesUnicas.map(sede => (
+							<div class="tarjeta p-3 text-sm">{sede}</div>
+						))}
+					</div>
+				</div>
+			)}
+		</div>
+
+		<!-- Columna derecha: Partidos -->
+		<div class="lg:col-span-2">
+			<h2 class="text-xl font-bold mb-3">Partidos ({partidosEquipo.length})</h2>
+			<div class="space-y-3">
+				{partidosEquipo.map(p => (
+					<div class="tarjeta p-4 flex items-center gap-4">
+						<div class="shrink-0 text-center">
+							<p class="text-xs texto-secundario">{p.fecha}</p>
+							<p class="text-sm font-mono" data-utc={p.fechaUTC}>{p.hora}</p>
+						</div>
+						<div class="flex-1">
+							<p class="font-semibold">
+								<span data-equipo={p.equipo1} class={p.equipo1 === nombre ? 'font-bold' : ''}>{p.equipo1}</span>
+								{p.estado === 'finalizado'
+									? <span class="mx-2 px-2 py-0.5 rounded fondo-superficie text-sm font-bold">{p.goles1} - {p.goles2}</span>
+									: <span class="texto-secundario font-normal mx-2">vs</span>
+								}
+								<span data-equipo={p.equipo2} class={p.equipo2 === nombre ? 'font-bold' : ''}>{p.equipo2}</span>
+							</p>
+							<p class="text-xs texto-secundario mt-0.5">{p.estadio}, {p.ciudad}</p>
+						</div>
+						{p.estado === 'finalizado' && (
+							<span class="text-xs px-2 py-1 rounded fondo-superficie texto-secundario">Finalizado</span>
+						)}
+					</div>
+				))}
+			</div>
+		</div>
+	</div>
+</Base>

@@ -1,0 +1,210 @@
+---
+import type { Ronda } from '../data/eliminatorias'
+
+interface Props {
+	rondas: Ronda[]
+}
+
+const { rondas } = Astro.props
+
+// Agrupar partidos en pares para los conectores del bracket
+function enPares<T>(arr: T[]): T[][] {
+	const pares: T[][] = []
+	for (let i = 0; i < arr.length; i += 2) {
+		pares.push(arr.slice(i, i + 2))
+	}
+	return pares
+}
+---
+
+<div class="overflow-x-auto pb-4 -mx-4 px-4">
+	<div class="bracket">
+		{rondas.map((ronda, rondaIdx) => {
+			const esUltima = rondaIdx === rondas.length - 1
+			const esPrimera = rondaIdx === 0
+			const pares = ronda.partidos.length >= 2 ? enPares(ronda.partidos) : null
+			return (
+				<div class="bracket-ronda">
+					<h3 class="ronda-titulo">{ronda.nombre}</h3>
+					<div class="bracket-partidos">
+						{pares ? (
+							pares.map((par) => (
+								<div class:list={['par-partidos', { 'con-conector-derecho': !esUltima, 'con-conector-izquierdo': !esPrimera }]}>
+									{par.map((p) => {
+										const hayResultado = p.estado === 'finalizado' && p.goles1 !== null
+										const ganador = hayResultado ? (p.goles1! > p.goles2! ? p.equipo1 : p.equipo2) : null
+										return (
+											<div class="partido">
+												<div class:list={['equipo', { ganador: ganador === p.equipo1, perdedor: ganador && ganador !== p.equipo1 }]}>
+													<span class="truncate" data-equipo={p.equipo1 !== 'Por definir' ? p.equipo1 : undefined}>
+														{p.equipo1}
+													</span>
+													{hayResultado && <span class="goles">{p.goles1}</span>}
+												</div>
+												<div class:list={['equipo', { ganador: ganador === p.equipo2, perdedor: ganador && ganador !== p.equipo2 }]}>
+													<span class="truncate" data-equipo={p.equipo2 !== 'Por definir' ? p.equipo2 : undefined}>
+														{p.equipo2}
+													</span>
+													{hayResultado && <span class="goles">{p.goles2}</span>}
+												</div>
+											</div>
+										)
+									})}
+								</div>
+							))
+						) : (
+							/* Ronda con un solo partido (final) */
+							ronda.partidos.map((p) => {
+								const hayResultado = p.estado === 'finalizado' && p.goles1 !== null
+								const ganador = hayResultado ? (p.goles1! > p.goles2! ? p.equipo1 : p.equipo2) : null
+								return (
+									<div class:list={['par-partidos par-final', { 'con-conector-izquierdo': !esPrimera }]}>
+										<div class="partido partido-final">
+											<div class:list={['equipo', { ganador: ganador === p.equipo1, perdedor: ganador && ganador !== p.equipo1 }]}>
+												<span class="truncate" data-equipo={p.equipo1 !== 'Por definir' ? p.equipo1 : undefined}>
+													{p.equipo1}
+												</span>
+												{hayResultado && <span class="goles">{p.goles1}</span>}
+											</div>
+											<div class:list={['equipo', { ganador: ganador === p.equipo2, perdedor: ganador && ganador !== p.equipo2 }]}>
+												<span class="truncate" data-equipo={p.equipo2 !== 'Por definir' ? p.equipo2 : undefined}>
+													{p.equipo2}
+												</span>
+												{hayResultado && <span class="goles">{p.goles2}</span>}
+											</div>
+										</div>
+									</div>
+								)
+							})
+						)}
+					</div>
+				</div>
+			)
+		})}
+	</div>
+</div>
+
+<style>
+	.bracket {
+		display: flex;
+		gap: 2rem;
+		padding: 1rem 0;
+		min-width: max-content;
+	}
+
+	.bracket-ronda {
+		display: flex;
+		flex-direction: column;
+		min-width: 180px;
+		flex-shrink: 0;
+	}
+
+	.ronda-titulo {
+		font-size: 0.7rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--color-texto-secundario);
+		text-align: center;
+		margin-bottom: 1rem;
+		padding-bottom: 0.5rem;
+		border-bottom: 2px solid var(--color-verde);
+	}
+
+	.bracket-partidos {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		flex: 1;
+		gap: 0.5rem;
+	}
+
+	/* ── Par de partidos (wrapper para conectores) ── */
+	.par-partidos {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 0.75rem;
+		flex: 1;
+		position: relative;
+	}
+
+	.par-final {
+		justify-content: center;
+		align-items: center;
+	}
+
+	/* ── Conector derecho: línea "]" que une dos partidos al siguiente ── */
+	.con-conector-derecho::after {
+		content: "";
+		position: absolute;
+		right: -1rem;
+		top: 25%;
+		bottom: 25%;
+		width: 1rem;
+		border: 2px solid var(--color-borde);
+		border-left: none;
+		border-radius: 0 6px 6px 0;
+	}
+
+	/* ── Conector izquierdo: línea horizontal entrando al par ── */
+	.con-conector-izquierdo::before {
+		content: "";
+		position: absolute;
+		left: -1rem;
+		top: 50%;
+		width: 1rem;
+		height: 2px;
+		background: var(--color-borde);
+	}
+
+	/* ── Tarjeta de partido ── */
+	.partido {
+		background: var(--color-tarjeta);
+		border: 1px solid var(--color-borde);
+		border-radius: 0.5rem;
+		overflow: hidden;
+		font-size: 0.8rem;
+		transition: border-color 0.2s;
+	}
+
+	.partido:hover {
+		border-color: var(--color-verde);
+	}
+
+	.partido-final {
+		border-width: 2px;
+		border-color: var(--color-verde);
+		box-shadow: 0 0 20px color-mix(in srgb, var(--color-verde) 20%, transparent);
+	}
+
+	/* ── Fila de equipo dentro de un partido ── */
+	.equipo {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0.4rem 0.6rem;
+		gap: 0.5rem;
+	}
+
+	.equipo + .equipo {
+		border-top: 1px solid var(--color-borde);
+	}
+
+	.equipo.ganador {
+		background: color-mix(in srgb, var(--color-verde) 12%, transparent);
+		font-weight: 700;
+	}
+
+	.equipo.perdedor {
+		opacity: 0.5;
+	}
+
+	.goles {
+		font-family: monospace;
+		font-weight: 700;
+		font-size: 0.85rem;
+		min-width: 1rem;
+		text-align: center;
+	}
+</style>

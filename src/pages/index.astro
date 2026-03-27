@@ -3,8 +3,10 @@ import Base from '../layouts/Base.astro'
 import { jornadas } from '../data/partidos'
 import BuscadorEquipos from '../components/BuscadorEquipos'
 import { grupos } from '../data/grupos'
+import { slugPorEquipo } from '../data/slugs'
 
 const proximosPartidos = jornadas[0].partidos
+const slugsObj = Object.fromEntries(slugPorEquipo)
 
 // Cuenta regresiva calculada en build time
 const inicio = new Date('2026-06-11T00:00:00')
@@ -45,7 +47,7 @@ const diasRestantes = Math.max(0, Math.ceil((inicio.getTime() - hoy.getTime()) /
 	<!-- Buscador -->
 	<section class="mt-12">
 		<h2 class="text-2xl font-bold mb-4">Busca tu equipo</h2>
-		<BuscadorEquipos client:visible grupos={grupos} />
+		<BuscadorEquipos client:visible grupos={grupos} slugs={slugsObj} />
 	</section>
 
 	<!-- Primeros partidos -->
@@ -77,16 +79,20 @@ const diasRestantes = Math.max(0, Math.ceil((inicio.getTime() - hoy.getTime()) /
 	<!-- Navegación rápida -->
 	<section class="mt-12 mb-4">
 		<h2 class="text-2xl font-bold mb-4">Explora el mundial</h2>
-		<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 			<a href="/grupos" class="tarjeta tarjeta-hover p-6 border-l-4 border-l-[var(--color-verde)]">
 				<h3 class="text-lg font-bold">Grupos</h3>
-				<p class="texto-secundario text-sm mt-1">48 selecciones en 12 grupos</p>
+				<p class="texto-secundario text-sm mt-1">12 grupos con tabla de posiciones</p>
 			</a>
 			<a href="/partidos" class="tarjeta tarjeta-hover p-6 border-l-4 border-l-[var(--color-rojo)]">
 				<h3 class="text-lg font-bold">Partidos</h3>
-				<p class="texto-secundario text-sm mt-1">Calendario completo de encuentros</p>
+				<p class="texto-secundario text-sm mt-1">104 partidos con filtros</p>
 			</a>
-			<a href="/sedes" class="tarjeta tarjeta-hover p-6 border-l-4 border-l-[var(--color-azul)]">
+			<a href="/eliminatorias" class="tarjeta tarjeta-hover p-6 border-l-4 border-l-[var(--color-azul)]">
+				<h3 class="text-lg font-bold">Eliminatorias</h3>
+				<p class="texto-secundario text-sm mt-1">Bracket de dieciseisavos a la final</p>
+			</a>
+			<a href="/sedes" class="tarjeta tarjeta-hover p-6 border-l-4 border-l-[var(--color-verde)]">
 				<h3 class="text-lg font-bold">Sedes</h3>
 				<p class="texto-secundario text-sm mt-1">16 estadios en 3 países</p>
 			</a>

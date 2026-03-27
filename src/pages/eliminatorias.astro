@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro'
+import CuadroEliminatorias from '../components/CuadroEliminatorias.astro'
+import { eliminatorias } from '../data/eliminatorias'
+---
+
+<Base titulo="Eliminatorias — Mundial 2026">
+	<div class="mb-8">
+		<h1 class="text-4xl font-extrabold">Eliminatorias</h1>
+		<p class="texto-secundario mt-1">Cuadro completo desde dieciseisavos hasta la final. Se actualizará conforme avance el torneo.</p>
+	</div>
+
+	<CuadroEliminatorias rondas={eliminatorias} />
+
+	<div class="mt-8 tarjeta p-4 text-sm texto-secundario">
+		<p><strong>¿Cómo se clasifican?</strong> Los 2 primeros de cada grupo (24 equipos) y los 8 mejores terceros pasan a dieciseisavos de final. A partir de ahí, eliminación directa.</p>
+	</div>
+</Base>

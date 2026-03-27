@@ -2,6 +2,10 @@
 import Base from '../layouts/Base.astro'
 import { grupos } from '../data/grupos'
 import { jornadas } from '../data/partidos'
+import { calcularClasificacion } from '../data/clasificacion'
+import { slugPorEquipo } from '../data/slugs'
+
+const clasificacion = calcularClasificacion()
 
 // Mapa de partidos por equipo para links cruzados
 const partidosPorEquipo = new Map<string, number>()
@@ -18,28 +22,55 @@ for (const jornada of jornadas) {
 		<h1 class="text-4xl font-extrabold">Grupos</h1>
 		<p class="texto-secundario mt-1">48 selecciones repartidas en 12 grupos. Los dos primeros de cada grupo y los 8 mejores terceros avanzan a dieciseisavos.</p>
 	</div>
-	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-		{grupos.map(grupo => (
-			<div class="tarjeta overflow-hidden">
-				<div class="bg-[var(--color-verde)] text-white px-4 py-2.5 font-bold text-sm tracking-wide">
-					{grupo.nombre}
+	<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+		{grupos.map(grupo => {
+			const tabla = clasificacion.get(grupo.nombre) ?? []
+			return (
+				<div class="tarjeta overflow-hidden">
+					<div class="bg-[var(--color-verde)] text-white px-4 py-2.5 font-bold text-sm tracking-wide">
+						{grupo.nombre}
+					</div>
+					<div class="overflow-x-auto">
+						<table class="w-full text-sm">
+							<thead>
+								<tr class="fondo-superficie text-xs texto-secundario">
+									<th class="text-left px-3 py-2 font-medium">Equipo</th>
+									<th class="px-1.5 py-2 font-medium">PJ</th>
+									<th class="px-1.5 py-2 font-medium">PG</th>
+									<th class="px-1.5 py-2 font-medium">PE</th>
+									<th class="px-1.5 py-2 font-medium">PP</th>
+									<th class="px-1.5 py-2 font-medium">GF</th>
+									<th class="px-1.5 py-2 font-medium">GC</th>
+									<th class="px-1.5 py-2 font-medium font-bold">Pts</th>
+								</tr>
+							</thead>
+							<tbody class="divide-y divide-[var(--color-borde)]">
+								{tabla.map((e, i) => (
+									<tr class={i < 2 ? 'bg-[color-mix(in_srgb,var(--color-verde)_5%,transparent)]' : ''}>
+										<td class="px-3 py-2 font-medium">
+											<a
+												href={`/equipos/${slugPorEquipo.get(e.equipo)}`}
+												class="hover:text-[var(--color-verde)] transition-colors"
+												data-equipo={e.equipo}
+											>
+												<span class="texto-secundario mr-1.5 text-xs">{i + 1}.</span>
+												{e.equipo}
+											</a>
+										</td>
+										<td class="text-center px-1.5 py-2">{e.pj}</td>
+										<td class="text-center px-1.5 py-2">{e.pg}</td>
+										<td class="text-center px-1.5 py-2">{e.pe}</td>
+										<td class="text-center px-1.5 py-2">{e.pp}</td>
+										<td class="text-center px-1.5 py-2">{e.gf}</td>
+										<td class="text-center px-1.5 py-2">{e.gc}</td>
+										<td class="text-center px-1.5 py-2 font-bold">{e.pts}</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
 				</div>
-				<ul class="divide-y divide-[var(--color-borde)]">
-					{grupo.equipos.map((equipo, i) => (
-						<li class="px-4 py-2.5 flex items-center justify-between text-sm">
-							<span data-equipo={equipo}>
-								<span class="texto-secundario mr-2">{i + 1}.</span>
-								{equipo}
-							</span>
-							{partidosPorEquipo.has(equipo) && (
-								<a href={`/partidos?equipo=${encodeURIComponent(equipo)}`} class="text-xs text-[var(--color-verde)] hover:underline">
-									ver partidos
-								</a>
-							)}
-						</li>
-					))}
-				</ul>
-			</div>
-		))}
+			)
+		})}
 	</div>
 </Base>
