@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css'
+import { ClientRouter } from 'astro:transitions'
 import Navbar from '../components/Navbar.astro'
 import PiePagina from '../components/PiePagina.astro'
 import { paises } from '../data/paises'
@@ -16,11 +17,16 @@ const zonasJSON = JSON.stringify(Object.fromEntries(paises.map(p => [p.nombre, p
         <meta name="viewport" content="width=device-width" />
         <meta name="description" content="Toda la información del mundial 2026: grupos, partidos, sedes y más" />
         <title>{titulo}</title>
-        <!-- Dark mode sin FOUC -->
+        <ClientRouter />
+        <!-- Dark mode sin FOUC (también funciona con View Transitions) -->
         <script is:inline>
-            if (localStorage.getItem('dark') === 'true') {
-                document.documentElement.classList.add('dark')
+            function aplicarTema() {
+                if (localStorage.getItem('dark') === 'true') {
+                    document.documentElement.classList.add('dark')
+                }
             }
+            aplicarTema()
+            document.addEventListener('astro:after-swap', aplicarTema)
         </script>
     </head>
     <body class="min-h-screen flex flex-col">
@@ -29,37 +35,36 @@ const zonasJSON = JSON.stringify(Object.fromEntries(paises.map(p => [p.nombre, p
             <slot />
         </main>
         <PiePagina />
-        <!-- Conversión de horas + resaltado de equipo: corre después del DOM -->
+        <!-- Conversión de horas + resaltado de equipo -->
         <script is:inline define:vars={{ zonasJSON }}>
-            (function() {
+            function aplicarPreferencias() {
                 var zonas = JSON.parse(zonasJSON)
                 var pais = localStorage.getItem('pais')
                 if (!pais) return
 
                 var zona = zonas[pais]
 
-                // ── Convertir horas ──
                 if (zona) {
                     document.querySelectorAll('[data-utc]').forEach(function(el) {
                         try {
                             var fecha = new Date(el.getAttribute('data-utc'))
                             el.textContent = fecha.toLocaleTimeString('es-ES', {
-                                timeZone: zona,
-                                hour: '2-digit',
-                                minute: '2-digit',
-                                hour12: false
+                                timeZone: zona, hour: '2-digit', minute: '2-digit', hour12: false
                             })
                         } catch(e) {}
                     })
                 }
 
-                // ── Resaltar equipo favorito ──
                 document.querySelectorAll('[data-equipo]').forEach(function(el) {
                     if (el.getAttribute('data-equipo') === pais) {
                         el.classList.add('equipo-favorito')
                     }
                 })
-            })()
+            }
+
+            // Ejecutar en carga normal y en navegación con View Transitions
+            aplicarPreferencias()
+            document.addEventListener('astro:page-load', aplicarPreferencias)
         </script>
     </body>
 </html>
