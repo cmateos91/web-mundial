@@ -59,7 +59,8 @@ body {
 
 /* === Resaltado de equipo favorito === */
 .equipo-favorito {
-  border-left: 3px solid var(--color-verde);
-  padding-left: 0.4rem;
+  background-color: color-mix(in srgb, var(--color-verde) 15%, transparent);
+  border-radius: 0.25rem;
+  padding: 0.1rem 0.35rem;
   font-weight: 700;
 }

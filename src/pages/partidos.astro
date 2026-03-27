@@ -1,7 +1,11 @@
 ---
 import Base from "../layouts/Base.astro"
 import { jornadas } from "../data/partidos"
+import { paises } from "../data/paises"
 import FiltroPartidos from "../components/FiltroPartidos"
+
+// Objeto plano serializable para pasar al cliente
+const zonas = Object.fromEntries(paises.map(p => [p.nombre, p.zona]))
 ---
 
 <Base titulo="Partidos — Mundial 2026">
@@ -9,5 +13,5 @@ import FiltroPartidos from "../components/FiltroPartidos"
 		<h1 class="text-4xl font-extrabold">Partidos</h1>
 		<p class="texto-secundario mt-1">Calendario completo de la fase de grupos del Mundial 2026.</p>
 	</div>
-	<FiltroPartidos client:visible jornadas={jornadas} />
+	<FiltroPartidos client:visible jornadas={jornadas} zonas={zonas} />
 </Base>

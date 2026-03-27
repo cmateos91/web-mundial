@@ -1,17 +1,9 @@
-import { useState, useEffect, useMemo } from 'preact/hooks'
+import { useState, useEffect } from 'preact/hooks'
 import type { Partido, Jornada } from '../data/partidos'
-import { zonasPorPais } from '../data/paises'
 
 interface Props {
   jornadas: Jornada[]
-}
-
-function obtenerPreferencia(): { pais: string | null, zona: string | null } {
-  try {
-    const pais = localStorage.getItem('pais')
-    if (!pais) return { pais: null, zona: null }
-    return { pais, zona: zonasPorPais.get(pais) ?? null }
-  } catch { return { pais: null, zona: null } }
+  zonas: Record<string, string>
 }
 
 function convertirHora(fechaUTC: string, zona: string | null): string {
@@ -23,13 +15,18 @@ function convertirHora(fechaUTC: string, zona: string | null): string {
   } catch { return '' }
 }
 
-function estiloFavorito(equipo: string, paisFavorito: string | null) {
-  if (equipo !== paisFavorito) return {}
-  return {
-    borderLeft: '3px solid var(--color-verde)',
-    paddingLeft: '0.4rem',
-    fontWeight: 700,
+const estiloFav = {
+  backgroundColor: 'color-mix(in srgb, var(--color-verde) 15%, transparent)',
+  borderRadius: '0.25rem',
+  padding: '0.1rem 0.35rem',
+  fontWeight: 700,
+} as const
+
+function NombreEquipo({ nombre, esFavorito }: { nombre: string, esFavorito: boolean }) {
+  if (esFavorito) {
+    return <span style={{ ...estiloFav, fontWeight: 700 }}>{nombre}</span>
   }
+  return <span style={{ fontWeight: 600 }}>{nombre}</span>
 }
 
 function Marcador({ partido }: { partido: Partido }) {
@@ -66,11 +63,22 @@ function Marcador({ partido }: { partido: Partido }) {
   )
 }
 
-export default function FiltroPartidos({ jornadas }: Props) {
+export default function FiltroPartidos({ jornadas, zonas }: Props) {
   const [filtro, setFiltro] = useState('')
-  const { pais: paisFavorito, zona } = useMemo(() => obtenerPreferencia(), [])
+  const [paisFavorito, setPaisFavorito] = useState<string | null>(null)
+  const [zona, setZona] = useState<string | null>(null)
 
   useEffect(() => {
+    // Leer preferencia de país desde localStorage (solo en cliente)
+    try {
+      const pais = localStorage.getItem('pais')
+      if (pais) {
+        setPaisFavorito(pais)
+        setZona(zonas[pais] ?? null)
+      }
+    } catch {}
+
+    // Leer filtro de query params
     const params = new URLSearchParams(window.location.search)
     const equipo = params.get('equipo')
     const sede = params.get('sede')
@@ -154,9 +162,9 @@ export default function FiltroPartidos({ jornadas }: Props) {
                   {zona ? convertirHora(p.fechaUTC, zona) || p.hora : p.hora}
                 </span>
                 <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-                  <span style={{ fontWeight: 600, ...estiloFavorito(p.equipo1, paisFavorito) }}>{p.equipo1}</span>
+                  <NombreEquipo nombre={p.equipo1} esFavorito={p.equipo1 === paisFavorito} />
                   <Marcador partido={p} />
-                  <span style={{ fontWeight: 600, ...estiloFavorito(p.equipo2, paisFavorito) }}>{p.equipo2}</span>
+                  <NombreEquipo nombre={p.equipo2} esFavorito={p.equipo2 === paisFavorito} />
                 </div>
               </div>
             ))}
