@@ -11,42 +11,260 @@ export interface Ronda {
   partidos: PartidoEliminatoria[]
 }
 
-// Estructura del bracket del Mundial 2026
-// 48 equipos → 32 clasificados → Dieciseisavos (16 partidos) → Octavos (8) → Cuartos (4) → Semis (2) → Final (1)
+// Última actualización: 2026-03-27T19:56:41.891Z
 export const eliminatorias: Ronda[] = [
   {
     nombre: "Dieciseisavos",
-    partidos: Array.from({ length: 16 }, () => ({
-      equipo1: "Por definir", equipo2: "Por definir",
-      goles1: null, goles2: null, estado: "programado" as const
-    }))
+    partidos: [
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      }
+    ]
   },
   {
     nombre: "Octavos de final",
-    partidos: Array.from({ length: 8 }, () => ({
-      equipo1: "Por definir", equipo2: "Por definir",
-      goles1: null, goles2: null, estado: "programado" as const
-    }))
+    partidos: [
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      }
+    ]
   },
   {
     nombre: "Cuartos de final",
-    partidos: Array.from({ length: 4 }, () => ({
-      equipo1: "Por definir", equipo2: "Por definir",
-      goles1: null, goles2: null, estado: "programado" as const
-    }))
+    partidos: [
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      }
+    ]
   },
   {
     nombre: "Semifinales",
-    partidos: Array.from({ length: 2 }, () => ({
-      equipo1: "Por definir", equipo2: "Por definir",
-      goles1: null, goles2: null, estado: "programado" as const
-    }))
+    partidos: [
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      }
+    ]
+  },
+  {
+    nombre: "Tercer puesto",
+    partidos: [
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      }
+    ]
   },
   {
     nombre: "Final",
-    partidos: [{
-      equipo1: "Por definir", equipo2: "Por definir",
-      goles1: null, goles2: null, estado: "programado" as const
-    }]
+    partidos: [
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      }
+    ]
   }
 ]

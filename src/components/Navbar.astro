@@ -100,38 +100,47 @@ function esActivo(href: string, ruta: string): boolean {
 </nav>
 
 <script is:inline>
-    // --- Menú hamburguesa ---
-    const btnMenu = document.getElementById('btn-menu')
-    const menuMovil = document.getElementById('menu-movil')
-    const iconoMenu = document.getElementById('icono-menu')
-    const iconoCerrar = document.getElementById('icono-cerrar')
+    function inicializarNavbar() {
+        // --- Menú hamburguesa ---
+        var btnMenu = document.getElementById('btn-menu')
+        var menuMovil = document.getElementById('menu-movil')
+        var iconoMenu = document.getElementById('icono-menu')
+        var iconoCerrar = document.getElementById('icono-cerrar')
 
-    btnMenu.addEventListener('click', () => {
-        menuMovil.classList.toggle('hidden')
-        iconoMenu.classList.toggle('hidden')
-        iconoCerrar.classList.toggle('hidden')
-    })
+        if (btnMenu) {
+            btnMenu.onclick = function() {
+                menuMovil.classList.toggle('hidden')
+                iconoMenu.classList.toggle('hidden')
+                iconoCerrar.classList.toggle('hidden')
+            }
+        }
 
-    // --- Dark mode toggle ---
-    function actualizarIconosTema() {
-        const esDark = document.documentElement.classList.contains('dark')
-        // Desktop
-        document.getElementById('icono-tema-sol').classList.toggle('hidden', !esDark)
-        document.getElementById('icono-tema-luna').classList.toggle('hidden', esDark)
-        // Móvil
-        document.getElementById('icono-tema-sol-movil').classList.toggle('hidden', !esDark)
-        document.getElementById('icono-tema-luna-movil').classList.toggle('hidden', esDark)
+        // --- Dark mode toggle ---
+        var esDark = document.documentElement.classList.contains('dark')
+
+        // Actualizar iconos
+        var ids = ['icono-tema-sol', 'icono-tema-luna', 'icono-tema-sol-movil', 'icono-tema-luna-movil']
+        ids.forEach(function(id) {
+            var el = document.getElementById(id)
+            if (!el) return
+            var esSol = id.includes('sol')
+            el.classList.toggle('hidden', esSol ? !esDark : esDark)
+        })
+
+        // Botones de tema
+        function alternarTema() {
+            document.documentElement.classList.toggle('dark')
+            var dark = document.documentElement.classList.contains('dark')
+            localStorage.setItem('dark', String(dark))
+            inicializarNavbar()
+        }
+
+        var btnTema = document.getElementById('btn-tema')
+        var btnTemaMovil = document.getElementById('btn-tema-movil')
+        if (btnTema) btnTema.onclick = alternarTema
+        if (btnTemaMovil) btnTemaMovil.onclick = alternarTema
     }
 
-    function alternarTema() {
-        document.documentElement.classList.toggle('dark')
-        const esDark = document.documentElement.classList.contains('dark')
-        localStorage.setItem('dark', String(esDark))
-        actualizarIconosTema()
-    }
-
-    document.getElementById('btn-tema').addEventListener('click', alternarTema)
-    document.getElementById('btn-tema-movil').addEventListener('click', alternarTema)
-
-    actualizarIconosTema()
+    inicializarNavbar()
+    document.addEventListener('astro:page-load', inicializarNavbar)
 </script>

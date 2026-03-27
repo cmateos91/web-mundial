@@ -8,10 +8,20 @@ import { slugificar, equipoPorSlug, slugPorEquipo } from '../../data/slugs'
 
 export function getStaticPaths() {
 	const equipos = grupos.flatMap(g => g.equipos)
-	return equipos.map(equipo => ({
-		params: { equipo: slugificar(equipo) },
-		props: { nombre: equipo }
-	}))
+	// Filtrar "Por definir" y evitar slugs duplicados
+	const vistos = new Set<string>()
+	return equipos
+		.filter(e => !e.startsWith('Por definir'))
+		.filter(e => {
+			const slug = slugificar(e)
+			if (vistos.has(slug)) return false
+			vistos.add(slug)
+			return true
+		})
+		.map(equipo => ({
+			params: { equipo: slugificar(equipo) },
+			props: { nombre: equipo }
+		}))
 }
 
 const { nombre } = Astro.props

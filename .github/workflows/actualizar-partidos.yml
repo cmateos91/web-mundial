@@ -1,10 +1,8 @@
-name: Actualizar partidos
+name: Actualizar datos del mundial
 
 on:
-  # Cada 6 horas
   schedule:
     - cron: '0 */6 * * *'
-  # También se puede ejecutar manualmente desde GitHub
   workflow_dispatch:
 
 permissions:
@@ -31,13 +29,13 @@ jobs:
       - name: Comprobar si hay cambios
         id: cambios
         run: |
-          git diff --quiet src/data/partidos.ts && echo "hay_cambios=false" >> $GITHUB_OUTPUT || echo "hay_cambios=true" >> $GITHUB_OUTPUT
+          git diff --quiet src/data/ && echo "hay_cambios=false" >> $GITHUB_OUTPUT || echo "hay_cambios=true" >> $GITHUB_OUTPUT
 
       - name: Commit y push si hay cambios
         if: steps.cambios.outputs.hay_cambios == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/data/partidos.ts
-          git commit -m "datos: actualizar partidos $(date -u +%Y-%m-%d_%H:%M)"
+          git add src/data/partidos.ts src/data/grupos.ts src/data/eliminatorias.ts
+          git commit -m "datos: actualizar mundial $(date -u +%Y-%m-%d_%H:%M)"
           git push

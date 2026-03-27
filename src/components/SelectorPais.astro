@@ -16,13 +16,13 @@ import { paises } from '../data/paises'
 </div>
 
 <script is:inline>
-    (function() {
+    function inicializarSelectorPais() {
         var selects = document.querySelectorAll('.selector-pais')
         var guardado = localStorage.getItem('pais')
 
         selects.forEach(function(select) {
             if (guardado) select.value = guardado
-            select.addEventListener('change', function() {
+            select.onchange = function() {
                 var valor = select.value
                 if (valor) {
                     localStorage.setItem('pais', valor)
@@ -30,7 +30,10 @@ import { paises } from '../data/paises'
                     localStorage.removeItem('pais')
                 }
                 location.reload()
-            })
+            }
         })
-    })()
+    }
+
+    inicializarSelectorPais()
+    document.addEventListener('astro:page-load', inicializarSelectorPais)
 </script>

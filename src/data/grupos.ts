@@ -1,50 +1,111 @@
+// Última actualización: 2026-03-27T19:56:41.994Z
 export const grupos = [
   {
     nombre: "Grupo A",
-    equipos: ["México", "Corea del Sur", "Sudáfrica", "Por definir (UEFA D)"]
+    equipos: [
+      "Por definir",
+      "México",
+      "Sudáfrica",
+      "Corea del Sur"
+    ]
   },
   {
     nombre: "Grupo B",
-    equipos: ["Canadá", "Suiza", "Qatar", "Por definir (UEFA A)"]
+    equipos: [
+      "Por definir",
+      "Canadá",
+      "Qatar",
+      "Suiza"
+    ]
   },
   {
     nombre: "Grupo C",
-    equipos: ["Brasil", "Marruecos", "Escocia", "Haití"]
+    equipos: [
+      "Brasil",
+      "Marruecos",
+      "Haití",
+      "Escocia"
+    ]
   },
   {
     nombre: "Grupo D",
-    equipos: ["Estados Unidos", "Paraguay", "Australia", "Por definir (UEFA C)"]
+    equipos: [
+      "Por definir",
+      "Estados Unidos",
+      "Paraguay",
+      "Australia"
+    ]
   },
   {
     nombre: "Grupo E",
-    equipos: ["Alemania", "Ecuador", "Costa de Marfil", "Curazao"]
+    equipos: [
+      "Alemania",
+      "Curazao",
+      "Costa de Marfil",
+      "Ecuador"
+    ]
   },
   {
     nombre: "Grupo F",
-    equipos: ["Países Bajos", "Japón", "Túnez", "Por definir (UEFA B)"]
+    equipos: [
+      "Por definir",
+      "Países Bajos",
+      "Japón",
+      "Túnez"
+    ]
   },
   {
     nombre: "Grupo G",
-    equipos: ["Bélgica", "Irán", "Egipto", "Nueva Zelanda"]
+    equipos: [
+      "Bélgica",
+      "Egipto",
+      "Irán",
+      "Nueva Zelanda"
+    ]
   },
   {
     nombre: "Grupo H",
-    equipos: ["España", "Uruguay", "Arabia Saudita", "Cabo Verde"]
+    equipos: [
+      "España",
+      "Cabo Verde",
+      "Arabia Saudita",
+      "Uruguay"
+    ]
   },
   {
     nombre: "Grupo I",
-    equipos: ["Francia", "Senegal", "Noruega", "Por definir (Intercontinental 2)"]
+    equipos: [
+      "Por definir",
+      "Francia",
+      "Senegal",
+      "Noruega"
+    ]
   },
   {
     nombre: "Grupo J",
-    equipos: ["Argentina", "Austria", "Argelia", "Jordania"]
+    equipos: [
+      "Argentina",
+      "Argelia",
+      "Austria",
+      "Jordania"
+    ]
   },
   {
     nombre: "Grupo K",
-    equipos: ["Portugal", "Colombia", "Uzbekistán", "Por definir (Intercontinental 1)"]
+    equipos: [
+      "Por definir",
+      "Portugal",
+      "Uzbekistán",
+      "Colombia"
+    ]
   },
   {
     nombre: "Grupo L",
-    equipos: ["Inglaterra", "Croacia", "Panamá", "Ghana"]
+    equipos: [
+      "Inglaterra",
+      "Croacia",
+      "Ghana",
+      "Panamá"
+    ]
   }
 ]
