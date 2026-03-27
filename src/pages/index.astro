@@ -51,15 +51,15 @@ const diasRestantes = Math.max(0, Math.ceil((inicio.getTime() - hoy.getTime()) /
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-3">
 			{proximosPartidos.map(partido => (
 				<div class="tarjeta p-4 flex items-center gap-4">
-					<span class="text-sm font-mono texto-secundario w-12 shrink-0">{partido.hora}</span>
+					<span class="text-sm font-mono texto-secundario w-12 shrink-0" data-utc={partido.fechaUTC}>{partido.hora}</span>
 					<div class="flex-1">
 						<p class="font-semibold">
-						{partido.equipo1}
+						<span data-equipo={partido.equipo1}>{partido.equipo1}</span>
 						{partido.estado === 'finalizado'
 							? <span class="mx-1 px-2 py-0.5 rounded fondo-superficie text-sm font-bold">{partido.goles1} - {partido.goles2}</span>
 							: <span class="texto-secundario font-normal mx-1">vs</span>
 						}
-						{partido.equipo2}
+						<span data-equipo={partido.equipo2}>{partido.equipo2}</span>
 					</p>
 						<p class="text-sm texto-secundario">{partido.estadio}, {partido.ciudad}</p>
 					</div>

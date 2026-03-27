@@ -1,4 +1,6 @@
 ---
+import SelectorPais from './SelectorPais.astro'
+
 interface Props {
     rutaActual: string
 }
@@ -41,9 +43,12 @@ function esActivo(href: string, ruta: string): boolean {
                     {texto}
                 </a>
             ))}
+            <div class="ml-2">
+                <SelectorPais />
+            </div>
             <button
                 id="btn-tema"
-                class="ml-2 p-2 rounded-lg hover:bg-[var(--color-superficie)] transition-colors"
+                class="p-2 rounded-lg hover:bg-[var(--color-superficie)] transition-colors"
                 aria-label="Cambiar tema"
             >
                 <span id="icono-tema-sol" class="hidden">&#9728;</span>
@@ -51,8 +56,9 @@ function esActivo(href: string, ruta: string): boolean {
             </button>
         </div>
 
-        <!-- Botón hamburguesa móvil -->
-        <div class="flex items-center gap-2 md:hidden">
+        <!-- Controles móvil -->
+        <div class="flex items-center gap-1 md:hidden">
+            <SelectorPais />
             <button
                 id="btn-tema-movil"
                 class="p-2 rounded-lg hover:bg-[var(--color-superficie)] transition-colors"

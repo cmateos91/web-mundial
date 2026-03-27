@@ -1,4 +1,4 @@
-import { useState } from 'preact/hooks'
+import { useState, useMemo } from 'preact/hooks'
 
 interface Grupo {
   nombre: string
@@ -9,8 +9,13 @@ interface Props {
   grupos: Grupo[]
 }
 
+function obtenerPaisFavorito(): string | null {
+  try { return localStorage.getItem('pais') } catch { return null }
+}
+
 export default function BuscadorEquipos({ grupos }: Props) {
   const [busqueda, setBusqueda] = useState('')
+  const paisFavorito = useMemo(() => obtenerPaisFavorito(), [])
 
   const resultados = busqueda.length > 0
     ? grupos
@@ -91,6 +96,11 @@ export default function BuscadorEquipos({ grupos }: Props) {
                       padding: '0.375rem 1rem',
                       fontSize: '0.875rem',
                       borderBottom: '1px solid var(--color-borde)',
+                      ...(equipo === paisFavorito ? {
+                        borderLeft: '3px solid var(--color-verde)',
+                        paddingLeft: '0.65rem',
+                        fontWeight: 700,
+                      } : {}),
                     }}
                   >
                     {equipo}

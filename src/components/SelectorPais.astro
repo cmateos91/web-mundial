@@ -1,0 +1,35 @@
+---
+import { paises } from '../data/paises'
+---
+
+<div class="relative">
+    <select
+        id="selector-pais"
+        class="appearance-none bg-[var(--color-superficie)] text-sm rounded-lg px-3 py-1.5 pr-7 border border-[var(--color-borde)] cursor-pointer hover:border-[var(--color-verde)] transition-colors"
+        aria-label="Seleccionar país"
+    >
+        <option value="">Mi país</option>
+        {paises.map(p => (
+            <option value={p.nombre}>{p.bandera} {p.nombre}</option>
+        ))}
+    </select>
+    <span class="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-xs texto-secundario">▼</span>
+</div>
+
+<script is:inline>
+    (function() {
+        var select = document.getElementById('selector-pais')
+        var guardado = localStorage.getItem('pais')
+        if (guardado) select.value = guardado
+
+        select.addEventListener('change', function() {
+            var valor = select.value
+            if (valor) {
+                localStorage.setItem('pais', valor)
+            } else {
+                localStorage.removeItem('pais')
+            }
+            location.reload()
+        })
+    })()
+</script>

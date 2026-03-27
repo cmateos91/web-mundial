@@ -1,4 +1,5 @@
 export interface Partido {
+  fechaUTC: string
   hora: string
   equipo1: string
   equipo2: string
@@ -14,13 +15,14 @@ export interface Jornada {
   partidos: Partido[]
 }
 
-// Última actualización: 2026-03-26T22:59:29.784Z
+// Última actualización: 2026-03-26T23:07:24.835Z
 // Zona horaria: America/Mexico_City
 export const jornadas: Jornada[] = [
   {
     fecha: "11 de junio",
     partidos: [
       {
+        fechaUTC: "2026-06-11T19:00:00Z",
         hora: "13:00",
         equipo1: "México",
         equipo2: "Sudáfrica",
@@ -31,6 +33,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-12T02:00:00Z",
         hora: "20:00",
         equipo1: "Corea del Sur",
         equipo2: "Por definir",
@@ -46,6 +49,7 @@ export const jornadas: Jornada[] = [
     fecha: "12 de junio",
     partidos: [
       {
+        fechaUTC: "2026-06-12T19:00:00Z",
         hora: "13:00",
         equipo1: "Canadá",
         equipo2: "Por definir",
@@ -56,6 +60,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-13T01:00:00Z",
         hora: "19:00",
         equipo1: "Estados Unidos",
         equipo2: "Paraguay",
@@ -66,6 +71,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-13T04:00:00Z",
         hora: "22:00",
         equipo1: "Australia",
         equipo2: "Por definir",
@@ -81,6 +87,7 @@ export const jornadas: Jornada[] = [
     fecha: "13 de junio",
     partidos: [
       {
+        fechaUTC: "2026-06-13T19:00:00Z",
         hora: "13:00",
         equipo1: "Qatar",
         equipo2: "Suiza",
@@ -91,6 +98,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-13T22:00:00Z",
         hora: "16:00",
         equipo1: "Brasil",
         equipo2: "Marruecos",
@@ -101,6 +109,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-14T01:00:00Z",
         hora: "19:00",
         equipo1: "Haití",
         equipo2: "Escocia",
@@ -116,6 +125,7 @@ export const jornadas: Jornada[] = [
     fecha: "14 de junio",
     partidos: [
       {
+        fechaUTC: "2026-06-14T17:00:00Z",
         hora: "11:00",
         equipo1: "Alemania",
         equipo2: "Curazao",
@@ -126,6 +136,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-14T20:00:00Z",
         hora: "14:00",
         equipo1: "Países Bajos",
         equipo2: "Japón",
@@ -136,6 +147,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-14T23:00:00Z",
         hora: "17:00",
         equipo1: "Costa de Marfil",
         equipo2: "Ecuador",
@@ -146,6 +158,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-15T02:00:00Z",
         hora: "20:00",
         equipo1: "Por definir",
         equipo2: "Túnez",
@@ -161,6 +174,7 @@ export const jornadas: Jornada[] = [
     fecha: "15 de junio",
     partidos: [
       {
+        fechaUTC: "2026-06-15T16:00:00Z",
         hora: "10:00",
         equipo1: "España",
         equipo2: "Cabo Verde",
@@ -171,6 +185,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-15T19:00:00Z",
         hora: "13:00",
         equipo1: "Bélgica",
         equipo2: "Egipto",
@@ -181,6 +196,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-15T22:00:00Z",
         hora: "16:00",
         equipo1: "Arabia Saudita",
         equipo2: "Uruguay",
@@ -191,6 +207,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-16T01:00:00Z",
         hora: "19:00",
         equipo1: "Irán",
         equipo2: "Nueva Zelanda",
@@ -206,6 +223,7 @@ export const jornadas: Jornada[] = [
     fecha: "16 de junio",
     partidos: [
       {
+        fechaUTC: "2026-06-16T19:00:00Z",
         hora: "13:00",
         equipo1: "Francia",
         equipo2: "Senegal",
@@ -216,6 +234,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-17T00:00:00Z",
         hora: "18:00",
         equipo1: "Por definir",
         equipo2: "Noruega",
@@ -226,6 +245,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-17T01:00:00Z",
         hora: "19:00",
         equipo1: "Argentina",
         equipo2: "Argelia",
@@ -236,6 +256,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-17T04:00:00Z",
         hora: "22:00",
         equipo1: "Austria",
         equipo2: "Jordania",
@@ -251,6 +272,7 @@ export const jornadas: Jornada[] = [
     fecha: "17 de junio",
     partidos: [
       {
+        fechaUTC: "2026-06-17T17:00:00Z",
         hora: "11:00",
         equipo1: "Portugal",
         equipo2: "Por definir",
@@ -261,6 +283,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-17T19:00:00Z",
         hora: "13:00",
         equipo1: "Inglaterra",
         equipo2: "Croacia",
@@ -271,6 +294,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-17T23:00:00Z",
         hora: "17:00",
         equipo1: "Ghana",
         equipo2: "Panamá",
@@ -281,6 +305,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-18T02:00:00Z",
         hora: "20:00",
         equipo1: "Uzbekistán",
         equipo2: "Colombia",
@@ -296,6 +321,7 @@ export const jornadas: Jornada[] = [
     fecha: "18 de junio",
     partidos: [
       {
+        fechaUTC: "2026-06-18T16:00:00Z",
         hora: "10:00",
         equipo1: "Por definir",
         equipo2: "Sudáfrica",
@@ -306,6 +332,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-18T19:00:00Z",
         hora: "13:00",
         equipo1: "Suiza",
         equipo2: "Por definir",
@@ -316,6 +343,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-18T22:00:00Z",
         hora: "16:00",
         equipo1: "Canadá",
         equipo2: "Qatar",
@@ -326,6 +354,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-19T02:00:00Z",
         hora: "20:00",
         equipo1: "México",
         equipo2: "Corea del Sur",
@@ -336,6 +365,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-19T04:00:00Z",
         hora: "22:00",
         equipo1: "Por definir",
         equipo2: "Paraguay",
@@ -351,6 +381,7 @@ export const jornadas: Jornada[] = [
     fecha: "19 de junio",
     partidos: [
       {
+        fechaUTC: "2026-06-19T19:00:00Z",
         hora: "13:00",
         equipo1: "Estados Unidos",
         equipo2: "Australia",
@@ -361,6 +392,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-19T22:00:00Z",
         hora: "16:00",
         equipo1: "Escocia",
         equipo2: "Marruecos",
@@ -371,6 +403,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-20T01:00:00Z",
         hora: "19:00",
         equipo1: "Brasil",
         equipo2: "Haití",
@@ -381,6 +414,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-20T04:00:00Z",
         hora: "22:00",
         equipo1: "Túnez",
         equipo2: "Japón",
@@ -396,6 +430,7 @@ export const jornadas: Jornada[] = [
     fecha: "20 de junio",
     partidos: [
       {
+        fechaUTC: "2026-06-20T17:00:00Z",
         hora: "11:00",
         equipo1: "Países Bajos",
         equipo2: "Por definir",
@@ -406,6 +441,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-20T20:00:00Z",
         hora: "14:00",
         equipo1: "Alemania",
         equipo2: "Costa de Marfil",
@@ -416,6 +452,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-21T00:00:00Z",
         hora: "18:00",
         equipo1: "Ecuador",
         equipo2: "Curazao",
@@ -431,6 +468,7 @@ export const jornadas: Jornada[] = [
     fecha: "21 de junio",
     partidos: [
       {
+        fechaUTC: "2026-06-21T16:00:00Z",
         hora: "10:00",
         equipo1: "España",
         equipo2: "Arabia Saudita",
@@ -441,6 +479,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-21T19:00:00Z",
         hora: "13:00",
         equipo1: "Bélgica",
         equipo2: "Irán",
@@ -451,6 +490,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-21T22:00:00Z",
         hora: "16:00",
         equipo1: "Uruguay",
         equipo2: "Cabo Verde",
@@ -461,6 +501,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-22T01:00:00Z",
         hora: "19:00",
         equipo1: "Nueva Zelanda",
         equipo2: "Egipto",
@@ -476,6 +517,7 @@ export const jornadas: Jornada[] = [
     fecha: "22 de junio",
     partidos: [
       {
+        fechaUTC: "2026-06-22T17:00:00Z",
         hora: "11:00",
         equipo1: "Argentina",
         equipo2: "Austria",
@@ -486,6 +528,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-22T21:00:00Z",
         hora: "15:00",
         equipo1: "Francia",
         equipo2: "Por definir",
@@ -496,6 +539,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-23T00:00:00Z",
         hora: "18:00",
         equipo1: "Noruega",
         equipo2: "Senegal",
@@ -506,6 +550,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-23T01:00:00Z",
         hora: "19:00",
         equipo1: "Jordania",
         equipo2: "Argelia",
@@ -521,6 +566,7 @@ export const jornadas: Jornada[] = [
     fecha: "23 de junio",
     partidos: [
       {
+        fechaUTC: "2026-06-23T17:00:00Z",
         hora: "11:00",
         equipo1: "Portugal",
         equipo2: "Uzbekistán",
@@ -531,6 +577,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-23T20:00:00Z",
         hora: "14:00",
         equipo1: "Inglaterra",
         equipo2: "Ghana",
@@ -541,6 +588,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-23T23:00:00Z",
         hora: "17:00",
         equipo1: "Panamá",
         equipo2: "Croacia",
@@ -551,6 +599,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-24T02:00:00Z",
         hora: "20:00",
         equipo1: "Colombia",
         equipo2: "Por definir",
@@ -566,6 +615,7 @@ export const jornadas: Jornada[] = [
     fecha: "24 de junio",
     partidos: [
       {
+        fechaUTC: "2026-06-24T19:00:00Z",
         hora: "13:00",
         equipo1: "Suiza",
         equipo2: "Canadá",
@@ -576,6 +626,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-24T19:00:00Z",
         hora: "13:00",
         equipo1: "Por definir",
         equipo2: "Qatar",
@@ -586,6 +637,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-24T22:00:00Z",
         hora: "16:00",
         equipo1: "Marruecos",
         equipo2: "Haití",
@@ -596,6 +648,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-24T22:00:00Z",
         hora: "16:00",
         equipo1: "Escocia",
         equipo2: "Brasil",
@@ -606,6 +659,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-25T01:00:00Z",
         hora: "19:00",
         equipo1: "Por definir",
         equipo2: "México",
@@ -616,6 +670,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-25T01:00:00Z",
         hora: "19:00",
         equipo1: "Sudáfrica",
         equipo2: "Corea del Sur",
@@ -631,6 +686,7 @@ export const jornadas: Jornada[] = [
     fecha: "25 de junio",
     partidos: [
       {
+        fechaUTC: "2026-06-25T20:00:00Z",
         hora: "14:00",
         equipo1: "Ecuador",
         equipo2: "Alemania",
@@ -641,6 +697,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-25T20:00:00Z",
         hora: "14:00",
         equipo1: "Curazao",
         equipo2: "Costa de Marfil",
@@ -651,6 +708,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-25T23:00:00Z",
         hora: "17:00",
         equipo1: "Túnez",
         equipo2: "Países Bajos",
@@ -661,6 +719,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-25T23:00:00Z",
         hora: "17:00",
         equipo1: "Japón",
         equipo2: "Por definir",
@@ -671,6 +730,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-26T02:00:00Z",
         hora: "20:00",
         equipo1: "Por definir",
         equipo2: "Estados Unidos",
@@ -681,6 +741,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-26T02:00:00Z",
         hora: "20:00",
         equipo1: "Paraguay",
         equipo2: "Australia",
@@ -696,6 +757,7 @@ export const jornadas: Jornada[] = [
     fecha: "26 de junio",
     partidos: [
       {
+        fechaUTC: "2026-06-26T19:00:00Z",
         hora: "13:00",
         equipo1: "Noruega",
         equipo2: "Francia",
@@ -706,6 +768,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-26T19:00:00Z",
         hora: "13:00",
         equipo1: "Senegal",
         equipo2: "Por definir",
@@ -716,6 +779,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-27T00:00:00Z",
         hora: "18:00",
         equipo1: "Uruguay",
         equipo2: "España",
@@ -726,6 +790,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-27T00:00:00Z",
         hora: "18:00",
         equipo1: "Cabo Verde",
         equipo2: "Arabia Saudita",
@@ -736,6 +801,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-27T03:00:00Z",
         hora: "21:00",
         equipo1: "Nueva Zelanda",
         equipo2: "Bélgica",
@@ -746,6 +812,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-27T03:00:00Z",
         hora: "21:00",
         equipo1: "Egipto",
         equipo2: "Irán",
@@ -761,6 +828,7 @@ export const jornadas: Jornada[] = [
     fecha: "27 de junio",
     partidos: [
       {
+        fechaUTC: "2026-06-27T21:00:00Z",
         hora: "15:00",
         equipo1: "Panamá",
         equipo2: "Inglaterra",
@@ -771,6 +839,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-27T21:00:00Z",
         hora: "15:00",
         equipo1: "Croacia",
         equipo2: "Ghana",
@@ -781,6 +850,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-27T23:30:00Z",
         hora: "17:30",
         equipo1: "Colombia",
         equipo2: "Portugal",
@@ -791,6 +861,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-27T23:30:00Z",
         hora: "17:30",
         equipo1: "Por definir",
         equipo2: "Uzbekistán",
@@ -801,6 +872,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-28T02:00:00Z",
         hora: "20:00",
         equipo1: "Jordania",
         equipo2: "Argentina",
@@ -811,6 +883,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-28T02:00:00Z",
         hora: "20:00",
         equipo1: "Argelia",
         equipo2: "Austria",
@@ -826,6 +899,7 @@ export const jornadas: Jornada[] = [
     fecha: "28 de junio",
     partidos: [
       {
+        fechaUTC: "2026-06-28T19:00:00Z",
         hora: "13:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -841,6 +915,7 @@ export const jornadas: Jornada[] = [
     fecha: "29 de junio",
     partidos: [
       {
+        fechaUTC: "2026-06-29T17:00:00Z",
         hora: "11:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -851,6 +926,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-29T20:30:00Z",
         hora: "14:30",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -861,6 +937,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-30T01:00:00Z",
         hora: "19:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -876,6 +953,7 @@ export const jornadas: Jornada[] = [
     fecha: "30 de junio",
     partidos: [
       {
+        fechaUTC: "2026-06-30T17:00:00Z",
         hora: "11:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -886,6 +964,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-06-30T21:00:00Z",
         hora: "15:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -896,6 +975,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-07-01T01:00:00Z",
         hora: "19:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -911,6 +991,7 @@ export const jornadas: Jornada[] = [
     fecha: "1 de julio",
     partidos: [
       {
+        fechaUTC: "2026-07-01T16:00:00Z",
         hora: "10:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -921,6 +1002,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-07-01T20:00:00Z",
         hora: "14:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -931,6 +1013,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-07-02T00:00:00Z",
         hora: "18:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -946,6 +1029,7 @@ export const jornadas: Jornada[] = [
     fecha: "2 de julio",
     partidos: [
       {
+        fechaUTC: "2026-07-02T19:00:00Z",
         hora: "13:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -956,6 +1040,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-07-02T23:00:00Z",
         hora: "17:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -966,6 +1051,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-07-03T03:00:00Z",
         hora: "21:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -981,6 +1067,7 @@ export const jornadas: Jornada[] = [
     fecha: "3 de julio",
     partidos: [
       {
+        fechaUTC: "2026-07-03T18:00:00Z",
         hora: "12:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -991,6 +1078,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-07-03T22:00:00Z",
         hora: "16:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -1001,6 +1089,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-07-04T01:30:00Z",
         hora: "19:30",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -1016,6 +1105,7 @@ export const jornadas: Jornada[] = [
     fecha: "4 de julio",
     partidos: [
       {
+        fechaUTC: "2026-07-04T17:00:00Z",
         hora: "11:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -1026,6 +1116,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-07-04T21:00:00Z",
         hora: "15:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -1041,6 +1132,7 @@ export const jornadas: Jornada[] = [
     fecha: "5 de julio",
     partidos: [
       {
+        fechaUTC: "2026-07-05T20:00:00Z",
         hora: "14:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -1051,6 +1143,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-07-06T00:00:00Z",
         hora: "18:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -1066,6 +1159,7 @@ export const jornadas: Jornada[] = [
     fecha: "6 de julio",
     partidos: [
       {
+        fechaUTC: "2026-07-06T19:00:00Z",
         hora: "13:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -1076,6 +1170,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-07-07T00:00:00Z",
         hora: "18:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -1091,6 +1186,7 @@ export const jornadas: Jornada[] = [
     fecha: "7 de julio",
     partidos: [
       {
+        fechaUTC: "2026-07-07T16:00:00Z",
         hora: "10:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -1101,6 +1197,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-07-07T20:00:00Z",
         hora: "14:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -1116,6 +1213,7 @@ export const jornadas: Jornada[] = [
     fecha: "9 de julio",
     partidos: [
       {
+        fechaUTC: "2026-07-09T20:00:00Z",
         hora: "14:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -1131,6 +1229,7 @@ export const jornadas: Jornada[] = [
     fecha: "10 de julio",
     partidos: [
       {
+        fechaUTC: "2026-07-10T19:00:00Z",
         hora: "13:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -1146,6 +1245,7 @@ export const jornadas: Jornada[] = [
     fecha: "11 de julio",
     partidos: [
       {
+        fechaUTC: "2026-07-11T21:00:00Z",
         hora: "15:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -1156,6 +1256,7 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
+        fechaUTC: "2026-07-12T01:00:00Z",
         hora: "19:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -1171,6 +1272,7 @@ export const jornadas: Jornada[] = [
     fecha: "14 de julio",
     partidos: [
       {
+        fechaUTC: "2026-07-14T19:00:00Z",
         hora: "13:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -1186,6 +1288,7 @@ export const jornadas: Jornada[] = [
     fecha: "15 de julio",
     partidos: [
       {
+        fechaUTC: "2026-07-15T19:00:00Z",
         hora: "13:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -1201,6 +1304,7 @@ export const jornadas: Jornada[] = [
     fecha: "18 de julio",
     partidos: [
       {
+        fechaUTC: "2026-07-18T21:00:00Z",
         hora: "15:00",
         equipo1: "Por definir",
         equipo2: "Por definir",
@@ -1216,6 +1320,7 @@ export const jornadas: Jornada[] = [
     fecha: "19 de julio",
     partidos: [
       {
+        fechaUTC: "2026-07-19T19:00:00Z",
         hora: "13:00",
         equipo1: "Por definir",
         equipo2: "Por definir",

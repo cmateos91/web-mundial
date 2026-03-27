@@ -56,3 +56,10 @@ body {
 @utility fondo-superficie {
   background-color: var(--color-superficie);
 }
+
+/* === Resaltado de equipo favorito === */
+.equipo-favorito {
+  border-left: 3px solid var(--color-verde);
+  padding-left: 0.4rem;
+  font-weight: 700;
+}

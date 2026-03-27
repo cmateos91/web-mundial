@@ -196,6 +196,7 @@ function transformarPartidos(partidos) {
     if (nombre2 && !TRADUCCION_EQUIPOS[nombre2] && nombre2 !== equipo2) sinTraduccion.add(nombre2)
 
     porFecha.get(fecha).push({
+      fechaUTC: p.utcDate,
       hora: local.hora,
       equipo1,
       equipo2,
@@ -230,6 +231,7 @@ function generarTypescript(jornadas) {
     .replace(/"(\w+)":/g, '$1:')
 
   return `export interface Partido {
+  fechaUTC: string
   hora: string
   equipo1: string
   equipo2: string

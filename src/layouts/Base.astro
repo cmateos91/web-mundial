@@ -2,8 +2,12 @@
 import '../styles/global.css'
 import Navbar from '../components/Navbar.astro'
 import PiePagina from '../components/PiePagina.astro'
+import { paises } from '../data/paises'
 
 const { titulo } = Astro.props
+
+// Serializar el mapa país→zona para el script inline
+const zonasJSON = JSON.stringify(Object.fromEntries(paises.map(p => [p.nombre, p.zona])))
 ---
 
 <html lang="es">
@@ -12,7 +16,7 @@ const { titulo } = Astro.props
         <meta name="viewport" content="width=device-width" />
         <meta name="description" content="Toda la información del mundial 2026: grupos, partidos, sedes y más" />
         <title>{titulo}</title>
-        <!-- Dark mode sin FOUC: se ejecuta antes del render -->
+        <!-- Dark mode sin FOUC -->
         <script is:inline>
             if (localStorage.getItem('dark') === 'true') {
                 document.documentElement.classList.add('dark')
@@ -25,5 +29,37 @@ const { titulo } = Astro.props
             <slot />
         </main>
         <PiePagina />
+        <!-- Conversión de horas + resaltado de equipo: corre después del DOM -->
+        <script is:inline define:vars={{ zonasJSON }}>
+            (function() {
+                var zonas = JSON.parse(zonasJSON)
+                var pais = localStorage.getItem('pais')
+                if (!pais) return
+
+                var zona = zonas[pais]
+
+                // ── Convertir horas ──
+                if (zona) {
+                    document.querySelectorAll('[data-utc]').forEach(function(el) {
+                        try {
+                            var fecha = new Date(el.getAttribute('data-utc'))
+                            el.textContent = fecha.toLocaleTimeString('es-ES', {
+                                timeZone: zona,
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                hour12: false
+                            })
+                        } catch(e) {}
+                    })
+                }
+
+                // ── Resaltar equipo favorito ──
+                document.querySelectorAll('[data-equipo]').forEach(function(el) {
+                    if (el.getAttribute('data-equipo') === pais) {
+                        el.classList.add('equipo-favorito')
+                    }
+                })
+            })()
+        </script>
     </body>
 </html>
