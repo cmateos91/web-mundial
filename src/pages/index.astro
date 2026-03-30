@@ -122,7 +122,7 @@ const diasRestantes = Math.max(0, Math.ceil((inicio.getTime() - hoy.getTime()) /
 					<h2 class="editorial-section__title">Tu puerta de entrada al torneo</h2>
 				</div>
 			</div>
-			<BuscadorEquipos client:visible grupos={grupos} slugs={slugsObj} />
+			<BuscadorEquipos client:load grupos={grupos} slugs={slugsObj} />
 		</section>
 
 		<section class="editorial-section panel" data-reveal="up">

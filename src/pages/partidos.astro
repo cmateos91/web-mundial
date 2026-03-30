@@ -140,6 +140,6 @@ const ultimaFecha = jornadas[jornadas.length - 1]?.fecha ?? 'Cierre de fase'
 			</div>
 			<span class="fixture-count-badge">{jornadas.length} jornadas</span>
 		</div>
-		<FiltroPartidos client:visible jornadas={jornadas} zonas={zonas} />
+		<FiltroPartidos client:load jornadas={jornadas} zonas={zonas} />
 	</section>
 </Base>
