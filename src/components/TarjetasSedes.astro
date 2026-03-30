@@ -19,7 +19,7 @@ const { pais, bandera, sedes, capacidadMax, partidosPorEstadio } = Astro.props
 const formatNum = (n: number) => n.toLocaleString('es-ES')
 const profile = hostNationProfileMap.get(pais)
 const capacidadTotal = sedes.reduce((sum, sede) => sum + sede.capacidad, 0)
-const partidosTotales = sedes.reduce((sum, sede) => sum + (partidosPorEstadio.get(sede.estadio) ?? 0), 0)
+const mayorAforo = Math.max(...sedes.map((sede) => sede.capacidad))
 ---
 
 <section class="venue-country" id={profile?.slug} data-reveal="up">
@@ -48,8 +48,8 @@ const partidosTotales = sedes.reduce((sum, sede) => sum + (partidosPorEstadio.ge
                     <span>plazas</span>
                 </div>
                 <div>
-                    <strong>{partidosTotales}</strong>
-                    <span>partidos</span>
+                    <strong>{formatNum(mayorAforo)}</strong>
+                    <span>mayor aforo</span>
                 </div>
             </div>
         </div>

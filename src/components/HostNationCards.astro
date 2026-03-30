@@ -27,7 +27,10 @@ const sedesPorPais = new Map(
       return (
         <a
           href={`/sedes#${profile.slug}`}
-          class="host-nation-card tarjeta tarjeta-hover"
+          class:list={[
+            'host-nation-card tarjeta tarjeta-hover',
+            profile.slug === 'estados-unidos' && 'host-nation-card--featured'
+          ]}
           data-reveal="up"
           style={`--reveal-delay: ${0.08 * index}s;`}
         >

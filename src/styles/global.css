@@ -180,6 +180,22 @@ strong {
   top: 0;
   z-index: 50;
   padding: 1rem 0 0.5rem;
+  isolation: isolate;
+}
+
+.site-nav::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: calc(100% + 1.25rem);
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-fondo) 92%, transparent),
+    color-mix(in srgb, var(--color-fondo) 46%, transparent) 72%,
+    transparent
+  );
+  z-index: -1;
 }
 
 .site-nav__inner {
@@ -194,6 +210,15 @@ strong {
   justify-content: space-between;
   gap: 1rem;
   padding: 0.9rem 1rem;
+}
+
+.site-nav__bar.panel {
+  background:
+    linear-gradient(135deg, rgb(255 255 255 / 0.22), transparent 46%),
+    color-mix(in srgb, var(--color-fondo-elevado) 96%, transparent);
+  box-shadow:
+    0 18px 40px -30px var(--color-sombra),
+    inset 0 1px 0 rgb(255 255 255 / 0.3);
 }
 
 .site-nav__desktop,
@@ -638,6 +663,7 @@ strong {
 .editorial-ticker {
   padding: 0.8rem;
   margin-bottom: 1.7rem;
+  overflow: clip;
 }
 
 .editorial-ticker__track {
@@ -1020,6 +1046,13 @@ strong {
   text-transform: uppercase;
 }
 
+.host-nation-card--featured {
+  background:
+    radial-gradient(circle at 82% 18%, color-mix(in srgb, var(--page-accent) 18%, transparent), transparent 30%),
+    linear-gradient(180deg, rgb(255 255 255 / 0.1), transparent 28%),
+    color-mix(in srgb, var(--color-tarjeta) 84%, transparent);
+}
+
 .fixture-filter__summary {
   margin: 0.85rem 0 1.4rem;
   color: var(--color-texto-secundario);
@@ -1157,6 +1190,36 @@ strong {
 
 .host-stage--compact {
   padding: 1rem;
+}
+
+.host-stage--hero {
+  grid-template-columns: 1fr;
+  align-content: start;
+}
+
+.host-stage--hero .host-stage__copy {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.host-stage--hero .host-stage__visual {
+  order: -1;
+  min-height: 18rem;
+}
+
+.host-stage--hero .feature-title {
+  font-size: clamp(2.1rem, 3.8vw, 3.15rem);
+  max-width: 10ch;
+}
+
+.host-stage--hero .feature-copy {
+  font-size: 0.98rem;
+  line-height: 1.68;
+  margin-top: 0;
+}
+
+.host-stage--hero .host-stage__legend {
+  margin-top: 0;
 }
 
 .host-stage__legend {
@@ -1854,7 +1917,24 @@ strong {
     padding: 0.7rem;
   }
 
+  .hero-ribbon,
+  .editorial-ticker__track {
+    grid-auto-flow: column;
+    grid-auto-columns: 84%;
+    overflow-x: auto;
+    padding-bottom: 0.15rem;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+
+  .hero-ribbon::-webkit-scrollbar,
+  .editorial-ticker__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hero-ribbon__item,
   .editorial-ticker__item {
+    scroll-snap-align: start;
     padding: 0.9rem;
   }
 
@@ -1885,12 +1965,42 @@ strong {
     min-height: 18rem;
   }
 
+  .news-feature .story-artwork,
+  .article-header__grid .story-artwork,
+  .host-stage--hero .host-stage__visual,
+  .venue-country__poster {
+    order: -1;
+  }
+
+  .news-feature .story-artwork,
+  .article-header__grid .story-artwork {
+    min-height: 14rem;
+  }
+
+  .host-stage--hero .host-stage__visual {
+    min-height: 12.8rem;
+  }
+
   .host-stage__legend {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.55rem;
+  }
+
+  .venue-country__poster {
+    order: -1;
+  }
+
+  .host-stage__legend strong {
+    font-size: 1.65rem;
+  }
+
+  .host-stage__legend span {
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
   }
 
   .host-stage__visual {
-    min-height: 18rem;
+    min-height: 13.5rem;
   }
 
   .host-stage__node-label {
@@ -1929,11 +2039,20 @@ strong {
   }
 
   .page-intro__grid,
-  .hero-showcase,
   .host-stage,
   .footer__grid,
   .team-grid {
     grid-template-columns: 1.2fr 0.8fr;
+  }
+
+  .hero-showcase {
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: start;
+  }
+
+  .host-stage--hero {
+    grid-template-columns: 1fr;
+    align-content: start;
   }
 
   .hero-ribbon,
@@ -1986,5 +2105,37 @@ strong {
 
   .team-grid {
     grid-template-columns: 0.95fr 1.05fr;
+  }
+
+  .host-nations-grid {
+    grid-template-columns: minmax(18rem, 0.86fr) minmax(24rem, 1.14fr);
+  }
+
+  .host-nation-card--featured {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+
+  .host-nation-card--featured .host-nation-card__media {
+    aspect-ratio: 16 / 12;
+  }
+
+  .host-nation-card--featured .host-nation-card__title {
+    font-size: clamp(2.6rem, 4vw, 3.7rem);
+  }
+
+  .host-nation-card--featured .host-nation-card__summary,
+  .host-nation-card--featured .host-nation-card__spotlight {
+    max-width: 34ch;
+  }
+
+  .host-stage--hero .host-stage__visual {
+    min-height: 20rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .venue-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

@@ -18,7 +18,7 @@ const slugsObj = Object.fromEntries(slugPorEquipo)
 const noticias = await getCollection('noticias')
 noticias.sort((a, b) => new Date(b.data.fecha).getTime() - new Date(a.data.fecha).getTime())
 const destacadas = noticias.slice(0, 2)
-const totalPartidos = jornadas.reduce((acumulado, jornada) => acumulado + jornada.partidos.length, 0)
+const totalPartidosEdicion = 104
 const totalSedes = sedes.length
 
 // Cuenta regresiva calculada en build time
@@ -55,6 +55,7 @@ const diasRestantes = Math.max(0, Math.ceil((inicio.getTime() - hoy.getTime()) /
 		</div>
 
 		<HostCityConstellation
+			layout="hero"
 			etiqueta="Escenario continental"
 			titulo="Tres países. Un mismo pulso."
 			descripcion="Canadá, México y Estados Unidos convierten el Mundial 2026 en una ruta continental de estadios, ciudades anfitrionas y noches decisivas."
@@ -73,8 +74,8 @@ const diasRestantes = Math.max(0, Math.ceil((inicio.getTime() - hoy.getTime()) /
 
 	<div class="hero-ribbon">
 		<div class="hero-ribbon__item panel" data-reveal="up">
-			<strong>{totalPartidos}</strong>
-			<span>Partidos repartidos por todo el continente en una edición que redefine la escala del torneo.</span>
+			<strong>{totalPartidosEdicion}</strong>
+			<span>Partidos en la edición más extensa del torneo, pensada como un recorrido continental completo.</span>
 		</div>
 		<div class="hero-ribbon__item panel" data-reveal="up" style="--reveal-delay: 0.08s;">
 			<strong>48</strong>
@@ -95,7 +96,7 @@ const diasRestantes = Math.max(0, Math.ceil((inicio.getTime() - hoy.getTime()) /
 			},
 			{
 				label: 'Volumen',
-				value: `${totalPartidos} partidos`,
+				value: `${totalPartidosEdicion} partidos`,
 				note: 'La nueva estructura multiplica historias, trayectos y momentos de maxima tension.',
 			},
 			{

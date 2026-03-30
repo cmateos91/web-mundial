@@ -6,6 +6,7 @@ interface Props {
   titulo?: string
   descripcion?: string
   compact?: boolean
+  layout?: 'default' | 'hero'
 }
 
 const {
@@ -13,12 +14,17 @@ const {
   titulo = 'La geografía del Mundial, convertida en escenario',
   descripcion = 'Dieciséis sedes repartidas entre Canadá, México y Estados Unidos conectan un torneo gigantesco que atraviesa todo el continente.',
   compact = false,
+  layout = 'default',
 } = Astro.props
 
 const nodesByCity = new Map(hostNodes.map((node) => [node.ciudad, node]))
 ---
 
-<section class:list={['host-stage', { 'host-stage--compact': compact }]} data-reveal="up" style="--reveal-delay: 0.08s;">
+<section
+  class:list={['host-stage', { 'host-stage--compact': compact, 'host-stage--hero': layout === 'hero' }]}
+  data-reveal="up"
+  style="--reveal-delay: 0.08s;"
+>
   <div class="host-stage__copy">
     <p class="section-kicker">{etiqueta}</p>
     <h2 class="feature-title">{titulo}</h2>
