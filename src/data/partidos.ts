@@ -15,7 +15,7 @@ export interface Jornada {
   partidos: Partido[]
 }
 
-// Última actualización: 2026-03-30T12:54:52.001Z
+// Última actualización: 2026-03-30T18:46:11.124Z
 // Zona horaria: America/Mexico_City
 export const jornadas: Jornada[] = [
   {
@@ -234,8 +234,8 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
-        fechaUTC: "2026-06-17T00:00:00Z",
-        hora: "18:00",
+        fechaUTC: "2026-06-16T22:00:00Z",
+        hora: "16:00",
         equipo1: "Por definir",
         equipo2: "Noruega",
         estadio: "Por confirmar",
@@ -283,8 +283,8 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
-        fechaUTC: "2026-06-17T19:00:00Z",
-        hora: "13:00",
+        fechaUTC: "2026-06-17T20:00:00Z",
+        hora: "14:00",
         equipo1: "Inglaterra",
         equipo2: "Croacia",
         estadio: "Por confirmar",
@@ -354,21 +354,10 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
-        fechaUTC: "2026-06-19T02:00:00Z",
-        hora: "20:00",
+        fechaUTC: "2026-06-19T01:00:00Z",
+        hora: "19:00",
         equipo1: "México",
         equipo2: "Corea del Sur",
-        estadio: "Por confirmar",
-        ciudad: "Por confirmar",
-        goles1: null,
-        goles2: null,
-        estado: "programado"
-      },
-      {
-        fechaUTC: "2026-06-19T04:00:00Z",
-        hora: "22:00",
-        equipo1: "Por definir",
-        equipo2: "Paraguay",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
         goles1: null,
@@ -416,8 +405,8 @@ export const jornadas: Jornada[] = [
       {
         fechaUTC: "2026-06-20T04:00:00Z",
         hora: "22:00",
-        equipo1: "Túnez",
-        equipo2: "Japón",
+        equipo1: "Por definir",
+        equipo2: "Paraguay",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
         goles1: null,
@@ -456,6 +445,17 @@ export const jornadas: Jornada[] = [
         hora: "18:00",
         equipo1: "Ecuador",
         equipo2: "Curazao",
+        estadio: "Por confirmar",
+        ciudad: "Por confirmar",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        fechaUTC: "2026-06-21T04:00:00Z",
+        hora: "22:00",
+        equipo1: "Túnez",
+        equipo2: "Japón",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
         goles1: null,
@@ -550,8 +550,8 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
-        fechaUTC: "2026-06-23T01:00:00Z",
-        hora: "19:00",
+        fechaUTC: "2026-06-23T03:00:00Z",
+        hora: "21:00",
         equipo1: "Jordania",
         equipo2: "Argelia",
         estadio: "Por confirmar",
