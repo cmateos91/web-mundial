@@ -1053,15 +1053,85 @@ strong {
     color-mix(in srgb, var(--color-tarjeta) 84%, transparent);
 }
 
+.matches-stage {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.6rem;
+}
+
+.matches-stage__lead,
+.matches-stage__aside {
+  padding: 1.25rem;
+}
+
+.matches-stage__stats {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 1.2rem;
+}
+
+.matches-stage__stats div,
+.article-context__stats div {
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--color-borde);
+}
+
+.matches-stage__stats strong,
+.article-context__stats strong {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 2rem;
+  line-height: 0.9;
+  letter-spacing: 0.04em;
+}
+
+.matches-stage__stats span,
+.article-context__stats span {
+  display: block;
+  margin-top: 0.28rem;
+  color: var(--color-texto-secundario);
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.matches-stage__notes {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.matches-stage__notes p {
+  color: var(--color-texto-secundario);
+  line-height: 1.72;
+}
+
 .fixture-filter__summary {
   margin: 0.85rem 0 1.4rem;
   color: var(--color-texto-secundario);
   font-size: 0.9rem;
 }
 
+.fixture-filter__rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: -0.35rem;
+}
+
 .fixture-day {
   display: grid;
   gap: 0.9rem;
+  padding: 1rem;
+}
+
+.fixture-day__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .fixture-day__label {
@@ -1084,6 +1154,9 @@ strong {
 
 .fixture-card {
   border-left: 3px solid transparent;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.08), transparent 30%),
+    color-mix(in srgb, var(--color-tarjeta) 92%, transparent);
 }
 
 .fixture-card--live {
@@ -1103,7 +1176,73 @@ strong {
   align-items: center;
   gap: 0.55rem;
   flex-wrap: wrap;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
+}
+
+.fixture-team-name {
+  font-weight: 600;
+}
+
+.fixture-team-name--pending {
+  color: var(--color-texto-secundario);
+  font-style: italic;
+}
+
+.fixture-card__signals,
+.fixture-card__details {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+  margin-top: 0.35rem;
+}
+
+.fixture-status,
+.fixture-card__note {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-borde);
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.fixture-status--scheduled {
+  color: var(--color-texto-secundario);
+  background: color-mix(in srgb, var(--color-superficie) 72%, transparent);
+}
+
+.fixture-status--live {
+  color: var(--color-rojo);
+  border-color: color-mix(in srgb, var(--color-rojo) 45%, var(--color-borde));
+  background: color-mix(in srgb, var(--color-rojo) 10%, transparent);
+}
+
+.fixture-status--final {
+  color: var(--page-accent);
+  border-color: color-mix(in srgb, var(--page-accent) 38%, var(--color-borde));
+  background: color-mix(in srgb, var(--page-accent) 10%, transparent);
+}
+
+.fixture-card__note {
+  color: var(--color-texto-secundario);
+}
+
+.score-badge--result {
+  color: var(--color-texto);
+}
+
+.score-badge--live {
+  border-color: color-mix(in srgb, var(--color-rojo) 48%, var(--color-borde));
+  color: var(--color-rojo);
+  background: color-mix(in srgb, var(--color-rojo) 10%, transparent);
+}
+
+.score-badge--versus {
+  color: var(--color-texto-secundario);
 }
 
 .fixture-count-badge,
@@ -1590,6 +1729,46 @@ strong {
   gap: 1.25rem;
 }
 
+.article-context {
+  display: grid;
+  gap: 1rem;
+}
+
+.article-context__note,
+.article-context__rail,
+.article-related {
+  padding: 1.25rem;
+}
+
+.article-context__stats {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.article-context__highlights {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 1.15rem;
+}
+
+.article-context__highlights p {
+  position: relative;
+  padding-left: 1rem;
+  color: var(--color-texto-secundario);
+  line-height: 1.7;
+}
+
+.article-context__highlights p::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7rem;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: var(--page-accent);
+}
+
 .article-title {
   font-family: var(--font-display);
   font-size: clamp(3rem, 6vw, 5.4rem);
@@ -1634,6 +1813,10 @@ strong {
 
 .article-copy li + li {
   margin-top: 0.45rem;
+}
+
+.article-related .news-grid {
+  margin-top: 0.9rem;
 }
 
 .team-hero {
@@ -1956,6 +2139,14 @@ strong {
     font-size: 1.7rem;
   }
 
+  .matches-stage__lead,
+  .matches-stage__aside,
+  .article-context__note,
+  .article-context__rail,
+  .article-related {
+    padding: 1rem;
+  }
+
   .news-feature__title {
     font-size: clamp(2rem, 11vw, 3rem);
   }
@@ -2028,6 +2219,11 @@ strong {
   .venue-country__rail {
     grid-template-columns: 1fr;
   }
+
+  .matches-stage__stats,
+  .article-context__stats {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (min-width: 768px) {
@@ -2068,6 +2264,15 @@ strong {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .matches-stage {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+
+  .matches-stage__stats,
+  .article-context__stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .search-results-grid,
   .venue-grid,
   .fixture-day__matches {
@@ -2081,6 +2286,10 @@ strong {
   .news-feature {
     grid-template-columns: 1.2fr 0.8fr;
     align-items: end;
+  }
+
+  .article-context {
+    grid-template-columns: 0.92fr 1.08fr;
   }
 
   .venue-country__hero,

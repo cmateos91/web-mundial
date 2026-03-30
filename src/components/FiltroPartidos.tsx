@@ -16,29 +16,47 @@ function convertirHora(fechaUTC: string, zona: string | null): string {
 }
 
 function NombreEquipo({ nombre, esFavorito }: { nombre: string, esFavorito: boolean }) {
+  const esPendiente = nombre === 'Por definir'
   if (esFavorito) {
     return <span class="equipo-favorito" data-equipo={nombre}>{nombre}</span>
   }
-  return <span data-equipo={nombre} style={{ fontWeight: 600 }}>{nombre}</span>
+  return (
+    <span
+      class={esPendiente ? 'fixture-team-name fixture-team-name--pending' : 'fixture-team-name'}
+      data-equipo={nombre}
+    >
+      {nombre}
+    </span>
+  )
+}
+
+function EstadoPartido({ estado }: { estado: Partido['estado'] }) {
+  const config = {
+    programado: { label: 'Programado', className: 'fixture-status fixture-status--scheduled' },
+    en_juego: { label: 'En juego', className: 'fixture-status fixture-status--live' },
+    finalizado: { label: 'Finalizado', className: 'fixture-status fixture-status--final' },
+  }[estado]
+
+  return <span class={config.className}>{config.label}</span>
 }
 
 function Marcador({ partido }: { partido: Partido }) {
   if (partido.estado === 'finalizado') {
     return (
-      <span class="score-badge">
+      <span class="score-badge score-badge--result">
         {partido.goles1} - {partido.goles2}
       </span>
     )
   }
   if (partido.estado === 'en_juego') {
     return (
-      <span class="score-badge" style={{ borderColor: '#dc2626', color: '#dc2626', backgroundColor: '#dc26261a' }}>
+      <span class="score-badge score-badge--live">
         <span aria-hidden="true">●</span>
         {partido.goles1} - {partido.goles2}
       </span>
     )
   }
-  return <span class="score-badge">vs</span>
+  return <span class="score-badge score-badge--versus">vs</span>
 }
 
 export default function FiltroPartidos({ jornadas, zonas }: Props) {
@@ -79,6 +97,16 @@ export default function FiltroPartidos({ jornadas, zonas }: Props) {
   })).filter(j => j.partidos.length > 0)
 
   const totalPartidos = jornadasFiltradas.reduce((sum, j) => sum + j.partidos.length, 0)
+  const crucesPendientes = jornadasFiltradas.reduce(
+    (sum, jornada) =>
+      sum +
+      jornada.partidos.filter((partido) => partido.equipo1 === 'Por definir' || partido.equipo2 === 'Por definir').length,
+    0
+  )
+  const sedesPendientes = jornadasFiltradas.reduce(
+    (sum, jornada) => sum + jornada.partidos.filter((partido) => partido.estadio === 'Por confirmar').length,
+    0
+  )
 
   return (
     <div class="editorial-stack">
@@ -101,9 +129,19 @@ export default function FiltroPartidos({ jornadas, zonas }: Props) {
         {zona && <span> · Horas en tu zona horaria</span>}
       </p>
 
+      <div class="fixture-filter__rail">
+        <span class="fixture-count-badge">{totalPartidos} en agenda</span>
+        <span class="fixture-count-badge">{crucesPendientes} cruces abiertos</span>
+        <span class="fixture-count-badge">{sedesPendientes} sedes pendientes</span>
+      </div>
+
       {jornadasFiltradas.map(jornada => (
-        <section key={jornada.fecha} class="fixture-day">
-          <h2 class="fixture-day__label">{jornada.fecha}</h2>
+        <section key={jornada.fecha} class="fixture-day panel">
+          <div class="fixture-day__head">
+            <h2 class="fixture-day__label">{jornada.fecha}</h2>
+            <span class="fixture-count-badge">{jornada.partidos.length} encuentros</span>
+          </div>
+
           <div class="fixture-day__matches">
             {jornada.partidos.map((p, i) => (
               <div
@@ -113,7 +151,10 @@ export default function FiltroPartidos({ jornadas, zonas }: Props) {
                 <div class="fixture-card__meta">
                   <div>
                     <p class="fixture-time">{zona ? convertirHora(p.fechaUTC, zona) || p.hora : p.hora}</p>
-                    <p class="match-meta">{p.estado === 'en_juego' ? 'En juego' : 'Programado'}</p>
+                    <div class="fixture-card__signals">
+                      <EstadoPartido estado={p.estado} />
+                      {zona && <span class="fixture-card__note">Hora local</span>}
+                    </div>
                   </div>
                   <Marcador partido={p} />
                 </div>
@@ -126,11 +167,16 @@ export default function FiltroPartidos({ jornadas, zonas }: Props) {
                   </div>
                 </div>
 
-                <p class="fixture-venue">
-                  {p.estadio === 'Por confirmar'
-                    ? 'Sede por confirmar'
-                    : `${p.estadio}, ${p.ciudad}`}
-                </p>
+                <div class="fixture-card__details">
+                  <p class="fixture-venue">
+                    {p.estadio === 'Por confirmar'
+                      ? 'Sede por confirmar'
+                      : `${p.estadio}, ${p.ciudad}`}
+                  </p>
+                  {(p.equipo1 === 'Por definir' || p.equipo2 === 'Por definir') && (
+                    <span class="fixture-card__note">Cruce pendiente</span>
+                  )}
+                </div>
               </div>
             ))}
           </div>

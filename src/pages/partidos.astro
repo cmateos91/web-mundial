@@ -4,10 +4,25 @@ import { jornadas } from "../data/partidos"
 import { paises } from "../data/paises"
 import FiltroPartidos from "../components/FiltroPartidos"
 import EditorialIntro from "../components/EditorialIntro.astro"
+import EditorialTicker from "../components/EditorialTicker.astro"
 
 // Objeto plano serializable para pasar al cliente
 const zonas = Object.fromEntries(paises.map(p => [p.nombre, p.zona]))
 const totalPartidos = jornadas.reduce((acumulado, jornada) => acumulado + jornada.partidos.length, 0)
+const todosLosPartidos = jornadas.flatMap((jornada) =>
+  jornada.partidos.map((partido) => ({ ...partido, fecha: jornada.fecha }))
+)
+const debutAnfitriones = ['México', 'Canadá', 'Estados Unidos']
+  .map((seleccion) =>
+    todosLosPartidos.find((partido) => partido.equipo1 === seleccion || partido.equipo2 === seleccion)
+  )
+  .filter((partido): partido is (typeof todosLosPartidos)[number] => Boolean(partido))
+const partidosPendientes = todosLosPartidos.filter(
+  (partido) => partido.equipo1 === 'Por definir' || partido.equipo2 === 'Por definir'
+).length
+const jornadasMaximas = [...jornadas].sort((a, b) => b.partidos.length - a.partidos.length)[0]
+const primeraFecha = jornadas[0]?.fecha ?? 'Inicio del torneo'
+const ultimaFecha = jornadas[jornadas.length - 1]?.fecha ?? 'Cierre de fase'
 ---
 
 <Base titulo="Partidos — Mundial 2026" descripcion="Calendario editorial del Mundial 2026 con filtros por equipo, estadio y ciudad." pageTone="matches">
@@ -23,12 +38,107 @@ const totalPartidos = jornadas.reduce((acumulado, jornada) => acumulado + jornad
 		]}
 	/>
 
-	<section class="editorial-section panel">
+	<section class="matches-stage" data-reveal="up">
+		<div class="panel matches-stage__lead">
+			<p class="section-kicker">Ventana de programación</p>
+			<h2 class="feature-title">Del {primeraFecha} al {ultimaFecha}</h2>
+			<p class="feature-copy">
+				La agenda se trata como cartelera editorial: horas claras, arranques anfitriones reconocibles y una lectura pensada para encontrar rápido la siguiente noche importante.
+			</p>
+
+			<div class="matches-stage__stats">
+				<div>
+					<strong>{totalPartidos}</strong>
+					<span>partidos cargados</span>
+				</div>
+				<div>
+					<strong>{jornadasMaximas?.partidos.length ?? 0}</strong>
+					<span>máximo en una jornada</span>
+				</div>
+				<div>
+					<strong>{partidosPendientes}</strong>
+					<span>cruces por definir</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel matches-stage__aside">
+			<p class="section-kicker">Cómo leerla</p>
+			<h2 class="feature-title">Primero contexto, luego filtro.</h2>
+			<div class="matches-stage__notes">
+				<p>Selecciona tu país en la cabecera y la agenda se adapta a tu hora local.</p>
+				<p>El filtro entiende selecciones, ciudades y estadios para ir directo al partido que buscas.</p>
+				<p>Los cruces aún abiertos quedan marcados para que se note dónde falta completar el cuadro.</p>
+			</div>
+		</div>
+	</section>
+
+	<EditorialTicker
+		items={[
+			{
+				label: 'Arranque',
+				value: primeraFecha,
+				note: 'México abre el recorrido y marca el tono de la primera oleada de partidos.',
+			},
+			{
+				label: 'Carga máxima',
+				value: `${jornadasMaximas?.partidos.length ?? 0} partidos`,
+				note: 'Las jornadas con mayor densidad convierten la agenda en una autentica cartelera de maraton.',
+			},
+			{
+				label: 'Cruces abiertos',
+				value: String(partidosPendientes),
+				note: 'Parte del calendario sigue esperando nombres definitivos y eso tambien forma parte del relato.',
+			},
+			{
+				label: 'Modo local',
+				value: 'Tu hora',
+				note: 'La capa de conversion mantiene la agenda util sin romper la lectura editorial.',
+			},
+		]}
+	/>
+
+	<section class="editorial-section panel" data-reveal="up">
+		<div class="editorial-section__head">
+			<div>
+				<p class="section-kicker">Primer golpe de calendario</p>
+				<h2 class="editorial-section__title">Debut de anfitriones</h2>
+			</div>
+		</div>
+
+		<div class="match-editorial-grid">
+			{debutAnfitriones.map((partido, index) => (
+				<article class="match-editorial-card tarjeta tarjeta-hover" data-reveal="up" style={`--reveal-delay: ${0.08 * index}s;`}>
+					<div class="match-editorial-card__top">
+						<div>
+							<p class="match-time">{partido.hora}</p>
+							<p class="match-meta">{partido.fecha}</p>
+						</div>
+						<span class="fixture-count-badge">{partido.equipo1}</span>
+					</div>
+
+					<div>
+						<p class="match-teams">
+							<span data-equipo={partido.equipo1}>{partido.equipo1}</span> · <span data-equipo={partido.equipo2}>{partido.equipo2}</span>
+						</p>
+						<p class="match-meta mt-2">
+							{partido.estadio === 'Por confirmar'
+								? 'Sede y estadio por confirmar'
+								: `${partido.estadio}, ${partido.ciudad}`}
+						</p>
+					</div>
+				</article>
+			))}
+		</div>
+	</section>
+
+	<section class="editorial-section panel" data-reveal="up">
 		<div class="editorial-section__head">
 			<div>
 				<p class="section-kicker">Filtro en vivo</p>
 				<h2 class="editorial-section__title">Agenda completa</h2>
 			</div>
+			<span class="fixture-count-badge">{jornadas.length} jornadas</span>
 		</div>
 		<FiltroPartidos client:visible jornadas={jornadas} zonas={zonas} />
 	</section>

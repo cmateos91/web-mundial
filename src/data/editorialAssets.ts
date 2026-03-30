@@ -15,6 +15,16 @@ export interface StoryVisual {
   deck: string
 }
 
+export interface StoryProfile extends StoryVisual {
+  eyebrow: string
+  standfirst: string
+  stats: Array<{
+    value: string
+    label: string
+  }>
+  highlights: string[]
+}
+
 export const hostNationProfiles: HostNationProfile[] = [
   {
     name: 'México',
@@ -47,28 +57,66 @@ export const hostNationProfiles: HostNationProfile[] = [
 
 export const hostNationProfileMap = new Map(hostNationProfiles.map((profile) => [profile.name, profile]))
 
-export const storyVisuals: StoryVisual[] = [
+export const storyProfiles: StoryProfile[] = [
   {
     id: 'sedes-confirmadas',
     asset: '/art/news-sedes.svg',
     kicker: 'Cartografia del torneo',
-    deck: 'Dieciseis ciudades conectadas en una sola ruta continental.'
+    deck: 'Dieciseis ciudades conectadas en una sola ruta continental.',
+    eyebrow: 'Mapa anfitrion',
+    standfirst: 'La pieza ordena la escala del torneo: tres paises, dieciseis ciudades y una geografia que convierte cada sede en capitulo del mismo relato.',
+    stats: [
+      { value: '16', label: 'ciudades' },
+      { value: '3', label: 'paises' },
+      { value: '94.000', label: 'mayor aforo' },
+    ],
+    highlights: [
+      'Estados Unidos concentra once sedes y la mayor masa de aforo del campeonato.',
+      'Mexico sostiene el arranque historico con el Azteca como gran pieza simbolica.',
+      'Canada aporta el tramo mas limpio y septentrional del mapa competitivo.'
+    ]
   },
   {
     id: 'sorteo-mundial',
     asset: '/art/news-sorteo.svg',
     kicker: 'Cuadro inicial',
-    deck: 'El sorteo ordena el caos y convierte el mapa competitivo en relato.'
+    deck: 'El sorteo ordena el caos y convierte el mapa competitivo en relato.',
+    eyebrow: 'Noche de sorteo',
+    standfirst: 'El cuadro del torneo deja de ser abstraccion y empieza a producir tensiones concretas: grupos, reencuentros y primeros caminos hacia la fase final.',
+    stats: [
+      { value: '48', label: 'selecciones' },
+      { value: '12', label: 'grupos' },
+      { value: '05', label: 'dic' },
+    ],
+    highlights: [
+      'Brasil y Marruecos firman uno de los cruces con mas magnetismo desde el arranque.',
+      'España y Uruguay vuelven a compartir marco de maxima exigencia competitiva.',
+      'Inglaterra y Croacia recuperan un duelo que ya carga memoria de Mundial.'
+    ]
   },
   {
     id: 'formato-nuevo',
     asset: '/art/news-format.svg',
     kicker: 'Escala 104',
-    deck: 'La expansion cambia el ritmo, el volumen y el espectaculo del torneo.'
+    deck: 'La expansion cambia el ritmo, el volumen y el espectaculo del torneo.',
+    eyebrow: 'Nueva escala',
+    standfirst: 'La expansion no es solo matematica. Cambia el tempo del torneo, la forma de narrarlo y el tipo de espectaculo que FIFA quiere construir alrededor de la final.',
+    stats: [
+      { value: '104', label: 'partidos' },
+      { value: '32', label: 'ronda nueva' },
+      { value: '19', label: 'julio' },
+    ],
+    highlights: [
+      'La ronda de 32 abre mas recorridos y estira la tension competitiva del calendario.',
+      'El torneo suma tres mascotas oficiales para repartir la identidad entre los anfitriones.',
+      'La final incorpora por primera vez un halftime show de tono claramente blockbuster.'
+    ]
   }
 ]
 
+export const storyVisuals: StoryVisual[] = storyProfiles
 export const storyVisualMap = new Map(storyVisuals.map((visual) => [visual.id, visual]))
+export const storyProfileMap = new Map(storyProfiles.map((profile) => [profile.id, profile]))
 
 export function getStoryVisual(id: string): StoryVisual {
   return (
@@ -77,6 +125,29 @@ export function getStoryVisual(id: string): StoryVisual {
       asset: '/art/news-format.svg',
       kicker: 'Edicion especial',
       deck: 'Cobertura editorial del Mundial 2026.'
+    }
+  )
+}
+
+export function getStoryProfile(id: string): StoryProfile {
+  return (
+    storyProfileMap.get(id) ?? {
+      id,
+      asset: '/art/news-format.svg',
+      kicker: 'Edicion especial',
+      deck: 'Cobertura editorial del Mundial 2026.',
+      eyebrow: 'Cobertura editorial',
+      standfirst: 'Una lectura visual del Mundial 2026 con foco en escala, contexto y atmosfera.',
+      stats: [
+        { value: '2026', label: 'torneo' },
+        { value: '01', label: 'pieza' },
+        { value: 'Ed', label: 'especial' },
+      ],
+      highlights: [
+        'La edicion se cuenta como evento continental, no solo como calendario.',
+        'Cada pieza cruza narrativa, datos y direccion artistica.',
+        'La cobertura busca leer el torneo con ritmo de revista deportiva.'
+      ]
     }
   )
 }

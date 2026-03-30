@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content'
 import Base from '../../layouts/Base.astro'
 import NewsStoryArtwork from '../../components/NewsStoryArtwork.astro'
+import { getStoryProfile } from '../../data/editorialAssets'
 
 export async function getStaticPaths() {
   const noticias = await getCollection('noticias')
@@ -12,6 +13,20 @@ export async function getStaticPaths() {
 }
 
 const { noticia } = Astro.props
+const noticias = await getCollection('noticias')
+noticias.sort((a, b) => new Date(b.data.fecha).getTime() - new Date(a.data.fecha).getTime())
+const indiceActual = noticias.findIndex((item) => item.id === noticia.id)
+const relacionadas = noticias.filter((item) => item.id !== noticia.id).slice(0, 2)
+const profile = getStoryProfile(noticia.id)
+const minutosLectura = Math.max(1, Math.ceil((noticia.body?.split(/\s+/).length ?? 180) / 180))
+const fechaPublicacion = new Date(`${noticia.data.fecha}T12:00:00`)
+const fechaVisible = Number.isNaN(fechaPublicacion.getTime())
+  ? noticia.data.fecha
+  : fechaPublicacion.toLocaleDateString('es-ES', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    })
 const { Content } = await render(noticia)
 ---
 
@@ -21,21 +36,21 @@ const { Content } = await render(noticia)
   pageTone="news"
 >
   <article class="article-shell">
-    <div class="article-header panel">
+    <div class="article-header panel" data-reveal="up">
       <div class="article-header__grid">
         <div>
           <a href="/noticias" class="editorial-link">← Volver a noticias</a>
           <div class="mt-6">
-            <span class="article-kicker">Cobertura editorial</span>
+            <span class="article-kicker">{profile.eyebrow}</span>
             <h1 class="article-title mt-3">{noticia.data.titulo}</h1>
             <p class="article-summary">{noticia.data.resumen}</p>
           </div>
 
           <div class="hero-countdown mt-6">
-            <div class="hero-countdown__number">{noticia.data.fecha.slice(0, 4)}</div>
+            <div class="hero-countdown__number">{String(indiceActual + 1).padStart(2, '0')}</div>
             <div class="hero-countdown__copy">
-              <strong>{noticia.data.fecha}</strong>
-              <span>Fecha de publicación</span>
+              <strong>{fechaVisible}</strong>
+              <span>Archivo · {minutosLectura} min de lectura</span>
             </div>
           </div>
         </div>
@@ -44,8 +59,61 @@ const { Content } = await render(noticia)
       </div>
     </div>
 
-    <div class="article-copy panel">
+    <section class="article-context">
+      <div class="panel article-context__note" data-reveal="up">
+        <p class="section-kicker">{profile.kicker}</p>
+        <h2 class="feature-title">La pieza en contexto</h2>
+        <p class="feature-copy">{profile.standfirst}</p>
+      </div>
+
+      <div class="panel article-context__rail" data-reveal="up" style="--reveal-delay: 0.08s;">
+        <div class="article-context__stats">
+          {profile.stats.map((stat) => (
+            <div>
+              <strong>{stat.value}</strong>
+              <span>{stat.label}</span>
+            </div>
+          ))}
+        </div>
+
+        <div class="article-context__highlights">
+          {profile.highlights.map((highlight) => (
+            <p>{highlight}</p>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <div class="article-copy panel" data-reveal="up">
       <Content />
     </div>
+
+    {relacionadas.length > 0 && (
+      <section class="panel article-related" data-reveal="up">
+        <div class="editorial-section__head">
+          <div>
+            <p class="section-kicker">Seguir leyendo</p>
+            <h2 class="editorial-section__title">Más piezas del archivo</h2>
+          </div>
+          <a href="/noticias" class="editorial-link">Ver archivo completo</a>
+        </div>
+
+        <div class="news-grid">
+          {relacionadas.map((item, index) => (
+            <a
+              href={`/noticias/${item.id}`}
+              class="news-card tarjeta tarjeta-hover"
+              data-reveal="up"
+              style={`--reveal-delay: ${0.06 * index}s;`}
+            >
+              <NewsStoryArtwork id={item.id} title={item.data.titulo} />
+              <span class="article-kicker">{item.data.fecha}</span>
+              <h3 class="news-card__title mt-4">{item.data.titulo}</h3>
+              <p class="news-card__summary mt-3">{item.data.resumen}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
   </article>
 </Base>
