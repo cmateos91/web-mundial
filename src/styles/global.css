@@ -355,6 +355,36 @@ strong {
   border-radius: 1.25rem;
 }
 
+[data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  filter: blur(8px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: transform, opacity;
+}
+
+[data-reveal="up"] {
+  transform: translate3d(0, 28px, 0);
+}
+
+[data-reveal="left"] {
+  transform: translate3d(-28px, 0, 0);
+}
+
+[data-reveal="right"] {
+  transform: translate3d(28px, 0, 0);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  filter: blur(0);
+}
+
 .tarjeta-hover,
 .panel-hover {
   transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
@@ -1375,6 +1405,173 @@ strong {
 
   .host-stage__map {
     transform: none !important;
+  }
+
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .site-nav {
+    padding-top: 0.7rem;
+  }
+
+  .site-main {
+    padding-top: 0.55rem;
+    padding-bottom: 4.25rem;
+  }
+
+  .site-nav__bar {
+    padding: 0.75rem 0.8rem;
+    gap: 0.6rem;
+  }
+
+  .brand-kicker {
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+  }
+
+  .brand-wordmark {
+    font-size: 1.42rem;
+  }
+
+  .selector-pais {
+    max-width: 7.6rem;
+    font-size: 0.84rem;
+    padding: 0.6rem 2rem 0.6rem 0.8rem;
+  }
+
+  .selector-caret {
+    right: 0.72rem;
+  }
+
+  .theme-toggle,
+  .menu-toggle {
+    width: 2.55rem;
+    height: 2.55rem;
+  }
+
+  .panel,
+  .tarjeta,
+  .page-intro__frame,
+  .host-stage {
+    border-radius: 1.2rem;
+  }
+
+  .hero-copy,
+  .editorial-section,
+  .page-intro__frame,
+  .news-feature,
+  .article-header,
+  .article-copy,
+  .team-panel,
+  .footer__panel,
+  .host-stage {
+    padding: 1rem;
+  }
+
+  .hero-title {
+    max-width: none;
+    font-size: clamp(3.45rem, 16vw, 5rem);
+  }
+
+  .page-title {
+    font-size: clamp(2.4rem, 12vw, 4rem);
+  }
+
+  .feature-title,
+  .editorial-section__title {
+    font-size: clamp(1.9rem, 10vw, 2.8rem);
+  }
+
+  .hero-subtitle,
+  .page-lead,
+  .feature-copy,
+  .article-summary {
+    line-height: 1.65;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .hero-cta,
+  .hero-cta-secondary {
+    width: 100%;
+  }
+
+  .hero-countdown {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+    align-items: start;
+  }
+
+  .hero-countdown__number {
+    font-size: clamp(3.3rem, 16vw, 5rem);
+  }
+
+  .hero-countdown__copy strong {
+    font-size: 1.25rem;
+  }
+
+  .hero-ribbon__item strong {
+    font-size: 1.75rem;
+  }
+
+  .editorial-section__head,
+  .match-editorial-card__top,
+  .fixture-card__meta,
+  .news-feature .match-editorial-card__top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .match-teams {
+    font-size: 1.75rem;
+    line-height: 1.04;
+  }
+
+  .feature-link-card__title,
+  .news-card__title {
+    font-size: 1.7rem;
+  }
+
+  .news-feature__title {
+    font-size: clamp(2rem, 11vw, 3rem);
+  }
+
+  .host-stage__legend {
+    grid-template-columns: 1fr;
+  }
+
+  .host-stage__visual {
+    min-height: 18rem;
+  }
+
+  .host-stage__node-label {
+    display: none;
+  }
+
+  .group-table {
+    font-size: 0.86rem;
+  }
+
+  .group-table th,
+  .group-table td {
+    padding-left: 0.55rem;
+    padding-right: 0.55rem;
+  }
+
+  .team-hero__identity {
+    flex-direction: column;
+  }
+
+  .article-title {
+    font-size: clamp(2.5rem, 13vw, 4rem);
   }
 }
 

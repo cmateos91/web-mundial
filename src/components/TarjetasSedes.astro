@@ -17,7 +17,7 @@ const { pais, bandera, sedes, capacidadMax, partidosPorEstadio } = Astro.props
 const formatNum = (n: number) => n.toLocaleString('es-ES')
 ---
 
-<section class="venue-country">
+<section class="venue-country" data-reveal="up">
     <div class="venue-country__title">
         <span class="text-3xl">{bandera}</span>
         <h2>{pais}</h2>

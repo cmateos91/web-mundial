@@ -18,7 +18,7 @@ const {
 const nodesByCity = new Map(hostNodes.map((node) => [node.ciudad, node]))
 ---
 
-<section class:list={['host-stage', { 'host-stage--compact': compact }]}>
+<section class:list={['host-stage', { 'host-stage--compact': compact }]} data-reveal="up" style="--reveal-delay: 0.08s;">
   <div class="host-stage__copy">
     <p class="section-kicker">{etiqueta}</p>
     <h2 class="feature-title">{titulo}</h2>
