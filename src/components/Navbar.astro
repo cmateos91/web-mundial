@@ -14,80 +14,78 @@ function esActivo(href: string, ruta: string): boolean {
 }
 ---
 
-<nav class="sticky top-0 z-50 bg-[var(--color-tarjeta)] border-b border-[var(--color-borde)] backdrop-blur-sm">
-    <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
-        <!-- Logo / nombre -->
-        <a href="/" class="text-lg font-bold tracking-tight">
-            <span class="text-[var(--color-verde)]">Mundial</span> 2026
-        </a>
+<nav class="site-nav">
+    <div class="site-nav__inner">
+        <div class="site-nav__bar panel">
+            <a href="/" class="brand-mark">
+                <span class="brand-kicker">Edición especial</span>
+                <span class="brand-wordmark"><span>Mundial</span> 2026</span>
+            </a>
 
-        <!-- Links desktop -->
-        <div class="hidden md:flex items-center gap-1">
-            {enlaces.map(({ href, texto }) => (
-                <a
-                    href={href}
-                    class:list={[
-                        'px-3 py-2 rounded-lg text-sm font-medium transition-colors',
-                        esActivo(href, rutaActual)
-                            ? 'bg-[var(--color-verde)] text-white'
-                            : 'hover:bg-[var(--color-superficie)]'
-                    ]}
-                >
-                    {texto}
-                </a>
-            ))}
-            <div class="ml-2">
+            <div class="site-nav__desktop hidden lg:flex">
+                {enlaces.map(({ href, texto }) => (
+                    <a
+                        href={href}
+                        class:list={[
+                            'nav-link',
+                            { 'is-active': esActivo(href, rutaActual) }
+                        ]}
+                    >
+                        {texto}
+                    </a>
+                ))}
                 <SelectorPais />
+                <button
+                    id="btn-tema"
+                    class="theme-toggle"
+                    aria-label="Cambiar tema"
+                >
+                    <span id="icono-tema-sol" class="hidden">☀</span>
+                    <span id="icono-tema-luna" class="hidden">◐</span>
+                </button>
             </div>
-            <button
-                id="btn-tema"
-                class="p-2 rounded-lg hover:bg-[var(--color-superficie)] transition-colors"
-                aria-label="Cambiar tema"
-            >
-                <span id="icono-tema-sol" class="hidden">&#9728;</span>
-                <span id="icono-tema-luna" class="hidden">&#9790;</span>
-            </button>
-        </div>
 
-        <!-- Controles móvil -->
-        <div class="flex items-center gap-1 md:hidden">
-            <SelectorPais />
-            <button
-                id="btn-tema-movil"
-                class="p-2 rounded-lg hover:bg-[var(--color-superficie)] transition-colors"
-                aria-label="Cambiar tema"
-            >
-                <span id="icono-tema-sol-movil" class="hidden">&#9728;</span>
-                <span id="icono-tema-luna-movil" class="hidden">&#9790;</span>
-            </button>
-            <button
-                id="btn-menu"
-                class="p-2 rounded-lg hover:bg-[var(--color-superficie)] transition-colors"
-                aria-label="Abrir menú"
-            >
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path id="icono-menu" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    <path id="icono-cerrar" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
+            <div class="site-nav__mobile-actions flex lg:hidden">
+                <SelectorPais />
+                <button
+                    id="btn-tema-movil"
+                    class="theme-toggle"
+                    aria-label="Cambiar tema"
+                >
+                    <span id="icono-tema-sol-movil" class="hidden">☀</span>
+                    <span id="icono-tema-luna-movil" class="hidden">◐</span>
+                </button>
+                <button
+                    id="btn-menu"
+                    class="menu-toggle"
+                    aria-label="Abrir menú"
+                    aria-expanded="false"
+                >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path id="icono-menu" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16" />
+                        <path id="icono-cerrar" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
         </div>
     </div>
 
-    <!-- Menú móvil -->
-    <div id="menu-movil" class="hidden md:hidden border-t border-[var(--color-borde)] pb-2">
-        {enlaces.map(({ href, texto }) => (
-            <a
-                href={href}
-                class:list={[
-                    'block px-4 py-2.5 text-sm font-medium transition-colors',
-                    esActivo(href, rutaActual)
-                        ? 'bg-[var(--color-verde)] text-white mx-2 rounded-lg'
-                        : 'hover:bg-[var(--color-superficie)]'
-                ]}
-            >
-                {texto}
-            </a>
-        ))}
+    <div class="site-nav__inner lg:hidden">
+        <div id="menu-movil" class="site-nav__mobile-menu hidden">
+            <div class="mobile-menu-panel panel">
+                {enlaces.map(({ href, texto }) => (
+                    <a
+                        href={href}
+                        class:list={[
+                            'mobile-menu-link',
+                            { 'is-active': esActivo(href, rutaActual) }
+                        ]}
+                    >
+                        {texto}
+                    </a>
+                ))}
+            </div>
+        </div>
     </div>
 </nav>
 
@@ -104,6 +102,7 @@ function esActivo(href: string, ruta: string): boolean {
                 menuMovil.classList.toggle('hidden')
                 iconoMenu.classList.toggle('hidden')
                 iconoCerrar.classList.toggle('hidden')
+                btnMenu.setAttribute('aria-expanded', String(!menuMovil.classList.contains('hidden')))
             }
         }
 

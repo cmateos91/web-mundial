@@ -3,15 +3,33 @@ import Base from "../layouts/Base.astro"
 import { jornadas } from "../data/partidos"
 import { paises } from "../data/paises"
 import FiltroPartidos from "../components/FiltroPartidos"
+import EditorialIntro from "../components/EditorialIntro.astro"
 
 // Objeto plano serializable para pasar al cliente
 const zonas = Object.fromEntries(paises.map(p => [p.nombre, p.zona]))
+const totalPartidos = jornadas.reduce((acumulado, jornada) => acumulado + jornada.partidos.length, 0)
 ---
 
-<Base titulo="Partidos — Mundial 2026">
-	<div class="mb-8">
-		<h1 class="text-4xl font-extrabold">Partidos</h1>
-		<p class="texto-secundario mt-1">Calendario completo de la fase de grupos del Mundial 2026.</p>
-	</div>
-	<FiltroPartidos client:visible jornadas={jornadas} zonas={zonas} />
+<Base titulo="Partidos — Mundial 2026" descripcion="Calendario editorial del Mundial 2026 con filtros por equipo, estadio y ciudad." pageTone="matches">
+	<EditorialIntro
+		etiqueta="Agenda del torneo"
+		titulo="Partidos"
+		descripcion="Un calendario más legible, más rítmico y adaptado a la escala del torneo, con filtros rápidos y conversión horaria según tu país."
+		stats={[
+			{ valor: String(totalPartidos), etiqueta: 'partidos' },
+			{ valor: String(jornadas.length), etiqueta: 'jornadas' },
+			{ valor: 'Tu hora', etiqueta: 'si eliges país' },
+			{ valor: '48', etiqueta: 'selecciones' },
+		]}
+	/>
+
+	<section class="editorial-section panel">
+		<div class="editorial-section__head">
+			<div>
+				<p class="section-kicker">Filtro en vivo</p>
+				<h2 class="editorial-section__title">Agenda completa</h2>
+			</div>
+		</div>
+		<FiltroPartidos client:visible jornadas={jornadas} zonas={zonas} />
+	</section>
 </Base>

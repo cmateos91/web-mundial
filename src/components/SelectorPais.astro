@@ -2,9 +2,9 @@
 import { paises } from '../data/paises'
 ---
 
-<div class="relative">
+<div class="selector-shell relative">
     <select
-        class="selector-pais appearance-none bg-[var(--color-superficie)] text-sm rounded-lg px-3 py-1.5 pr-7 border border-[var(--color-borde)] cursor-pointer hover:border-[var(--color-verde)] transition-colors"
+        class="selector-pais"
         aria-label="Seleccionar país"
     >
         <option value="">Mi país</option>
@@ -12,7 +12,7 @@ import { paises } from '../data/paises'
             <option value={p.nombre}>{p.bandera} {p.nombre}</option>
         ))}
     </select>
-    <span class="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-xs texto-secundario">▼</span>
+    <span class="selector-caret">▼</span>
 </div>
 
 <script is:inline>

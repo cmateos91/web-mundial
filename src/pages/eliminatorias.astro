@@ -1,18 +1,34 @@
 ---
 import Base from '../layouts/Base.astro'
+import EditorialIntro from '../components/EditorialIntro.astro'
 import CuadroEliminatorias from '../components/CuadroEliminatorias.astro'
 import { eliminatorias } from '../data/eliminatorias'
 ---
 
-<Base titulo="Eliminatorias — Mundial 2026">
-	<div class="mb-8">
-		<h1 class="text-4xl font-extrabold">Eliminatorias</h1>
-		<p class="texto-secundario mt-1">Cuadro completo desde dieciseisavos hasta la final. Se actualizará conforme avance el torneo.</p>
-	</div>
+<Base titulo="Eliminatorias — Mundial 2026" descripcion="Cuadro del Mundial 2026 desde dieciseisavos hasta la final." pageTone="knockout">
+	<EditorialIntro
+		etiqueta="Fase definitiva"
+		titulo="Eliminatorias"
+		descripcion="Un cuadro más dramático para la zona del torneo en la que ya no hay red. Desde dieciseisavos hasta la final, cada cruce empuja el relato hacia el título."
+		stats={[
+			{ valor: '32', etiqueta: 'equipos' },
+			{ valor: '5', etiqueta: 'rondas' },
+			{ valor: '1', etiqueta: 'trofeo' },
+			{ valor: '19 julio', etiqueta: 'la final' },
+		]}
+	/>
 
-	<CuadroEliminatorias rondas={eliminatorias} />
+	<section class="editorial-section panel">
+		<div class="editorial-section__head">
+			<div>
+				<p class="section-kicker">Ruta al título</p>
+				<h2 class="editorial-section__title">Cuadro completo</h2>
+			</div>
+		</div>
+		<CuadroEliminatorias rondas={eliminatorias} />
+	</section>
 
-	<div class="mt-8 tarjeta p-4 text-sm texto-secundario">
-		<p><strong>¿Cómo se clasifican?</strong> Los 2 primeros de cada grupo (24 equipos) y los 8 mejores terceros pasan a dieciseisavos de final. A partir de ahí, eliminación directa.</p>
+	<div class="mt-6 panel p-5 text-sm texto-secundario">
+		<p><strong>Cómo se clasifican.</strong> Los dos primeros de cada grupo y los ocho mejores terceros avanzan a dieciseisavos. A partir de ahí, el torneo pasa a eliminación directa.</p>
 	</div>
 </Base>

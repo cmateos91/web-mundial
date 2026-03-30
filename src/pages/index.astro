@@ -1,12 +1,22 @@
 ---
 import Base from '../layouts/Base.astro'
+import { getCollection } from 'astro:content'
 import { jornadas } from '../data/partidos'
 import BuscadorEquipos from '../components/BuscadorEquipos'
 import { grupos } from '../data/grupos'
 import { slugPorEquipo } from '../data/slugs'
+import HostCityConstellation from '../components/HostCityConstellation.astro'
+import { sedes } from '../data/sedes'
 
-const proximosPartidos = jornadas[0].partidos
+const proximosPartidos = jornadas.flatMap((jornada) =>
+  jornada.partidos.map((partido) => ({ ...partido, fecha: jornada.fecha }))
+).slice(0, 6)
 const slugsObj = Object.fromEntries(slugPorEquipo)
+const noticias = await getCollection('noticias')
+noticias.sort((a, b) => new Date(b.data.fecha).getTime() - new Date(a.data.fecha).getTime())
+const destacadas = noticias.slice(0, 2)
+const totalPartidos = jornadas.reduce((acumulado, jornada) => acumulado + jornada.partidos.length, 0)
+const totalSedes = sedes.length
 
 // Cuenta regresiva calculada en build time
 const inicio = new Date('2026-06-11T00:00:00')
@@ -14,88 +24,158 @@ const hoy = new Date()
 const diasRestantes = Math.max(0, Math.ceil((inicio.getTime() - hoy.getTime()) / (1000 * 60 * 60 * 24)))
 ---
 
-<Base titulo="Mundial 2026 — Canadá, México, Estados Unidos">
-	<!-- Hero -->
-	<section class="relative text-center py-20 rounded-2xl mt-2 overflow-hidden bg-gradient-to-br from-[var(--color-verde)] via-[var(--color-rojo)] to-[var(--color-azul)]">
-		<div class="relative z-10">
-			<p class="text-white/80 text-sm font-medium uppercase tracking-widest mb-3">Copa Mundial de la FIFA</p>
-			<h1 class="text-5xl md:text-7xl font-extrabold text-white drop-shadow-lg">Mundial 2026</h1>
-			<p class="text-white/90 text-lg mt-3">Canadá &middot; México &middot; Estados Unidos</p>
-			<p class="text-white/70 mt-1">11 de junio — 19 de julio de 2026</p>
+<Base
+	titulo="Mundial 2026 — Canadá, México, Estados Unidos"
+	descripcion="Cobertura editorial del Mundial 2026 con grupos, partidos, sedes, eliminatorias y noticias."
+	pageTone="home"
+>
+	<section class="hero-showcase">
+		<div class="hero-copy panel">
+			<p class="hero-topline">Norteamérica 2026 · edición especial</p>
+			<h1 class="hero-title">El <strong>Mundial</strong> más grande de la historia pide una cobertura a su altura.</h1>
+			<p class="hero-subtitle">
+				Una lectura visual del torneo que cruza tres países, dieciséis ciudades y ciento cuatro partidos con más presencia editorial, más continuidad y más atmósfera.
+			</p>
 
-			<div class="mt-8 inline-flex items-baseline gap-2 bg-white/15 backdrop-blur-sm rounded-xl px-6 py-3">
-				<span id="cuenta-atras" class="text-4xl font-extrabold text-white">{diasRestantes}</span>
-				<span class="text-white/80 text-sm">días para el inicio</span>
+			<div class="hero-actions">
+				<a href="/partidos" class="hero-cta">Ver calendario</a>
+				<a href="/sedes" class="hero-cta-secondary">Explorar sedes</a>
 			</div>
-			<script is:inline>
-				(function() {
-					var dias = Math.max(0, Math.ceil((new Date('2026-06-11').getTime() - Date.now()) / 864e5))
-					var el = document.getElementById('cuenta-atras')
-					if (el) el.textContent = dias
-					if (dias === 0) el.parentElement.style.display = 'none'
-				})()
-			</script>
 
-			<div class="mt-8">
-				<a href="/partidos" class="inline-block px-8 py-3 bg-white text-[var(--color-verde)] font-bold rounded-xl hover:bg-white/90 transition-colors shadow-lg">
-					Ver calendario de partidos
-				</a>
-			</div>
-		</div>
-	</section>
-
-	<!-- Buscador -->
-	<section class="mt-12">
-		<h2 class="text-2xl font-bold mb-4">Busca tu equipo</h2>
-		<BuscadorEquipos client:visible grupos={grupos} slugs={slugsObj} />
-	</section>
-
-	<!-- Primeros partidos -->
-	<section class="mt-12">
-		<div class="flex items-center justify-between mb-4">
-			<h2 class="text-2xl font-bold">Primeros partidos</h2>
-			<a class="text-sm font-medium text-[var(--color-verde)] hover:underline" href="/partidos">Ver todos →</a>
-		</div>
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-			{proximosPartidos.map(partido => (
-				<div class="tarjeta p-4 flex items-center gap-4">
-					<span class="text-sm font-mono texto-secundario w-12 shrink-0" data-utc={partido.fechaUTC}>{partido.hora}</span>
-					<div class="flex-1">
-						<p class="font-semibold">
-						<span data-equipo={partido.equipo1}>{partido.equipo1}</span>
-						{partido.estado === 'finalizado'
-							? <span class="mx-1 px-2 py-0.5 rounded fondo-superficie text-sm font-bold">{partido.goles1} - {partido.goles2}</span>
-							: <span class="texto-secundario font-normal mx-1">vs</span>
-						}
-						<span data-equipo={partido.equipo2}>{partido.equipo2}</span>
-					</p>
-						<p class="text-sm texto-secundario">{partido.estadio}, {partido.ciudad}</p>
-					</div>
+			<div class="hero-countdown" id="hero-countdown">
+				<span id="cuenta-atras" class="hero-countdown__number">{diasRestantes}</span>
+				<div class="hero-countdown__copy">
+					<strong>Días para el inicio</strong>
+					<span>11 de junio · 19 de julio de 2026</span>
 				</div>
-			))}
+			</div>
 		</div>
+
+		<HostCityConstellation
+			etiqueta="Escenario continental"
+			titulo="Tres países. Un mismo pulso."
+			descripcion="Canadá, México y Estados Unidos convierten el Mundial 2026 en una ruta continental de estadios, ciudades anfitrionas y noches decisivas."
+		/>
 	</section>
 
-	<!-- Navegación rápida -->
-	<section class="mt-12 mb-4">
-		<h2 class="text-2xl font-bold mb-4">Explora el mundial</h2>
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-			<a href="/grupos" class="tarjeta tarjeta-hover p-6 border-l-4 border-l-[var(--color-verde)]">
-				<h3 class="text-lg font-bold">Grupos</h3>
-				<p class="texto-secundario text-sm mt-1">12 grupos con tabla de posiciones</p>
-			</a>
-			<a href="/partidos" class="tarjeta tarjeta-hover p-6 border-l-4 border-l-[var(--color-rojo)]">
-				<h3 class="text-lg font-bold">Partidos</h3>
-				<p class="texto-secundario text-sm mt-1">104 partidos con filtros</p>
-			</a>
-			<a href="/eliminatorias" class="tarjeta tarjeta-hover p-6 border-l-4 border-l-[var(--color-azul)]">
-				<h3 class="text-lg font-bold">Eliminatorias</h3>
-				<p class="texto-secundario text-sm mt-1">Bracket de dieciseisavos a la final</p>
-			</a>
-			<a href="/sedes" class="tarjeta tarjeta-hover p-6 border-l-4 border-l-[var(--color-verde)]">
-				<h3 class="text-lg font-bold">Sedes</h3>
-				<p class="texto-secundario text-sm mt-1">16 estadios en 3 países</p>
-			</a>
+	<script is:inline>
+		(function() {
+			var dias = Math.max(0, Math.ceil((new Date('2026-06-11').getTime() - Date.now()) / 864e5))
+			var numero = document.getElementById('cuenta-atras')
+			var bloque = document.getElementById('hero-countdown')
+			if (numero) numero.textContent = String(dias)
+			if (bloque && dias === 0) bloque.style.display = 'none'
+		})()
+	</script>
+
+	<div class="hero-ribbon">
+		<div class="hero-ribbon__item panel">
+			<strong>{totalPartidos}</strong>
+			<span>Partidos repartidos por todo el continente en una edición que redefine la escala del torneo.</span>
 		</div>
-	</section>
+		<div class="hero-ribbon__item panel">
+			<strong>48</strong>
+			<span>Selecciones en una nueva era de grupos, mejores terceros y cruces mucho más amplios.</span>
+		</div>
+		<div class="hero-ribbon__item panel">
+			<strong>{totalSedes}</strong>
+			<span>Estadios anfitriones entre Canadá, México y Estados Unidos con perfiles y atmósferas muy distintas.</span>
+		</div>
+	</div>
+
+	<div class="editorial-stack">
+		<section class="editorial-section panel">
+			<div class="editorial-section__head">
+				<div>
+					<p class="section-kicker">Encuentra tu selección</p>
+					<h2 class="editorial-section__title">Entrada directa al torneo</h2>
+				</div>
+			</div>
+			<BuscadorEquipos client:visible grupos={grupos} slugs={slugsObj} />
+		</section>
+
+		<section class="editorial-section panel">
+			<div class="editorial-section__head">
+				<div>
+					<p class="section-kicker">Agenda inaugural</p>
+					<h2 class="editorial-section__title">Primeros partidos</h2>
+				</div>
+				<a class="editorial-link" href="/partidos">Ver todos</a>
+			</div>
+
+			<div class="match-editorial-grid">
+				{proximosPartidos.map((partido) => (
+					<article class="match-editorial-card tarjeta tarjeta-hover">
+						<div class="match-editorial-card__top">
+							<div>
+								<p class="match-time" data-utc={partido.fechaUTC}>{partido.hora}</p>
+								<p class="match-meta">{partido.fecha}</p>
+							</div>
+							<span class="score-badge">
+								{partido.estado === 'finalizado' ? `${partido.goles1} - ${partido.goles2}` : 'vs'}
+							</span>
+						</div>
+
+						<div>
+							<p class="match-teams">
+								<span data-equipo={partido.equipo1}>{partido.equipo1}</span> · <span data-equipo={partido.equipo2}>{partido.equipo2}</span>
+							</p>
+							<p class="match-meta mt-2">
+								{partido.estadio === 'Por confirmar'
+									? 'Sede y estadio por confirmar'
+									: `${partido.estadio}, ${partido.ciudad}`}
+							</p>
+						</div>
+					</article>
+				))}
+			</div>
+		</section>
+
+		<section class="feature-grid">
+			<a href="/grupos" class="feature-link-card tarjeta tarjeta-hover">
+				<p class="feature-link-card__label">Grupos</p>
+				<h3 class="feature-link-card__title">Tablas con lectura más clara y más peso visual.</h3>
+				<p class="feature-link-card__copy">Doce grupos, jerarquía marcada y acceso directo a cada selección.</p>
+				<span class="feature-link-card__cta">Ver grupos</span>
+			</a>
+			<a href="/partidos" class="feature-link-card tarjeta tarjeta-hover">
+				<p class="feature-link-card__label">Partidos</p>
+				<h3 class="feature-link-card__title">Calendario tratado como agenda editorial del torneo.</h3>
+				<p class="feature-link-card__copy">Filtros rápidos, horarios localizados y una lectura más cinematográfica.</p>
+				<span class="feature-link-card__cta">Ver agenda</span>
+			</a>
+			<a href="/eliminatorias" class="feature-link-card tarjeta tarjeta-hover">
+				<p class="feature-link-card__label">Eliminatorias</p>
+				<h3 class="feature-link-card__title">El cuadro directo con un tono más dramático y escénico.</h3>
+				<p class="feature-link-card__copy">Del dieciseisavos a la final, con más tensión visual y mejor foco.</p>
+				<span class="feature-link-card__cta">Ver cuadro</span>
+			</a>
+			<a href="/sedes" class="feature-link-card tarjeta tarjeta-hover">
+				<p class="feature-link-card__label">Sedes</p>
+				<h3 class="feature-link-card__title">Ciudades anfitrionas leídas como etapas de un recorrido continental.</h3>
+				<p class="feature-link-card__copy">Capacidad, localización y papel de cada estadio dentro del torneo.</p>
+				<span class="feature-link-card__cta">Ver sedes</span>
+			</a>
+		</section>
+
+		<section class="editorial-section panel">
+			<div class="editorial-section__head">
+				<div>
+					<p class="section-kicker">Revista del torneo</p>
+					<h2 class="editorial-section__title">Últimas historias</h2>
+				</div>
+				<a class="editorial-link" href="/noticias">Ver noticias</a>
+			</div>
+
+			<div class="news-grid">
+				{destacadas.map((noticia) => (
+					<a href={`/noticias/${noticia.id}`} class="news-card tarjeta tarjeta-hover block">
+						<span class="article-kicker">{noticia.data.fecha}</span>
+						<h3 class="news-card__title mt-4">{noticia.data.titulo}</h3>
+						<p class="news-card__summary mt-3">{noticia.data.resumen}</p>
+					</a>
+				))}
+			</div>
+		</section>
+	</div>
 </Base>

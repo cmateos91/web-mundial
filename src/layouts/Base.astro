@@ -3,9 +3,10 @@ import '../styles/global.css'
 import { ClientRouter } from 'astro:transitions'
 import Navbar from '../components/Navbar.astro'
 import PiePagina from '../components/PiePagina.astro'
+import AtmosphericBackdrop from '../components/AtmosphericBackdrop.astro'
 import { paises } from '../data/paises'
 
-const { titulo } = Astro.props
+const { titulo, descripcion = 'Toda la información del Mundial 2026: grupos, partidos, sedes y más', pageTone = 'home' } = Astro.props
 
 // Serializar el mapa país→zona para el script inline
 const zonasJSON = JSON.stringify(Object.fromEntries(paises.map(p => [p.nombre, p.zona])))
@@ -15,7 +16,8 @@ const zonasJSON = JSON.stringify(Object.fromEntries(paises.map(p => [p.nombre, p
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
-        <meta name="description" content="Toda la información del mundial 2026: grupos, partidos, sedes y más" />
+        <meta name="description" content={descripcion} />
+        <meta name="theme-color" content="#07131b" />
         <title>{titulo}</title>
         <ClientRouter />
         <!-- Dark mode sin FOUC (también funciona con View Transitions) -->
@@ -29,12 +31,15 @@ const zonasJSON = JSON.stringify(Object.fromEntries(paises.map(p => [p.nombre, p
             document.addEventListener('astro:after-swap', aplicarTema)
         </script>
     </head>
-    <body class="min-h-screen flex flex-col">
+    <body class="min-h-screen flex flex-col" data-page-tone={pageTone}>
+        <AtmosphericBackdrop tone={pageTone} />
+        <div class="site-frame min-h-screen flex flex-col">
         <Navbar rutaActual={Astro.url.pathname} />
-        <main class="max-w-6xl mx-auto px-4 py-8 w-full flex-1">
+        <main class="site-main w-full flex-1">
             <slot />
         </main>
         <PiePagina />
+        </div>
         <!-- Conversión de horas + resaltado de equipo -->
         <script is:inline define:vars={{ zonasJSON }}>
             function aplicarPreferencias() {

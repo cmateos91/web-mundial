@@ -52,98 +52,124 @@ const sedesUnicas = [...new Set(
 )]
 ---
 
-<Base titulo={`${nombre} — Mundial 2026`}>
-	<!-- Cabecera -->
-	<div class="mb-8">
-		<a href="/grupos" class="inline-flex items-center text-sm text-[var(--color-verde)] hover:underline mb-4">
-			← Volver a grupos
-		</a>
-		<div class="flex items-center gap-4">
-			{bandera && <span class="text-6xl">{bandera}</span>}
-			<div>
-				<h1 class="text-4xl font-extrabold" data-equipo={nombre}>{nombre}</h1>
-				<p class="texto-secundario mt-1">
-					{nombreGrupo} · Posición actual: {posicion}º
-				</p>
+<Base titulo={`${nombre} — Mundial 2026`} descripcion={`Perfil editorial de ${nombre} en el Mundial 2026.`} pageTone="team">
+	<section class="team-hero panel p-5">
+		<div>
+			<a href="/grupos" class="editorial-link">← Volver a grupos</a>
+			<div class="team-hero__identity mt-5">
+				{bandera && <span class="team-flag">{bandera}</span>}
+				<div>
+					<p class="section-kicker mb-3">Perfil de selección</p>
+					<h1 class="page-title" data-equipo={nombre}>{nombre}</h1>
+					<p class="page-lead mt-4">
+						{nombreGrupo} · Posición actual {posicion}º · {partidosEquipo.length} partidos previstos en la fase de grupos.
+					</p>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-		<!-- Columna izquierda: Tabla del grupo -->
-		<div>
-			<h2 class="text-xl font-bold mb-3">{nombreGrupo}</h2>
-			<div class="tarjeta overflow-hidden">
-				<div class="overflow-x-auto">
-					<table class="w-full text-sm">
+		<div class="page-intro__stats">
+			<div class="stat-card">
+				<strong>{nombreGrupo.replace('Grupo ', '')}</strong>
+				<span>grupo</span>
+			</div>
+			<div class="stat-card">
+				<strong>{posicion}º</strong>
+				<span>posición</span>
+			</div>
+			<div class="stat-card">
+				<strong>{partidosEquipo.length}</strong>
+				<span>partidos</span>
+			</div>
+			<div class="stat-card">
+				<strong>{sedesUnicas.length || 1}</strong>
+				<span>sedes</span>
+			</div>
+		</div>
+	</section>
+
+	<div class="team-grid">
+		<div class="grid gap-5">
+			<section class="team-panel tarjeta">
+				<p class="section-kicker">Grupo</p>
+				<h2 class="feature-title">{nombreGrupo}</h2>
+				<div class="overflow-x-auto mt-5">
+					<table class="group-table">
 						<thead>
-							<tr class="fondo-superficie text-xs texto-secundario">
-								<th class="text-left px-3 py-2 font-medium">Equipo</th>
-								<th class="px-1.5 py-2 font-medium">PJ</th>
-								<th class="px-1.5 py-2 font-medium">GF</th>
-								<th class="px-1.5 py-2 font-medium">GC</th>
-								<th class="px-1.5 py-2 font-medium font-bold">Pts</th>
+							<tr>
+								<th class="text-left">Equipo</th>
+								<th>PJ</th>
+								<th>GF</th>
+								<th>GC</th>
+								<th>Pts</th>
 							</tr>
 						</thead>
-						<tbody class="divide-y divide-[var(--color-borde)]">
+						<tbody>
 							{tablaGrupo.map((e, i) => (
-								<tr class={e.equipo === nombre ? 'bg-[color-mix(in_srgb,var(--color-verde)_10%,transparent)]' : ''}>
-									<td class="px-3 py-2 font-medium">
+								<tr class:list={[{ qualifier: i < 2 }]}>
+									<td>
 										{e.equipo === nombre
-											? <span class="font-bold" data-equipo={e.equipo}>{e.equipo}</span>
-											: <a href={`/equipos/${slugPorEquipo.get(e.equipo)}`} class="hover:text-[var(--color-verde)]" data-equipo={e.equipo}>{e.equipo}</a>
+											? <span class="group-table__team font-semibold" data-equipo={e.equipo}><span class="team-rank">{i + 1}.</span>{e.equipo}</span>
+											: slugPorEquipo.has(e.equipo)
+												? <a href={`/equipos/${slugPorEquipo.get(e.equipo)}`} class="group-table__team" data-equipo={e.equipo}><span class="team-rank">{i + 1}.</span>{e.equipo}</a>
+												: <span class="group-table__team"><span class="team-rank">{i + 1}.</span>{e.equipo}</span>
 										}
 									</td>
-									<td class="text-center px-1.5 py-2">{e.pj}</td>
-									<td class="text-center px-1.5 py-2">{e.gf}</td>
-									<td class="text-center px-1.5 py-2">{e.gc}</td>
-									<td class="text-center px-1.5 py-2 font-bold">{e.pts}</td>
+									<td class="text-center">{e.pj}</td>
+									<td class="text-center">{e.gf}</td>
+									<td class="text-center">{e.gc}</td>
+									<td class="text-center font-semibold">{e.pts}</td>
 								</tr>
 							))}
 						</tbody>
 					</table>
 				</div>
-			</div>
+			</section>
 
 			{sedesUnicas.length > 0 && (
-				<div class="mt-6">
-					<h2 class="text-xl font-bold mb-3">Sedes</h2>
-					<div class="space-y-2">
+				<section class="team-panel tarjeta">
+					<p class="section-kicker">Escenario</p>
+					<h2 class="feature-title">Sedes previstas</h2>
+					<div class="grid gap-3 mt-5">
 						{sedesUnicas.map(sede => (
-							<div class="tarjeta p-3 text-sm">{sede}</div>
+							<div class="score-badge w-fit">{sede}</div>
 						))}
 					</div>
-				</div>
+				</section>
 			)}
 		</div>
 
-		<!-- Columna derecha: Partidos -->
-		<div class="lg:col-span-2">
-			<h2 class="text-xl font-bold mb-3">Partidos ({partidosEquipo.length})</h2>
-			<div class="space-y-3">
+		<section class="team-panel tarjeta">
+			<p class="section-kicker">Agenda de la selección</p>
+			<h2 class="feature-title">Partidos ({partidosEquipo.length})</h2>
+			<div class="grid gap-4 mt-5">
 				{partidosEquipo.map(p => (
-					<div class="tarjeta p-4 flex items-center gap-4">
-						<div class="shrink-0 text-center">
-							<p class="text-xs texto-secundario">{p.fecha}</p>
-							<p class="text-sm font-mono" data-utc={p.fechaUTC}>{p.hora}</p>
+					<article class="match-editorial-card tarjeta">
+						<div class="match-editorial-card__top">
+							<div>
+								<p class="match-time" data-utc={p.fechaUTC}>{p.hora}</p>
+								<p class="match-meta">{p.fecha}</p>
+							</div>
+							<span class="score-badge">
+								{p.estado === 'finalizado' ? `${p.goles1} - ${p.goles2}` : 'vs'}
+							</span>
 						</div>
-						<div class="flex-1">
-							<p class="font-semibold">
-								<span data-equipo={p.equipo1} class={p.equipo1 === nombre ? 'font-bold' : ''}>{p.equipo1}</span>
-								{p.estado === 'finalizado'
-									? <span class="mx-2 px-2 py-0.5 rounded fondo-superficie text-sm font-bold">{p.goles1} - {p.goles2}</span>
-									: <span class="texto-secundario font-normal mx-2">vs</span>
-								}
-								<span data-equipo={p.equipo2} class={p.equipo2 === nombre ? 'font-bold' : ''}>{p.equipo2}</span>
+
+						<div>
+							<p class="match-teams">
+								<span data-equipo={p.equipo1} class={p.equipo1 === nombre ? 'font-semibold' : ''}>{p.equipo1}</span>
+								{' · '}
+								<span data-equipo={p.equipo2} class={p.equipo2 === nombre ? 'font-semibold' : ''}>{p.equipo2}</span>
 							</p>
-							<p class="text-xs texto-secundario mt-0.5">{p.estadio}, {p.ciudad}</p>
+							<p class="match-meta mt-2">
+								{p.estadio === 'Por confirmar'
+									? 'Sede por confirmar'
+									: `${p.estadio}, ${p.ciudad}`}
+							</p>
 						</div>
-						{p.estado === 'finalizado' && (
-							<span class="text-xs px-2 py-1 rounded fondo-superficie texto-secundario">Finalizado</span>
-						)}
-					</div>
+					</article>
 				))}
 			</div>
-		</div>
+		</section>
 	</div>
 </Base>

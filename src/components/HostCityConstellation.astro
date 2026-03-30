@@ -1,0 +1,105 @@
+---
+import { hostConnections, hostNodes } from '../data/hostMap'
+
+interface Props {
+  etiqueta?: string
+  titulo?: string
+  descripcion?: string
+  compact?: boolean
+}
+
+const {
+  etiqueta = 'Mapa del torneo',
+  titulo = 'La geografía del Mundial, convertida en escenario',
+  descripcion = 'Dieciséis sedes repartidas entre Canadá, México y Estados Unidos conectan un torneo gigantesco que atraviesa todo el continente.',
+  compact = false,
+} = Astro.props
+
+const nodesByCity = new Map(hostNodes.map((node) => [node.ciudad, node]))
+---
+
+<section class:list={['host-stage', { 'host-stage--compact': compact }]}>
+  <div class="host-stage__copy">
+    <p class="section-kicker">{etiqueta}</p>
+    <h2 class="feature-title">{titulo}</h2>
+    <p class="feature-copy">{descripcion}</p>
+    <div class="host-stage__legend">
+      <div>
+        <strong>3</strong>
+        <span>países anfitriones</span>
+      </div>
+      <div>
+        <strong>16</strong>
+        <span>ciudades sede</span>
+      </div>
+      <div>
+        <strong>104</strong>
+        <span>partidos</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="host-stage__visual" data-host-stage>
+    <svg class="host-stage__map" viewBox="0 0 920 560" fill="none" role="img" aria-label="Mapa estilizado de las sedes del Mundial 2026">
+      <g class="host-stage__landmass">
+        <path d="M103 125C141 85 205 73 257 88C303 101 344 132 373 168C413 217 442 235 504 246C541 253 570 250 602 223C649 184 698 155 754 149C818 142 864 178 885 235C902 280 900 323 867 358C830 396 793 406 767 449C742 489 695 508 645 500C588 490 540 447 507 429C473 410 446 402 414 410C372 420 350 456 313 471C260 492 205 485 169 456C118 415 111 376 117 339C122 303 105 266 79 237C52 208 49 164 103 125Z" />
+        <path d="M227 420C242 399 265 391 288 399C319 410 330 434 326 462C322 487 306 506 282 515C253 526 219 522 205 498C193 476 201 446 227 420Z" />
+      </g>
+
+      <g class="host-stage__connections">
+        {hostConnections.map(([from, to]) => {
+          const start = nodesByCity.get(from)
+          const end = nodesByCity.get(to)
+          if (!start || !end) return null
+          return (
+            <line
+              x1={start.x}
+              y1={start.y}
+              x2={end.x}
+              y2={end.y}
+              style={`--travel-delay:${Math.abs(start.x - end.x) / 700}s`}
+            ></line>
+          )
+        })}
+      </g>
+
+      <g class="host-stage__nodes">
+        {hostNodes.map((node) => (
+          <g class="host-stage__node" transform={`translate(${node.x} ${node.y})`}>
+            <circle class="host-stage__node-ring" r="15"></circle>
+            <circle class="host-stage__node-core" r="4.5"></circle>
+            <text class="host-stage__node-code" x="0" y="-24">{node.codigo}</text>
+            <text class="host-stage__node-label" x="0" y="30">{node.ciudad}</text>
+          </g>
+        ))}
+      </g>
+    </svg>
+  </div>
+</section>
+
+<script is:inline>
+  function inicializarHostStages() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    document.querySelectorAll('[data-host-stage]').forEach(function(stage) {
+      if (stage.dataset.hostStageInicializado === 'true') return
+      stage.dataset.hostStageInicializado = 'true'
+
+      stage.addEventListener('pointermove', function(event) {
+        var rect = stage.getBoundingClientRect()
+        var x = ((event.clientX - rect.left) / rect.width - 0.5) * 2
+        var y = ((event.clientY - rect.top) / rect.height - 0.5) * 2
+        stage.style.setProperty('--pointer-x', x.toFixed(3))
+        stage.style.setProperty('--pointer-y', y.toFixed(3))
+      })
+
+      stage.addEventListener('pointerleave', function() {
+        stage.style.setProperty('--pointer-x', '0')
+        stage.style.setProperty('--pointer-y', '0')
+      })
+    })
+  }
+
+  inicializarHostStages()
+  document.addEventListener('astro:page-load', inicializarHostStages)
+</script>

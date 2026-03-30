@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro'
+import EditorialIntro from '../components/EditorialIntro.astro'
 import { grupos } from '../data/grupos'
 import { calcularClasificacion } from '../data/clasificacion'
 import { slugPorEquipo } from '../data/slugs'
@@ -7,59 +8,75 @@ import { slugPorEquipo } from '../data/slugs'
 const clasificacion = calcularClasificacion()
 ---
 
-<Base titulo="Grupos — Mundial 2026">
-	<div class="mb-8">
-		<h1 class="text-4xl font-extrabold">Grupos</h1>
-		<p class="texto-secundario mt-1">48 selecciones repartidas en 12 grupos. Los dos primeros de cada grupo y los 8 mejores terceros avanzan a dieciseisavos.</p>
-	</div>
-	<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+<Base titulo="Grupos — Mundial 2026" descripcion="Tablas de grupos del Mundial 2026 con lectura editorial y acceso a cada selección." pageTone="groups">
+	<EditorialIntro
+		etiqueta="Primera fase"
+		titulo="Grupos"
+		descripcion="Doce grupos, cuarenta y ocho selecciones y una lectura más limpia de la clasificación provisional. Los dos primeros y los ocho mejores terceros avanzan."
+		stats={[
+			{ valor: '12', etiqueta: 'grupos' },
+			{ valor: '48', etiqueta: 'selecciones' },
+			{ valor: '24 + 8', etiqueta: 'clasifican' },
+			{ valor: '32', etiqueta: 'pasan a cruces' },
+		]}
+	/>
+
+	<div class="group-grid">
 		{grupos.map(grupo => {
 			const tabla = clasificacion.get(grupo.nombre) ?? []
 			return (
-				<div class="tarjeta overflow-hidden">
-					<div class="bg-[var(--color-verde)] text-white px-4 py-2.5 font-bold text-sm tracking-wide">
-						{grupo.nombre}
+				<article class="group-card tarjeta tarjeta-hover">
+					<div class="group-card__topline">
+						<span>{grupo.nombre}</span>
+						<strong>4 equipos</strong>
 					</div>
 					<div class="overflow-x-auto">
-						<table class="w-full text-sm">
+						<table class="group-table">
 							<thead>
-								<tr class="fondo-superficie text-xs texto-secundario">
-									<th class="text-left px-3 py-2 font-medium">Equipo</th>
-									<th class="px-1.5 py-2 font-medium">PJ</th>
-									<th class="px-1.5 py-2 font-medium">PG</th>
-									<th class="px-1.5 py-2 font-medium">PE</th>
-									<th class="px-1.5 py-2 font-medium">PP</th>
-									<th class="px-1.5 py-2 font-medium">GF</th>
-									<th class="px-1.5 py-2 font-medium">GC</th>
-									<th class="px-1.5 py-2 font-medium font-bold">Pts</th>
+								<tr>
+									<th class="text-left">Equipo</th>
+									<th>PJ</th>
+									<th>PG</th>
+									<th>PE</th>
+									<th>PP</th>
+									<th>GF</th>
+									<th>GC</th>
+									<th>Pts</th>
 								</tr>
 							</thead>
-							<tbody class="divide-y divide-[var(--color-borde)]">
+							<tbody>
 								{tabla.map((e, i) => (
-									<tr class={i < 2 ? 'bg-[color-mix(in_srgb,var(--color-verde)_5%,transparent)]' : ''}>
-										<td class="px-3 py-2 font-medium">
-											<a
-												href={`/equipos/${slugPorEquipo.get(e.equipo)}`}
-												class="hover:text-[var(--color-verde)] transition-colors"
-												data-equipo={e.equipo}
-											>
-												<span class="texto-secundario mr-1.5 text-xs">{i + 1}.</span>
-												{e.equipo}
-											</a>
+									<tr class:list={[{ qualifier: i < 2 }]}>
+										<td>
+											{slugPorEquipo.has(e.equipo) ? (
+												<a
+													href={`/equipos/${slugPorEquipo.get(e.equipo)}`}
+													class="group-table__team"
+													data-equipo={e.equipo}
+												>
+													<span class="team-rank">{i + 1}.</span>
+													{e.equipo}
+												</a>
+											) : (
+												<span class="group-table__team">
+													<span class="team-rank">{i + 1}.</span>
+													{e.equipo}
+												</span>
+											)}
 										</td>
-										<td class="text-center px-1.5 py-2">{e.pj}</td>
-										<td class="text-center px-1.5 py-2">{e.pg}</td>
-										<td class="text-center px-1.5 py-2">{e.pe}</td>
-										<td class="text-center px-1.5 py-2">{e.pp}</td>
-										<td class="text-center px-1.5 py-2">{e.gf}</td>
-										<td class="text-center px-1.5 py-2">{e.gc}</td>
-										<td class="text-center px-1.5 py-2 font-bold">{e.pts}</td>
+										<td class="text-center">{e.pj}</td>
+										<td class="text-center">{e.pg}</td>
+										<td class="text-center">{e.pe}</td>
+										<td class="text-center">{e.pp}</td>
+										<td class="text-center">{e.gf}</td>
+										<td class="text-center">{e.gc}</td>
+										<td class="text-center font-semibold">{e.pts}</td>
 									</tr>
 								))}
 							</tbody>
 						</table>
 					</div>
-				</div>
+				</article>
 			)
 		})}
 	</div>

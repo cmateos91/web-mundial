@@ -15,52 +15,30 @@ function convertirHora(fechaUTC: string, zona: string | null): string {
   } catch { return '' }
 }
 
-const estiloFav = {
-  backgroundColor: 'color-mix(in srgb, var(--color-verde) 15%, transparent)',
-  borderRadius: '0.25rem',
-  padding: '0.1rem 0.35rem',
-  fontWeight: 700,
-} as const
-
 function NombreEquipo({ nombre, esFavorito }: { nombre: string, esFavorito: boolean }) {
   if (esFavorito) {
-    return <span style={{ ...estiloFav, fontWeight: 700 }}>{nombre}</span>
+    return <span class="equipo-favorito" data-equipo={nombre}>{nombre}</span>
   }
-  return <span style={{ fontWeight: 600 }}>{nombre}</span>
+  return <span data-equipo={nombre} style={{ fontWeight: 600 }}>{nombre}</span>
 }
 
 function Marcador({ partido }: { partido: Partido }) {
   if (partido.estado === 'finalizado') {
     return (
-      <span style={{
-        display: 'inline-flex', alignItems: 'center', gap: '0.25rem',
-        backgroundColor: 'var(--color-superficie)',
-        padding: '0.125rem 0.5rem', borderRadius: '0.375rem',
-        fontSize: '0.875rem', fontWeight: 700,
-      }}>
+      <span class="score-badge">
         {partido.goles1} - {partido.goles2}
       </span>
     )
   }
   if (partido.estado === 'en_juego') {
     return (
-      <span style={{
-        display: 'inline-flex', alignItems: 'center', gap: '0.25rem',
-        backgroundColor: '#dc26261a', color: '#dc2626',
-        padding: '0.125rem 0.5rem', borderRadius: '0.375rem',
-        fontSize: '0.875rem', fontWeight: 700,
-      }}>
-        <span style={{
-          width: '0.5rem', height: '0.5rem', borderRadius: '50%',
-          backgroundColor: '#dc2626', animation: 'pulse 1.5s infinite',
-        }} />
+      <span class="score-badge" style={{ borderColor: '#dc2626', color: '#dc2626', backgroundColor: '#dc26261a' }}>
+        <span aria-hidden="true">●</span>
         {partido.goles1} - {partido.goles2}
       </span>
     )
   }
-  return (
-    <span style={{ fontSize: '0.75rem', color: 'var(--color-texto-secundario)' }}>vs</span>
-  )
+  return <span class="score-badge">vs</span>
 }
 
 export default function FiltroPartidos({ jornadas, zonas }: Props) {
@@ -103,28 +81,19 @@ export default function FiltroPartidos({ jornadas, zonas }: Props) {
   const totalPartidos = jornadasFiltradas.reduce((sum, j) => sum + j.partidos.length, 0)
 
   return (
-    <div>
-      <div style={{ position: 'relative', marginBottom: '1rem' }}>
+    <div class="editorial-stack">
+      <div class="editorial-input-shell">
         <input
           type="text"
           placeholder="Filtrar por equipo, estadio o ciudad..."
           value={filtro}
           onInput={(e) => setFiltro(e.currentTarget.value)}
-          style={{
-            width: '100%', padding: '0.75rem 1rem', paddingLeft: '2.5rem',
-            borderRadius: '0.75rem', border: '1px solid var(--color-borde)',
-            backgroundColor: 'var(--color-tarjeta)', color: 'var(--color-texto)',
-            fontSize: '0.875rem', outline: 'none',
-          }}
+          class="editorial-input"
         />
-        <span style={{
-          position: 'absolute', left: '0.75rem', top: '50%',
-          transform: 'translateY(-50%)', color: 'var(--color-texto-secundario)',
-          fontSize: '1rem', pointerEvents: 'none',
-        }}>&#128269;</span>
+        <span class="editorial-input-icon">&#128269;</span>
       </div>
 
-      <p style={{ fontSize: '0.75rem', color: 'var(--color-texto-secundario)', marginBottom: '1.5rem' }}>
+      <p class="fixture-filter__summary">
         {filtro
           ? `${totalPartidos} ${totalPartidos === 1 ? 'partido encontrado' : 'partidos encontrados'}`
           : `${totalPartidos} partidos en ${jornadasFiltradas.length} jornadas`
@@ -133,47 +102,43 @@ export default function FiltroPartidos({ jornadas, zonas }: Props) {
       </p>
 
       {jornadasFiltradas.map(jornada => (
-        <div key={jornada.fecha} style={{ marginBottom: '2rem' }}>
-          <h2 style={{
-            fontSize: '1.125rem', fontWeight: 'bold', marginBottom: '0.75rem',
-            paddingBottom: '0.5rem', borderBottom: '2px solid var(--color-verde)',
-            display: 'inline-block',
-          }}>
-            {jornada.fecha}
-          </h2>
-          <div style={{
-            display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-            gap: '0.75rem',
-          }}>
+        <section key={jornada.fecha} class="fixture-day">
+          <h2 class="fixture-day__label">{jornada.fecha}</h2>
+          <div class="fixture-day__matches">
             {jornada.partidos.map((p, i) => (
               <div
                 key={i}
-                style={{
-                  backgroundColor: 'var(--color-tarjeta)',
-                  border: `1px solid ${p.estado === 'en_juego' ? '#dc2626' : 'var(--color-borde)'}`,
-                  borderRadius: '0.75rem', padding: '1rem',
-                  display: 'flex', alignItems: 'center', gap: '0.75rem',
-                }}
+                class={`fixture-card tarjeta tarjeta-hover ${p.estado === 'en_juego' ? 'fixture-card--live' : ''}`}
               >
-                <span style={{
-                  fontFamily: 'monospace', fontSize: '0.875rem',
-                  color: 'var(--color-texto-secundario)', flexShrink: 0, width: '3rem',
-                }}>
-                  {zona ? convertirHora(p.fechaUTC, zona) || p.hora : p.hora}
-                </span>
-                <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-                  <NombreEquipo nombre={p.equipo1} esFavorito={p.equipo1 === paisFavorito} />
+                <div class="fixture-card__meta">
+                  <div>
+                    <p class="fixture-time">{zona ? convertirHora(p.fechaUTC, zona) || p.hora : p.hora}</p>
+                    <p class="match-meta">{p.estado === 'en_juego' ? 'En juego' : 'Programado'}</p>
+                  </div>
                   <Marcador partido={p} />
-                  <NombreEquipo nombre={p.equipo2} esFavorito={p.equipo2 === paisFavorito} />
                 </div>
+
+                <div class="fixture-card__row">
+                  <div class="fixture-card__teams">
+                    <NombreEquipo nombre={p.equipo1} esFavorito={p.equipo1 === paisFavorito} />
+                    <span>·</span>
+                    <NombreEquipo nombre={p.equipo2} esFavorito={p.equipo2 === paisFavorito} />
+                  </div>
+                </div>
+
+                <p class="fixture-venue">
+                  {p.estadio === 'Por confirmar'
+                    ? 'Sede por confirmar'
+                    : `${p.estadio}, ${p.ciudad}`}
+                </p>
               </div>
             ))}
           </div>
-        </div>
+        </section>
       ))}
 
       {jornadasFiltradas.length === 0 && (
-        <p style={{ color: 'var(--color-texto-secundario)', fontSize: '0.875rem' }}>
+        <p class="empty-state">
           No se encontraron partidos con "{filtro}"
         </p>
       )}

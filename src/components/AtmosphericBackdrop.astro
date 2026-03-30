@@ -1,0 +1,18 @@
+---
+interface Props {
+  tone?: string
+}
+
+const { tone = 'home' } = Astro.props
+---
+
+<div class:list={['site-atmosphere', `site-atmosphere--${tone}`]} aria-hidden="true">
+  <div class="site-atmosphere__halo site-atmosphere__halo--north"></div>
+  <div class="site-atmosphere__halo site-atmosphere__halo--south"></div>
+  <div class="site-atmosphere__mesh"></div>
+  <svg class="site-atmosphere__lines" viewBox="0 0 1600 1200" fill="none" preserveAspectRatio="none">
+    <path d="M91 244C221 171 377 136 530 171C669 203 783 280 916 306C1042 331 1198 315 1346 246C1444 201 1518 161 1600 113" />
+    <path d="M25 531C176 490 271 436 375 382C485 325 603 279 726 280C865 282 970 346 1088 398C1196 445 1347 470 1507 422" />
+    <path d="M152 939C255 821 348 742 472 699C611 651 735 658 857 690C995 726 1122 793 1267 781C1393 770 1497 703 1600 591" />
+  </svg>
+</div>

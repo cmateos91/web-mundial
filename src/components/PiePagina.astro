@@ -2,20 +2,36 @@
 import { enlaces } from '../data/navegacion'
 ---
 
-<footer class="border-t border-[var(--color-borde)] mt-auto">
-    <div class="max-w-6xl mx-auto px-4 py-8">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div>
-                <p class="font-bold"><span class="text-[var(--color-verde)]">Mundial</span> 2026</p>
-                <p class="text-xs texto-secundario mt-1">Sitio no oficial. Proyecto educativo.</p>
+<footer class="footer mt-auto">
+    <div class="footer__inner">
+        <div class="footer__panel panel">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <p><span>Mundial</span> 2026</p>
+                    <p class="footer__note mt-2">Edición especial sobre el torneo de Canadá, México y Estados Unidos.</p>
+                    <p class="footer__note mt-1 text-sm">Sitio no oficial. Proyecto educativo y experimental.</p>
+                </div>
+
+                <div class="grid gap-4">
+                    <nav class="footer__links">
+                        {enlaces.map(({ href, texto }) => (
+                            <a href={href} class="footer__link">
+                                {texto}
+                            </a>
+                        ))}
+                    </nav>
+
+                    <div class="footer__host-strip">
+                        <span class="footer__host-pill">🇨🇦 Canadá</span>
+                        <span class="footer__host-pill">🇲🇽 México</span>
+                        <span class="footer__host-pill">🇺🇸 Estados Unidos</span>
+                    </div>
+
+                    <p class="footer__note text-sm">
+                        48 selecciones, 16 sedes, 104 partidos y una escala continental que merece una web con más presencia editorial.
+                    </p>
+                </div>
             </div>
-            <nav class="flex flex-wrap gap-4">
-                {enlaces.map(({ href, texto }) => (
-                    <a href={href} class="text-sm texto-secundario hover:text-[var(--color-verde)] transition-colors">
-                        {texto}
-                    </a>
-                ))}
-            </nav>
         </div>
     </div>
 </footer>
