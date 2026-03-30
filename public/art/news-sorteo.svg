@@ -1,0 +1,21 @@
+<svg width="1200" height="820" viewBox="0 0 1200 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="820" fill="#241119"/>
+  <rect x="40" y="40" width="1120" height="740" rx="38" fill="#341723" stroke="#E7D8BF" stroke-opacity="0.15"/>
+  <path d="M128 166H446" stroke="#E7D8BF" stroke-width="3" stroke-linecap="round"/>
+  <path d="M128 202H384" stroke="#E7D8BF" stroke-width="2" stroke-linecap="round" stroke-opacity="0.42"/>
+  <circle cx="790" cy="210" r="58" fill="#E7D8BF"/>
+  <circle cx="902" cy="210" r="58" fill="#A4213A"/>
+  <circle cx="1014" cy="210" r="58" fill="#0D2E4E"/>
+  <path d="M784 390H1018" stroke="#E7D8BF" stroke-width="2" stroke-dasharray="8 10" stroke-opacity="0.45"/>
+  <path d="M784 482H1018" stroke="#E7D8BF" stroke-width="2" stroke-dasharray="8 10" stroke-opacity="0.3"/>
+  <path d="M784 574H1018" stroke="#E7D8BF" stroke-width="2" stroke-dasharray="8 10" stroke-opacity="0.2"/>
+  <rect x="730" y="356" width="110" height="68" rx="18" fill="#E7D8BF"/>
+  <rect x="862" y="448" width="110" height="68" rx="18" fill="#A4213A"/>
+  <rect x="992" y="540" width="110" height="68" rx="18" fill="#0D2E4E"/>
+  <text x="118" y="320" fill="#FAF4EA" font-family="Georgia, serif" font-size="104" font-weight="700" letter-spacing="4">DRAW</text>
+  <text x="118" y="412" fill="#FAF4EA" font-family="Georgia, serif" font-size="104" font-weight="700" letter-spacing="4">NIGHT</text>
+  <text x="120" y="470" fill="#E7D8BF" font-family="Arial, sans-serif" font-size="24" letter-spacing="7">GROUPS TAKE SHAPE</text>
+  <path d="M122 618H536" stroke="#E7D8BF" stroke-width="3" stroke-linecap="round" stroke-opacity="0.4"/>
+  <path d="M122 654H478" stroke="#E7D8BF" stroke-width="2" stroke-linecap="round" stroke-opacity="0.22"/>
+  <text x="120" y="720" fill="#FAF4EA" font-family="Arial, sans-serif" font-size="28" letter-spacing="6">48 TEAMS / 12 GROUPS / FIRST DRAMA</text>
+</svg>

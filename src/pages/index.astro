@@ -7,6 +7,9 @@ import { grupos } from '../data/grupos'
 import { slugPorEquipo } from '../data/slugs'
 import HostCityConstellation from '../components/HostCityConstellation.astro'
 import { sedes } from '../data/sedes'
+import EditorialTicker from '../components/EditorialTicker.astro'
+import HostNationCards from '../components/HostNationCards.astro'
+import NewsStoryArtwork from '../components/NewsStoryArtwork.astro'
 
 const proximosPartidos = jornadas.flatMap((jornada) =>
   jornada.partidos.map((partido) => ({ ...partido, fecha: jornada.fecha }))
@@ -83,7 +86,34 @@ const diasRestantes = Math.max(0, Math.ceil((inicio.getTime() - hoy.getTime()) /
 		</div>
 	</div>
 
+	<EditorialTicker
+		items={[
+			{
+				label: 'Ruta inaugural',
+				value: 'Azteca',
+				note: 'Mexico abre un torneo que mezcla legado, escala y una carga simbolica dificil de repetir.',
+			},
+			{
+				label: 'Volumen',
+				value: `${totalPartidos} partidos`,
+				note: 'La nueva estructura multiplica historias, trayectos y momentos de maxima tension.',
+			},
+			{
+				label: 'Cierre',
+				value: 'MetLife',
+				note: 'La final lleva el torneo a un cierre de estadio total, casi de superproduccion.',
+			},
+			{
+				label: 'Mapa vivo',
+				value: `${totalSedes} sedes`,
+				note: 'Cada ciudad se trata como un capitulo distinto dentro de una misma geografia competitiva.',
+			},
+		]}
+	/>
+
 	<div class="editorial-stack">
+		<HostNationCards />
+
 		<section class="editorial-section panel" data-reveal="up">
 			<div class="editorial-section__head">
 				<div>
@@ -168,8 +198,14 @@ const diasRestantes = Math.max(0, Math.ceil((inicio.getTime() - hoy.getTime()) /
 			</div>
 
 			<div class="news-grid">
-				{destacadas.map((noticia) => (
-					<a href={`/noticias/${noticia.id}`} class="news-card tarjeta tarjeta-hover block">
+				{destacadas.map((noticia, index) => (
+					<a
+						href={`/noticias/${noticia.id}`}
+						class="news-card tarjeta tarjeta-hover"
+						data-reveal="up"
+						style={`--reveal-delay: ${0.08 * index}s;`}
+					>
+						<NewsStoryArtwork id={noticia.id} title={noticia.data.titulo} />
 						<span class="article-kicker">{noticia.data.fecha}</span>
 						<h3 class="news-card__title mt-4">{noticia.data.titulo}</h3>
 						<p class="news-card__summary mt-3">{noticia.data.resumen}</p>

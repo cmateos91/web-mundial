@@ -1,0 +1,22 @@
+<svg width="1200" height="820" viewBox="0 0 1200 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="820" fill="#0A3025"/>
+  <rect x="42" y="42" width="1116" height="736" rx="40" fill="#0F4D37" stroke="#E8D7B8" stroke-opacity="0.18"/>
+  <path d="M0 620L420 240L710 530L1010 270L1200 430V820H0V620Z" fill="url(#paint0_linear_1_2)" fill-opacity="0.9"/>
+  <circle cx="925" cy="246" r="140" fill="#C6283B"/>
+  <circle cx="925" cy="246" r="92" fill="#E8D7B8"/>
+  <circle cx="925" cy="246" r="32" fill="#0F4D37"/>
+  <path d="M155 160H555" stroke="#E8D7B8" stroke-width="3" stroke-linecap="round" stroke-opacity="0.8"/>
+  <path d="M155 198H645" stroke="#E8D7B8" stroke-width="2" stroke-linecap="round" stroke-opacity="0.45"/>
+  <path d="M155 496C292 403.333 427.6 403.333 562 496" stroke="#E8D7B8" stroke-width="3" stroke-linecap="round" stroke-opacity="0.55"/>
+  <path d="M195 548C322.333 470.667 445.667 470.667 565 548" stroke="#E8D7B8" stroke-width="2" stroke-linecap="round" stroke-opacity="0.35"/>
+  <text x="152" y="306" fill="#F8F2E6" font-family="Georgia, serif" font-size="112" font-weight="700" letter-spacing="4">MEXICO</text>
+  <text x="160" y="364" fill="#E8D7B8" font-family="Arial, sans-serif" font-size="24" letter-spacing="7">OPENING RHYTHM</text>
+  <text x="160" y="690" fill="#F8F2E6" font-family="Arial, sans-serif" font-size="28" letter-spacing="6">AZTECA / GUADALAJARA / MONTERREY</text>
+  <defs>
+    <linearGradient id="paint0_linear_1_2" x1="281" y1="272" x2="924" y2="818" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E8D7B8" stop-opacity="0.18"/>
+      <stop offset="0.44" stop-color="#C6283B" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#09241B" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+</svg>

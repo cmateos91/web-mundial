@@ -1,4 +1,6 @@
 ---
+import { hostNationProfileMap } from '../data/editorialAssets'
+
 interface Sede {
     ciudad: string
     estadio: string
@@ -15,13 +17,50 @@ interface Props {
 
 const { pais, bandera, sedes, capacidadMax, partidosPorEstadio } = Astro.props
 const formatNum = (n: number) => n.toLocaleString('es-ES')
+const profile = hostNationProfileMap.get(pais)
+const capacidadTotal = sedes.reduce((sum, sede) => sum + sede.capacidad, 0)
+const partidosTotales = sedes.reduce((sum, sede) => sum + (partidosPorEstadio.get(sede.estadio) ?? 0), 0)
 ---
 
-<section class="venue-country" data-reveal="up">
-    <div class="venue-country__title">
-        <span class="text-3xl">{bandera}</span>
-        <h2>{pais}</h2>
+<section class="venue-country" id={profile?.slug} data-reveal="up">
+    <div class="venue-country__hero panel">
+        <div class="venue-country__hero-copy">
+            <div class="venue-country__title">
+                <span class="venue-country__flag">{bandera}</span>
+                <div>
+                    <p class="feature-link-card__label">{profile?.kicker ?? 'Escala anfitriona'}</p>
+                    <h2>{pais}</h2>
+                </div>
+            </div>
+
+            <p class="venue-country__summary">
+                {profile?.summary ?? `Sedes anfitrionas de ${pais} dentro del recorrido del Mundial 2026.`}
+            </p>
+            {profile?.spotlight && <p class="venue-country__spotlight">{profile.spotlight}</p>}
+
+            <div class="venue-country__rail">
+                <div>
+                    <strong>{sedes.length}</strong>
+                    <span>sedes</span>
+                </div>
+                <div>
+                    <strong>{formatNum(capacidadTotal)}</strong>
+                    <span>plazas</span>
+                </div>
+                <div>
+                    <strong>{partidosTotales}</strong>
+                    <span>partidos</span>
+                </div>
+            </div>
+        </div>
+
+        {profile?.asset && (
+            <div class="venue-country__poster">
+                <img src={profile.asset} alt="" loading="lazy" />
+            </div>
+        )}
     </div>
+
     <div class="venue-grid">
         {sedes.map(sede => {
             const porcentaje = Math.round((sede.capacidad / capacidadMax) * 100)

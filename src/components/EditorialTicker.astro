@@ -1,0 +1,25 @@
+---
+interface Item {
+  label: string
+  value: string
+  note: string
+}
+
+interface Props {
+  items: Item[]
+}
+
+const { items } = Astro.props
+---
+
+<section class="editorial-ticker panel" data-reveal="up" aria-label="Claves del torneo">
+  <div class="editorial-ticker__track">
+    {items.map((item, index) => (
+      <article class="editorial-ticker__item" style={`--ticker-index: ${index};`}>
+        <span class="editorial-ticker__label">{item.label}</span>
+        <strong class="editorial-ticker__value">{item.value}</strong>
+        <p class="editorial-ticker__note">{item.note}</p>
+      </article>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,19 @@
+<svg width="1200" height="820" viewBox="0 0 1200 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="820" fill="#0A1622"/>
+  <rect x="40" y="40" width="1120" height="740" rx="38" fill="#102234" stroke="#D8B768" stroke-opacity="0.16"/>
+  <path d="M189 530C324 402 493 306 728 278C847 264 938 268 1058 300" stroke="#7AA09B" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 12" stroke-opacity="0.74"/>
+  <path d="M250 624C436 526 604 496 780 516C888 528 972 560 1042 618" stroke="#D8B768" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="8 12" stroke-opacity="0.52"/>
+  <circle cx="262" cy="614" r="18" fill="#D8B768"/>
+  <circle cx="436" cy="450" r="12" fill="#D8B768"/>
+  <circle cx="646" cy="332" r="16" fill="#D8B768"/>
+  <circle cx="842" cy="304" r="12" fill="#D8B768"/>
+  <circle cx="960" cy="340" r="14" fill="#D8B768"/>
+  <circle cx="742" cy="528" r="14" fill="#F0E6D5"/>
+  <circle cx="948" cy="592" r="16" fill="#F0E6D5"/>
+  <path d="M122 132H530" stroke="#F0E6D5" stroke-width="3" stroke-linecap="round"/>
+  <path d="M122 168H432" stroke="#F0E6D5" stroke-width="2" stroke-linecap="round" stroke-opacity="0.5"/>
+  <text x="118" y="290" fill="#F0E6D5" font-family="Georgia, serif" font-size="104" font-weight="700" letter-spacing="4">HOST</text>
+  <text x="118" y="382" fill="#F0E6D5" font-family="Georgia, serif" font-size="104" font-weight="700" letter-spacing="4">CITIES</text>
+  <text x="120" y="440" fill="#D8B768" font-family="Arial, sans-serif" font-size="24" letter-spacing="7">NORTH AMERICAN ROUTE</text>
+  <text x="120" y="718" fill="#F0E6D5" font-family="Arial, sans-serif" font-size="28" letter-spacing="6">16 CITIES / 3 COUNTRIES / 104 MATCHES</text>
+</svg>

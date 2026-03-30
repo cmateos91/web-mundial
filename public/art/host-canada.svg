@@ -1,0 +1,14 @@
+<svg width="1200" height="820" viewBox="0 0 1200 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="820" fill="#F3ECE1"/>
+  <rect x="44" y="44" width="1112" height="732" rx="40" fill="#FAF5EC" stroke="#9D2135" stroke-opacity="0.16"/>
+  <rect x="110" y="110" width="130" height="600" rx="24" fill="#A61F38"/>
+  <rect x="960" y="110" width="130" height="600" rx="24" fill="#A61F38"/>
+  <path d="M600 172L655 286L784 303L688 393L712 520L600 456L488 520L512 393L416 303L545 286L600 172Z" fill="#C6283B"/>
+  <circle cx="600" cy="392" r="182" stroke="#0F2A40" stroke-opacity="0.14" stroke-width="2"/>
+  <circle cx="600" cy="392" r="236" stroke="#0F2A40" stroke-opacity="0.08" stroke-width="2"/>
+  <path d="M316 594H884" stroke="#0F2A40" stroke-width="3" stroke-linecap="round" stroke-opacity="0.22"/>
+  <path d="M364 634H836" stroke="#0F2A40" stroke-width="2" stroke-linecap="round" stroke-opacity="0.12"/>
+  <text x="316" y="238" fill="#0F2A40" font-family="Georgia, serif" font-size="112" font-weight="700" letter-spacing="4">CANADA</text>
+  <text x="320" y="294" fill="#6E7A84" font-family="Arial, sans-serif" font-size="24" letter-spacing="7">NORTHERN STAGE</text>
+  <text x="320" y="700" fill="#0F2A40" font-family="Arial, sans-serif" font-size="28" letter-spacing="6">TORONTO / VANCOUVER</text>
+</svg>

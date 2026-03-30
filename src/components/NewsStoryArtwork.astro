@@ -1,0 +1,21 @@
+---
+import { getStoryVisual } from '../data/editorialAssets'
+
+interface Props {
+  id: string
+  title: string
+  variant?: 'feature' | 'card' | 'article'
+}
+
+const { id, title, variant = 'card' } = Astro.props
+const visual = getStoryVisual(id)
+---
+
+<figure class:list={['story-artwork', `story-artwork--${variant}`]}>
+  <img class="story-artwork__image" src={visual.asset} alt="" loading="lazy" />
+  <figcaption class="story-artwork__caption">
+    <span class="story-artwork__kicker">{visual.kicker}</span>
+    <strong class="story-artwork__deck">{visual.deck}</strong>
+    <span class="story-artwork__title">{title}</span>
+  </figcaption>
+</figure>

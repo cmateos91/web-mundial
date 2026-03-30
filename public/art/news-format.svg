@@ -1,0 +1,16 @@
+<svg width="1200" height="820" viewBox="0 0 1200 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="820" fill="#071D16"/>
+  <rect x="40" y="40" width="1120" height="740" rx="38" fill="#0C2B22" stroke="#EADCC4" stroke-opacity="0.16"/>
+  <path d="M110 656H1090" stroke="#EADCC4" stroke-width="2" stroke-linecap="round" stroke-opacity="0.22"/>
+  <path d="M110 142H1090" stroke="#EADCC4" stroke-width="2" stroke-linecap="round" stroke-opacity="0.12"/>
+  <text x="92" y="494" fill="#EADCC4" font-family="Arial, sans-serif" font-size="314" font-weight="700" letter-spacing="-14">104</text>
+  <path d="M704 214H1024" stroke="#EADCC4" stroke-width="3" stroke-linecap="round"/>
+  <path d="M704 250H954" stroke="#EADCC4" stroke-width="2" stroke-linecap="round" stroke-opacity="0.45"/>
+  <rect x="746" y="346" width="242" height="242" rx="26" stroke="#D4B15E" stroke-width="2"/>
+  <path d="M867 346V588" stroke="#D4B15E" stroke-width="2"/>
+  <path d="M746 467H988" stroke="#D4B15E" stroke-width="2"/>
+  <circle cx="867" cy="467" r="52" stroke="#D4B15E" stroke-width="2"/>
+  <text x="706" y="322" fill="#D4B15E" font-family="Arial, sans-serif" font-size="22" letter-spacing="6">NEW FORMAT</text>
+  <text x="706" y="652" fill="#F6F0E5" font-family="Georgia, serif" font-size="78" font-weight="700" letter-spacing="4">BIGGER</text>
+  <text x="706" y="724" fill="#F6F0E5" font-family="Georgia, serif" font-size="78" font-weight="700" letter-spacing="4">TOURNAMENT</text>
+</svg>

@@ -1,0 +1,19 @@
+<svg width="1200" height="820" viewBox="0 0 1200 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="820" fill="#091A2D"/>
+  <rect x="40" y="40" width="1120" height="740" rx="38" fill="#0F2742" stroke="#E7DDC9" stroke-opacity="0.16"/>
+  <rect x="120" y="120" width="430" height="16" rx="8" fill="#E7DDC9"/>
+  <rect x="120" y="154" width="350" height="10" rx="5" fill="#E7DDC9" fill-opacity="0.46"/>
+  <path d="M792 138L1046 138" stroke="#E7DDC9" stroke-width="2" stroke-linecap="round" stroke-opacity="0.4"/>
+  <path d="M790 176L1086 176" stroke="#E7DDC9" stroke-width="2" stroke-linecap="round" stroke-opacity="0.22"/>
+  <path d="M120 612H1082" stroke="#E7DDC9" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.24"/>
+  <path d="M120 652H996" stroke="#E7DDC9" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.12"/>
+  <rect x="782" y="244" width="238" height="238" rx="30" fill="#C53A42"/>
+  <rect x="728" y="298" width="238" height="238" rx="30" fill="#E7DDC9"/>
+  <rect x="674" y="352" width="238" height="238" rx="30" fill="#123F66"/>
+  <path d="M176 514L520 514" stroke="#E7DDC9" stroke-width="4" stroke-linecap="round" stroke-opacity="0.7"/>
+  <path d="M176 552L456 552" stroke="#E7DDC9" stroke-width="2" stroke-linecap="round" stroke-opacity="0.38"/>
+  <text x="118" y="288" fill="#F7F2E9" font-family="Georgia, serif" font-size="106" font-weight="700" letter-spacing="4">UNITED</text>
+  <text x="118" y="384" fill="#F7F2E9" font-family="Georgia, serif" font-size="106" font-weight="700" letter-spacing="4">STATES</text>
+  <text x="120" y="438" fill="#E7DDC9" font-family="Arial, sans-serif" font-size="24" letter-spacing="7">THE SPINE OF THE TOURNAMENT</text>
+  <text x="120" y="718" fill="#F7F2E9" font-family="Arial, sans-serif" font-size="28" letter-spacing="6">ELEVEN VENUES / FINAL IN METLIFE</text>
+</svg>

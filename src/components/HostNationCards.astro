@@ -1,0 +1,57 @@
+---
+import { hostNationProfiles } from '../data/editorialAssets'
+import { sedes } from '../data/sedes'
+
+const sedesPorPais = new Map(
+  hostNationProfiles.map((profile) => [
+    profile.name,
+    sedes.filter((sede) => sede.pais === profile.name)
+  ])
+)
+---
+
+<section class="editorial-section panel" data-reveal="up">
+  <div class="editorial-section__head">
+    <div>
+      <p class="section-kicker">Tres anfitriones, tres ritmos</p>
+      <h2 class="editorial-section__title">Países sede</h2>
+    </div>
+    <a class="editorial-link" href="/sedes">Ver todas las sedes</a>
+  </div>
+
+  <div class="host-nations-grid">
+    {hostNationProfiles.map((profile, index) => {
+      const venues = sedesPorPais.get(profile.name) ?? []
+      const totalCapacity = venues.reduce((sum, venue) => sum + venue.capacidad, 0)
+
+      return (
+        <a
+          href={`/sedes#${profile.slug}`}
+          class="host-nation-card tarjeta tarjeta-hover"
+          data-reveal="up"
+          style={`--reveal-delay: ${0.08 * index}s;`}
+        >
+          <div class="host-nation-card__media">
+            <img src={profile.asset} alt="" loading="lazy" />
+          </div>
+
+          <div class="host-nation-card__body">
+            <div class="host-nation-card__topline">
+              <span>{profile.flag}</span>
+              <span>{profile.kicker}</span>
+            </div>
+
+            <h3 class="host-nation-card__title">{profile.name}</h3>
+            <p class="host-nation-card__summary">{profile.summary}</p>
+            <p class="host-nation-card__spotlight">{profile.spotlight}</p>
+
+            <div class="host-nation-card__meta">
+              <span>{venues.length} sedes</span>
+              <span>{totalCapacity.toLocaleString('es-ES')} plazas</span>
+            </div>
+          </div>
+        </a>
+      )
+    })}
+  </div>
+</section>
