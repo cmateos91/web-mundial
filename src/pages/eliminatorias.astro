@@ -1,34 +1,153 @@
 ---
 import Base from '../layouts/Base.astro'
 import EditorialIntro from '../components/EditorialIntro.astro'
+import EditorialTicker from '../components/EditorialTicker.astro'
 import CuadroEliminatorias from '../components/CuadroEliminatorias.astro'
 import { eliminatorias } from '../data/eliminatorias'
+
+const rondasCamino = eliminatorias.filter((ronda) => ronda.nombre !== 'Tercer puesto')
+const tercerPuesto = eliminatorias.find((ronda) => ronda.nombre === 'Tercer puesto')
+const totalCruces = rondasCamino.reduce((sum, ronda) => sum + ronda.partidos.length, 0)
+const crucesPendientes = rondasCamino.reduce(
+	(sum, ronda) =>
+		sum +
+		ronda.partidos.filter(
+			(partido) =>
+				partido.equipo1 === 'Por definir' ||
+				partido.equipo2 === 'Por definir' ||
+				partido.estado === 'programado'
+		).length,
+	0
+)
+
+const rondasClave = [
+	{
+		nombre: 'Dieciseisavos',
+		valor: '32 → 16',
+		nota: 'Aquí empieza la limpieza de verdad: medio cuadro sigue y medio cuadro se va a casa.',
+	},
+	{
+		nombre: 'Cuartos',
+		valor: '8 → 4',
+		nota: 'Cuando el torneo llega aquí ya no hay relleno. Los favoritos tienen que responder.',
+	},
+	{
+		nombre: 'Final',
+		valor: '1 trofeo',
+		nota: 'Todo termina en un solo partido. Ya sabes cómo va esto: una noche decide el cartel entero.',
+	},
+]
+
+const principiosCuadro = [
+	'Primero ves el recorrido entero sin perderte.',
+	'Después bajas ronda a ronda, con cada cruce en su sitio.',
+	'El tercer puesto va aparte para no liar el camino al trofeo.',
+]
 ---
 
 <Base titulo="Eliminatorias — Mundial 2026" descripcion="Cuadro del Mundial 2026 desde dieciseisavos hasta la final." pageTone="knockout">
 	<EditorialIntro
 		etiqueta="Fase definitiva"
 		titulo="Eliminatorias"
-		descripcion="Un cuadro más dramático para la zona del torneo en la que ya no hay red. Desde dieciseisavos hasta la final, cada cruce empuja el relato hacia el título."
+		descripcion="Aquí se acabó la red. Del dieciseisavos a la final, cada cruce deja a uno en pie y manda a otro a casa."
 		stats={[
 			{ valor: '32', etiqueta: 'equipos' },
-			{ valor: '5', etiqueta: 'rondas' },
+			{ valor: '5', etiqueta: 'rondas al titulo' },
 			{ valor: '1', etiqueta: 'trofeo' },
 			{ valor: '19 julio', etiqueta: 'la final' },
 		]}
 	/>
 
-	<section class="editorial-section panel">
+	<EditorialTicker
+		items={[
+			{
+				label: 'Ruta',
+				value: `${totalCruces} cruces`,
+				note: 'El cuadro arranca ancho y se va cerrando hasta dejar una sola noche por delante.',
+			},
+			{
+				label: 'Apertura',
+				value: 'Dieciseisavos',
+				note: 'La ronda nueva mete más partidos, más tensión y menos margen para dormirse.',
+			},
+			{
+				label: 'Pendiente',
+				value: String(crucesPendientes),
+				note: 'Buena parte del cuadro sigue esperando a que la fase de grupos le ponga nombres y caras.',
+			},
+			{
+				label: 'Bronce',
+				value: tercerPuesto ? 'Sí' : 'No',
+				note: 'El tercer puesto sigue ahí, pero fuera del camino que lleva al trofeo.',
+			},
+		]}
+	/>
+
+	<section class="knockout-stage" data-reveal="up">
+		<div class="panel knockout-stage__lead">
+			<p class="section-kicker">Lectura del cuadro</p>
+			<h2 class="feature-title">Cinco cortes principales y una sola ruta al título.</h2>
+			<p class="feature-copy">
+				Con el formato nuevo, el cuadro ya no cabe en una tira interminable sin hacerse pesado. Aquí primero ves por dónde va la historia y luego te metes en cada ronda con más calma.
+			</p>
+		</div>
+
+		<div class="panel knockout-stage__aside">
+			<p class="section-kicker">Cómo se rompe</p>
+				<div class="knockout-stage__notes">
+				<p>Los dos primeros de cada grupo y los ocho mejores terceros entran en dieciseisavos.</p>
+				<p>A partir de ahí ya no hay vuelta atrás: cada cruce borra a una selección del mapa.</p>
+				<p>El partido por el tercer puesto sigue existiendo, pero va por su carril.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="editorial-section panel" data-reveal="up">
+		<div class="editorial-section__head">
+			<div>
+				<p class="section-kicker">Niveles de tensión</p>
+				<h2 class="editorial-section__title">Rondas clave</h2>
+			</div>
+		</div>
+
+		<div class="knockout-rounds-grid">
+			{rondasClave.map((ronda, index) => (
+				<article class="knockout-round-card tarjeta tarjeta-hover" data-reveal="up" style={`--reveal-delay: ${0.08 * index}s;`}>
+					<p class="feature-link-card__label">{ronda.nombre}</p>
+					<h3 class="feature-title">{ronda.valor}</h3>
+					<p class="feature-copy">{ronda.nota}</p>
+				</article>
+			))}
+		</div>
+	</section>
+
+	<section class="editorial-section panel knockout-frame" data-reveal="up">
 		<div class="editorial-section__head">
 			<div>
 				<p class="section-kicker">Ruta al título</p>
-				<h2 class="editorial-section__title">Cuadro completo</h2>
+				<h2 class="editorial-section__title">Cuadro claro</h2>
+			</div>
+			<span class="fixture-count-badge">vista total + detalle · lectura limpia</span>
+		</div>
+
+		<div class="knockout-frame__intro">
+			<div class="knockout-frame__copy">
+				<p class="feature-copy">
+					Primero, una vista general para no perder el hilo. Debajo, el detalle de cada ronda con una lectura limpia y sin bloques peleándose por llamar la atención.
+				</p>
+			</div>
+
+			<div class="knockout-frame__principles">
+				{principiosCuadro.map((principio) => (
+					<p>{principio}</p>
+				))}
 			</div>
 		</div>
+
 		<CuadroEliminatorias rondas={eliminatorias} />
 	</section>
 
-	<div class="mt-6 panel p-5 text-sm texto-secundario">
-		<p><strong>Cómo se clasifican.</strong> Los dos primeros de cada grupo y los ocho mejores terceros avanzan a dieciseisavos. A partir de ahí, el torneo pasa a eliminación directa.</p>
+	<div class="mt-6 panel knockout-note" data-reveal="up">
+		<p><strong>Cómo se entra al cuadro.</strong> Los dos primeros de cada grupo y los ocho mejores terceros se meten en dieciseisavos. Desde ahí, lo de siempre: pierdes y te vas.</p>
 	</div>
 </Base>

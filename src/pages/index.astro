@@ -29,15 +29,15 @@ const diasRestantes = Math.max(0, Math.ceil((inicio.getTime() - hoy.getTime()) /
 
 <Base
 	titulo="Mundial 2026 — Canadá, México, Estados Unidos"
-	descripcion="Cobertura editorial del Mundial 2026 con grupos, partidos, sedes, eliminatorias y noticias."
+	descripcion="Toda la información del Mundial 2026 con grupos, partidos, sedes, eliminatorias y noticias."
 	pageTone="home"
 >
 	<section class="hero-showcase">
 		<div class="hero-copy panel" data-reveal="up">
 			<p class="hero-topline">Norteamérica 2026 · edición especial</p>
-			<h1 class="hero-title">El <strong>Mundial</strong> más grande de la historia pide una cobertura a su altura.</h1>
+			<h1 class="hero-title">Un <strong>Mundial</strong> así no se cuenta con prisas.</h1>
 			<p class="hero-subtitle">
-				Una lectura visual del torneo que cruza tres países, dieciséis ciudades y ciento cuatro partidos con más presencia editorial, más continuidad y más atmósfera.
+				Tres países, dieciséis ciudades y ciento cuatro partidos dan para mucho. Aquí está todo lo importante del torneo: el calendario, el cuadro, las sedes y las historias que va dejando por el camino.
 			</p>
 
 			<div class="hero-actions">
@@ -58,7 +58,7 @@ const diasRestantes = Math.max(0, Math.ceil((inicio.getTime() - hoy.getTime()) /
 			layout="hero"
 			etiqueta="Escenario continental"
 			titulo="Tres países. Un mismo pulso."
-			descripcion="Canadá, México y Estados Unidos convierten el Mundial 2026 en una ruta continental de estadios, ciudades anfitrionas y noches decisivas."
+			descripcion="Canadá, México y Estados Unidos ponen en marcha un Mundial que va de punta a punta del continente, con escalas muy distintas y noches que ya vienen cargadas."
 		/>
 	</section>
 
@@ -75,15 +75,15 @@ const diasRestantes = Math.max(0, Math.ceil((inicio.getTime() - hoy.getTime()) /
 	<div class="hero-ribbon">
 		<div class="hero-ribbon__item panel" data-reveal="up">
 			<strong>{totalPartidosEdicion}</strong>
-			<span>Partidos en la edición más extensa del torneo, pensada como un recorrido continental completo.</span>
+			<span>Partidos en la edición más larga que se recuerda. Va a haber historias para rato.</span>
 		</div>
 		<div class="hero-ribbon__item panel" data-reveal="up" style="--reveal-delay: 0.08s;">
 			<strong>48</strong>
-			<span>Selecciones en una nueva era de grupos, mejores terceros y cruces mucho más amplios.</span>
+			<span>Selecciones en un formato nuevo, con mejores terceros y un cuadro final bastante más ancho.</span>
 		</div>
 		<div class="hero-ribbon__item panel" data-reveal="up" style="--reveal-delay: 0.16s;">
 			<strong>{totalSedes}</strong>
-			<span>Estadios anfitriones entre Canadá, México y Estados Unidos con perfiles y atmósferas muy distintas.</span>
+			<span>Sedes repartidas entre Canadá, México y Estados Unidos. Cada una juega su propio papel en la ruta.</span>
 		</div>
 	</div>
 
@@ -92,22 +92,22 @@ const diasRestantes = Math.max(0, Math.ceil((inicio.getTime() - hoy.getTime()) /
 			{
 				label: 'Ruta inaugural',
 				value: 'Azteca',
-				note: 'Mexico abre un torneo que mezcla legado, escala y una carga simbolica dificil de repetir.',
+				note: 'México abre el torneo en el Azteca, con todo el peso simbólico que eso arrastra.',
 			},
 			{
 				label: 'Volumen',
 				value: `${totalPartidosEdicion} partidos`,
-				note: 'La nueva estructura multiplica historias, trayectos y momentos de maxima tension.',
+				note: 'El nuevo formato ensancha el calendario y dispara el número de tramas desde el primer día.',
 			},
 			{
 				label: 'Cierre',
 				value: 'MetLife',
-				note: 'La final lleva el torneo a un cierre de estadio total, casi de superproduccion.',
+				note: 'La final apunta a cierre grande, de estadio lleno y noche que se queda en la memoria.',
 			},
 			{
 				label: 'Mapa vivo',
 				value: `${totalSedes} sedes`,
-				note: 'Cada ciudad se trata como un capitulo distinto dentro de una misma geografia competitiva.',
+				note: 'Cada ciudad mete un clima distinto, pero todas forman parte del mismo viaje.',
 			},
 		]}
 	/>
@@ -119,7 +119,7 @@ const diasRestantes = Math.max(0, Math.ceil((inicio.getTime() - hoy.getTime()) /
 			<div class="editorial-section__head">
 				<div>
 					<p class="section-kicker">Encuentra tu selección</p>
-					<h2 class="editorial-section__title">Entrada directa al torneo</h2>
+					<h2 class="editorial-section__title">Tu puerta de entrada al torneo</h2>
 				</div>
 			</div>
 			<BuscadorEquipos client:visible grupos={grupos} slugs={slugsObj} />
@@ -165,26 +165,26 @@ const diasRestantes = Math.max(0, Math.ceil((inicio.getTime() - hoy.getTime()) /
 		<section class="feature-grid">
 			<a href="/grupos" class="feature-link-card tarjeta tarjeta-hover" data-reveal="up">
 				<p class="feature-link-card__label">Grupos</p>
-				<h3 class="feature-link-card__title">Tablas con lectura más clara y más peso visual.</h3>
-				<p class="feature-link-card__copy">Doce grupos, jerarquía marcada y acceso directo a cada selección.</p>
+				<h3 class="feature-link-card__title">Los grupos, ordenados para ver rápido quién manda y quién aprieta.</h3>
+				<p class="feature-link-card__copy">Doce grupos, tabla clara y acceso directo a cada selección sin dar rodeos.</p>
 				<span class="feature-link-card__cta">Ver grupos</span>
 			</a>
 			<a href="/partidos" class="feature-link-card tarjeta tarjeta-hover" data-reveal="up" style="--reveal-delay: 0.06s;">
 				<p class="feature-link-card__label">Partidos</p>
-				<h3 class="feature-link-card__title">Calendario tratado como agenda editorial del torneo.</h3>
-				<p class="feature-link-card__copy">Filtros rápidos, horarios localizados y una lectura más cinematográfica.</p>
+				<h3 class="feature-link-card__title">El calendario, contado como agenda del torneo y no como una lista sin alma.</h3>
+				<p class="feature-link-card__copy">Filtros rápidos, horarios localizados y una vista mucho más limpia de cada jornada.</p>
 				<span class="feature-link-card__cta">Ver agenda</span>
 			</a>
 			<a href="/eliminatorias" class="feature-link-card tarjeta tarjeta-hover" data-reveal="up" style="--reveal-delay: 0.12s;">
 				<p class="feature-link-card__label">Eliminatorias</p>
-				<h3 class="feature-link-card__title">El cuadro directo con un tono más dramático y escénico.</h3>
-				<p class="feature-link-card__copy">Del dieciseisavos a la final, con más tensión visual y mejor foco.</p>
+				<h3 class="feature-link-card__title">El camino al título, claro desde el primer vistazo.</h3>
+				<p class="feature-link-card__copy">Del dieciseisavos a la final, con una lectura más limpia y menos ruido visual.</p>
 				<span class="feature-link-card__cta">Ver cuadro</span>
 			</a>
 			<a href="/sedes" class="feature-link-card tarjeta tarjeta-hover" data-reveal="up" style="--reveal-delay: 0.18s;">
 				<p class="feature-link-card__label">Sedes</p>
-				<h3 class="feature-link-card__title">Ciudades anfitrionas leídas como etapas de un recorrido continental.</h3>
-				<p class="feature-link-card__copy">Capacidad, localización y papel de cada estadio dentro del torneo.</p>
+				<h3 class="feature-link-card__title">Las sedes, una por una, para entender qué pinta tiene cada parada.</h3>
+				<p class="feature-link-card__copy">Capacidad, localización y el papel que jugará cada estadio en el torneo.</p>
 				<span class="feature-link-card__cta">Ver sedes</span>
 			</a>
 		</section>
@@ -192,8 +192,8 @@ const diasRestantes = Math.max(0, Math.ceil((inicio.getTime() - hoy.getTime()) /
 		<section class="editorial-section panel" data-reveal="up">
 			<div class="editorial-section__head">
 				<div>
-					<p class="section-kicker">Revista del torneo</p>
-					<h2 class="editorial-section__title">Últimas historias</h2>
+					<p class="section-kicker">Última hora</p>
+					<h2 class="editorial-section__title">Lo último del torneo</h2>
 				</div>
 				<a class="editorial-link" href="/noticias">Ver noticias</a>
 			</div>

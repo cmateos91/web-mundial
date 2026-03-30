@@ -18,6 +18,7 @@ No producir "efectos bonitos" aislados, sino experiencias con:
 
 - `visual-experience-director.md`
 - `narrative-layout-architect.md`
+- `editorial-voice-director.md`
 - `typography-surface-director.md`
 - `motion-choreographer.md`
 - `immersive-experience-engineer.md`
@@ -37,22 +38,29 @@ No producir "efectos bonitos" aislados, sino experiencias con:
 
 1. `visual-experience-director`
 2. `narrative-layout-architect`
-3. `typography-surface-director`
-4. `motion-choreographer`
-5. `performance-accessibility-guardian`
-6. `astro-experience-integrator`
-7. `awards-critic`
+3. `editorial-voice-director`
+4. `typography-surface-director`
+5. `motion-choreographer`
+6. `performance-accessibility-guardian`
+7. `astro-experience-integrator`
+8. `awards-critic`
 
 ### Rediseño con pieza inmersiva
 
 1. `visual-experience-director`
 2. `narrative-layout-architect`
-3. `typography-surface-director`
-4. `motion-choreographer`
-5. `immersive-experience-engineer`
-6. `performance-accessibility-guardian`
-7. `astro-experience-integrator`
-8. `awards-critic`
+3. `editorial-voice-director`
+4. `typography-surface-director`
+5. `motion-choreographer`
+6. `immersive-experience-engineer`
+7. `performance-accessibility-guardian`
+8. `astro-experience-integrator`
+9. `awards-critic`
+
+### Reescritura de contenido
+
+1. `editorial-voice-director`
+2. `awards-critic`
 
 ## Reglas comunes
 
@@ -70,6 +78,7 @@ Ejemplos utiles:
 - `Usa el Web Awards Team para auditar la home y proponer una direccion visual seria.`
 - `Activa el equipo para transformar /partidos en una pagina mucho mas editorial sin perder claridad.`
 - `Quiero modo flagship para la home: empieza por visual direction y termina con integracion Astro.`
+- `Usa editorial-voice-director para que los textos suenen mas periodisticos y menos roboticos.`
 
 ## Archivos de apoyo
 

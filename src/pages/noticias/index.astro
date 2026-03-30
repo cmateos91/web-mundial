@@ -13,17 +13,17 @@ const noticiasRestantes = noticias.slice(1)
 
 <Base
   titulo="Noticias — Mundial 2026"
-  descripcion="Cobertura editorial del Mundial 2026: anuncios, sedes, formato y noticias clave del torneo."
+  descripcion="Noticias del Mundial 2026: anuncios, sedes, formato y todo lo importante del torneo."
   pageTone="news"
 >
   <EditorialIntro
     etiqueta="Noticias / edición viva"
-    titulo="La crónica visual del Mundial 2026"
-    descripcion="Noticias tratadas como una revista deportiva: titulares con presencia, contexto claro y una narrativa que acompaña la escala continental del torneo."
+    titulo="Lo que va dejando el Mundial 2026"
+    descripcion="Anuncios, contexto y nombres propios de un torneo que no para quieto."
     stats={[
-      { valor: String(noticias.length).padStart(2, '0'), etiqueta: 'Piezas publicadas' },
-      { valor: '2026', etiqueta: 'Temporada del torneo' },
-      { valor: '24/7', etiqueta: 'Cobertura editorial' },
+      { valor: String(noticias.length).padStart(2, '0'), etiqueta: 'Noticias en archivo' },
+      { valor: '2026', etiqueta: 'Año del torneo' },
+      { valor: 'Al día', etiqueta: 'Seguimiento' },
     ]}
   >
     <div class="hero-actions">
@@ -49,8 +49,8 @@ const noticiasRestantes = noticias.slice(1)
 
     <div class="editorial-section panel" data-reveal="up">
       <div class="editorial-section__head">
-        <h2 class="editorial-section__title">Archivo reciente</h2>
-        <span class="fixture-count-badge">{noticiasRestantes.length} notas</span>
+        <h2 class="editorial-section__title">Últimas noticias</h2>
+        <span class="fixture-count-badge">{noticiasRestantes.length} noticias</span>
       </div>
 
       <div class="news-grid">

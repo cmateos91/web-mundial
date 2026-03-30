@@ -32,8 +32,8 @@ export const hostNationProfiles: HostNationProfile[] = [
     flag: 'MX',
     asset: '/art/host-mexico.svg',
     kicker: 'Tramo inaugural',
-    summary: 'Azteca, Monterrey y Guadalajara sostienen el comienzo emocional del torneo con una lectura más histórica y ritual.',
-    spotlight: 'El Azteca firma una tercera Copa del Mundo y arrastra todo el peso simbólico del arranque.'
+    summary: 'Azteca, Monterrey y Guadalajara ponen en marcha el torneo con un arranque cargado de historia y mucho ruido de grada.',
+    spotlight: 'El Azteca vuelve a abrir un Mundial y solo con eso ya marca el tono del comienzo.'
   },
   {
     name: 'Estados Unidos',
@@ -41,8 +41,8 @@ export const hostNationProfiles: HostNationProfile[] = [
     flag: 'US',
     asset: '/art/host-usa.svg',
     kicker: 'Escala industrial',
-    summary: 'Once sedes y los mayores aforos del torneo convierten el recorrido estadounidense en la espina dorsal del calendario.',
-    spotlight: 'MetLife cierra el torneo y Arlington marca el techo de capacidad de toda la edición.'
+    summary: 'Once sedes y los aforos más grandes convierten el tramo estadounidense en la columna vertebral del calendario.',
+    spotlight: 'MetLife baja la persiana del torneo y Arlington pone el techo de capacidad de toda la edición.'
   },
   {
     name: 'Canadá',
@@ -50,8 +50,8 @@ export const hostNationProfiles: HostNationProfile[] = [
     flag: 'CA',
     asset: '/art/host-canada.svg',
     kicker: 'Apertura septentrional',
-    summary: 'Toronto y Vancouver añaden una capa más limpia, fría y contemporánea al mapa completo del Mundial.',
-    spotlight: 'La ruta canadiense equilibra el torneo con dos sedes compactas y una presencia visual muy reconocible.'
+    summary: 'Toronto y Vancouver meten otro clima al mapa: dos sedes compactas, modernas y bastante reconocibles.',
+    spotlight: 'La ruta canadiense le da al torneo un arranque por el norte con identidad propia.'
   }
 ]
 
@@ -64,16 +64,16 @@ export const storyProfiles: StoryProfile[] = [
     kicker: 'Cartografia del torneo',
     deck: 'Dieciseis ciudades conectadas en una sola ruta continental.',
     eyebrow: 'Mapa anfitrion',
-    standfirst: 'La pieza ordena la escala del torneo: tres paises, dieciseis ciudades y una geografia que convierte cada sede en capitulo del mismo relato.',
+    standfirst: 'Aquí se entiende de verdad la escala del torneo: tres países, dieciséis ciudades y un mapa que obliga a mirar el Mundial como una travesía entera.',
     stats: [
       { value: '16', label: 'ciudades' },
       { value: '3', label: 'paises' },
       { value: '94.000', label: 'mayor aforo' },
     ],
     highlights: [
-      'Estados Unidos concentra once sedes y la mayor masa de aforo del campeonato.',
-      'Mexico sostiene el arranque historico con el Azteca como gran pieza simbolica.',
-      'Canada aporta el tramo mas limpio y septentrional del mapa competitivo.'
+      'Estados Unidos concentra once sedes y buena parte del músculo logístico del campeonato.',
+      'México se queda con el arranque más simbólico, con el Azteca otra vez en primera fila.',
+      'Canadá aporta el tramo más corto, pero también uno de los más reconocibles del mapa.'
     ]
   },
   {
@@ -82,16 +82,16 @@ export const storyProfiles: StoryProfile[] = [
     kicker: 'Cuadro inicial',
     deck: 'El sorteo ordena el caos y convierte el mapa competitivo en relato.',
     eyebrow: 'Noche de sorteo',
-    standfirst: 'El cuadro del torneo deja de ser abstraccion y empieza a producir tensiones concretas: grupos, reencuentros y primeros caminos hacia la fase final.',
+    standfirst: 'El torneo deja de ser una idea general y pasa a tener forma: grupos cerrados, reencuentros con historia y primeros caminos hacia el cuadro final.',
     stats: [
       { value: '48', label: 'selecciones' },
       { value: '12', label: 'grupos' },
       { value: '05', label: 'dic' },
     ],
     highlights: [
-      'Brasil y Marruecos firman uno de los cruces con mas magnetismo desde el arranque.',
-      'España y Uruguay vuelven a compartir marco de maxima exigencia competitiva.',
-      'Inglaterra y Croacia recuperan un duelo que ya carga memoria de Mundial.'
+      'Brasil y Marruecos dejan uno de los grupos que antes se subrayan en cualquier libreta.',
+      'España y Uruguay vuelven a cruzarse en un marco que aprieta desde el primer día.',
+      'Inglaterra y Croacia recuperan un duelo que ya trae memoria de Mundial.'
     ]
   },
   {
@@ -100,16 +100,16 @@ export const storyProfiles: StoryProfile[] = [
     kicker: 'Escala 104',
     deck: 'La expansion cambia el ritmo, el volumen y el espectaculo del torneo.',
     eyebrow: 'Nueva escala',
-    standfirst: 'La expansion no es solo matematica. Cambia el tempo del torneo, la forma de narrarlo y el tipo de espectaculo que FIFA quiere construir alrededor de la final.',
+    standfirst: 'La expansión no cambia solo el número de partidos. Cambia el ritmo del torneo, la manera de seguirlo y también la puesta en escena de la final.',
     stats: [
       { value: '104', label: 'partidos' },
       { value: '32', label: 'ronda nueva' },
       { value: '19', label: 'julio' },
     ],
     highlights: [
-      'La ronda de 32 abre mas recorridos y estira la tension competitiva del calendario.',
-      'El torneo suma tres mascotas oficiales para repartir la identidad entre los anfitriones.',
-      'La final incorpora por primera vez un halftime show de tono claramente blockbuster.'
+      'La ronda de 32 abre más recorridos y alarga el calendario con bastante más tensión.',
+      'El torneo suma tres mascotas para repartir el foco entre los anfitriones.',
+      'La final estrena show de medio tiempo y se acerca más que nunca al molde del gran evento.'
     ]
   }
 ]
@@ -124,7 +124,7 @@ export function getStoryVisual(id: string): StoryVisual {
       id,
       asset: '/art/news-format.svg',
       kicker: 'Edicion especial',
-      deck: 'Cobertura editorial del Mundial 2026.'
+      deck: 'Lo importante del Mundial 2026.'
     }
   )
 }
@@ -135,18 +135,18 @@ export function getStoryProfile(id: string): StoryProfile {
       id,
       asset: '/art/news-format.svg',
       kicker: 'Edicion especial',
-      deck: 'Cobertura editorial del Mundial 2026.',
-      eyebrow: 'Cobertura editorial',
-      standfirst: 'Una lectura visual del Mundial 2026 con foco en escala, contexto y atmosfera.',
+      deck: 'Lo importante del Mundial 2026.',
+      eyebrow: 'Mundial 2026',
+      standfirst: 'Claves, nombres y fechas para seguir el torneo sin perder el hilo.',
       stats: [
         { value: '2026', label: 'torneo' },
-        { value: '01', label: 'pieza' },
+        { value: '01', label: 'nota' },
         { value: 'Ed', label: 'especial' },
       ],
       highlights: [
-        'La edicion se cuenta como evento continental, no solo como calendario.',
-        'Cada pieza cruza narrativa, datos y direccion artistica.',
-        'La cobertura busca leer el torneo con ritmo de revista deportiva.'
+        'El torneo se sigue de punta a punta, no solo en los días de partido.',
+        'Cada noticia aporta fechas, nombres y contexto útil.',
+        'La idea es que no se te escape nada importante del camino hasta la final.'
       ]
     }
   )

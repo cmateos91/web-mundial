@@ -1263,7 +1263,8 @@ strong {
 }
 
 .groups-stage,
-.team-editorial-shell {
+.team-editorial-shell,
+.knockout-stage {
   display: grid;
   gap: 1rem;
   margin-bottom: 1.6rem;
@@ -1272,7 +1273,10 @@ strong {
 .groups-stage__lead,
 .groups-stage__aside,
 .team-panel--lead,
-.team-panel--aside {
+.team-panel--aside,
+.knockout-stage__lead,
+.knockout-stage__aside,
+.knockout-note {
   padding: 1.25rem;
 }
 
@@ -1284,6 +1288,71 @@ strong {
 .groups-stage__notes p {
   color: var(--color-texto-secundario);
   line-height: 1.72;
+}
+
+.knockout-stage__notes {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.knockout-stage__notes p,
+.knockout-note p {
+  color: var(--color-texto-secundario);
+  line-height: 1.72;
+}
+
+.knockout-rounds-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.knockout-round-card {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.1rem;
+}
+
+.knockout-frame {
+  overflow: clip;
+}
+
+.knockout-frame__intro {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+  border-radius: 1.25rem;
+  border: 1px solid var(--color-borde);
+  background:
+    linear-gradient(135deg, rgb(255 255 255 / 0.08), transparent 44%),
+    color-mix(in srgb, var(--color-tarjeta) 86%, transparent);
+}
+
+.knockout-frame__copy {
+  max-width: 42rem;
+}
+
+.knockout-frame__principles {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.knockout-frame__principles p {
+  margin: 0;
+  padding-left: 1rem;
+  position: relative;
+  color: var(--color-texto-secundario);
+  line-height: 1.68;
+}
+
+.knockout-frame__principles p::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7rem;
+  width: 0.45rem;
+  height: 1px;
+  background: color-mix(in srgb, var(--page-accent) 60%, var(--color-borde));
 }
 
 .groups-spotlight-grid {
@@ -2279,7 +2348,11 @@ strong {
   .groups-stage__lead,
   .groups-stage__aside,
   .team-panel--lead,
-  .team-panel--aside {
+  .team-panel--aside,
+  .knockout-stage__lead,
+  .knockout-stage__aside,
+  .knockout-note,
+  .knockout-frame__intro {
     padding: 1rem;
   }
 
@@ -2417,12 +2490,22 @@ strong {
   }
 
   .groups-stage,
-  .team-editorial-shell {
+  .team-editorial-shell,
+  .knockout-stage {
     grid-template-columns: 1.05fr 0.95fr;
   }
 
   .groups-spotlight-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .knockout-rounds-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .knockout-frame__intro {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    align-items: start;
   }
 
   .matches-stage__stats,

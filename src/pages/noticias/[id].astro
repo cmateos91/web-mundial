@@ -46,14 +46,14 @@ const { Content } = await render(noticia)
             <p class="article-summary">{noticia.data.resumen}</p>
           </div>
 
-          <div class="hero-countdown mt-6">
-            <div class="hero-countdown__number">{String(indiceActual + 1).padStart(2, '0')}</div>
-            <div class="hero-countdown__copy">
-              <strong>{fechaVisible}</strong>
-              <span>Archivo · {minutosLectura} min de lectura</span>
-            </div>
+        <div class="hero-countdown mt-6">
+          <div class="hero-countdown__number">{String(indiceActual + 1).padStart(2, '0')}</div>
+          <div class="hero-countdown__copy">
+            <strong>{fechaVisible}</strong>
+            <span>Archivo · {minutosLectura} min de lectura</span>
           </div>
         </div>
+      </div>
 
         <NewsStoryArtwork id={noticia.id} title={noticia.data.titulo} variant="article" />
       </div>
@@ -62,7 +62,7 @@ const { Content } = await render(noticia)
     <section class="article-context">
       <div class="panel article-context__note" data-reveal="up">
         <p class="section-kicker">{profile.kicker}</p>
-        <h2 class="feature-title">La pieza en contexto</h2>
+        <h2 class="feature-title">Por qué importa</h2>
         <p class="feature-copy">{profile.standfirst}</p>
       </div>
 
@@ -92,10 +92,10 @@ const { Content } = await render(noticia)
       <section class="panel article-related" data-reveal="up">
         <div class="editorial-section__head">
           <div>
-            <p class="section-kicker">Seguir leyendo</p>
-            <h2 class="editorial-section__title">Más piezas del archivo</h2>
+            <p class="section-kicker">Sigue el hilo</p>
+            <h2 class="editorial-section__title">Más lectura del torneo</h2>
           </div>
-          <a href="/noticias" class="editorial-link">Ver archivo completo</a>
+          <a href="/noticias" class="editorial-link">Ver todas las noticias</a>
         </div>
 
         <div class="news-grid">
