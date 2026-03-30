@@ -1,11 +1,42 @@
 ---
 import Base from '../layouts/Base.astro'
 import EditorialIntro from '../components/EditorialIntro.astro'
+import EditorialTicker from '../components/EditorialTicker.astro'
 import { grupos } from '../data/grupos'
 import { calcularClasificacion } from '../data/clasificacion'
 import { slugPorEquipo } from '../data/slugs'
 
 const clasificacion = calcularClasificacion()
+const anfitriones = new Set(['México', 'Canadá', 'Estados Unidos'])
+const gruposConPendientes = grupos.filter((grupo) => grupo.equipos.some((equipo) => equipo === 'Por definir')).length
+const gruposConAnfitrion = grupos.filter((grupo) => grupo.equipos.some((equipo) => anfitriones.has(equipo))).length
+const gruposCerrados = grupos.length - gruposConPendientes
+
+const gruposDestacados = grupos
+	.map((grupo) => {
+		const tabla = clasificacion.get(grupo.nombre) ?? []
+		const anfitrion = grupo.equipos.find((equipo) => anfitriones.has(equipo))
+		const plazasPendientes = grupo.equipos.filter((equipo) => equipo === 'Por definir').length
+		const equiposConfirmados = grupo.equipos.filter((equipo) => equipo !== 'Por definir')
+		const lider = tabla[0]?.equipo ?? equiposConfirmados[0] ?? 'Por definir'
+		const kicker = anfitrion ? 'Grupo anfitrion' : plazasPendientes > 0 ? 'Plaza pendiente' : 'Grupo cerrado'
+		const resumen = anfitrion
+			? `${anfitrion} arrastra foco inmediato en un grupo que comparte con ${equiposConfirmados.filter((equipo) => equipo !== anfitrion).join(', ')}${plazasPendientes > 0 ? ' y una plaza aún abierta' : ''}.`
+			: plazasPendientes > 0
+				? `${grupo.nombre} mantiene ${plazasPendientes} plaza por definir y obliga a leer el cuadro con margen para un último giro competitivo.`
+				: `${grupo.nombre} ya presenta cuatro nombres cerrados y un equilibrio que se decide por jerarquía, ritmo y diferencia de goles.`
+
+		return {
+			nombre: grupo.nombre,
+			kicker,
+			lider,
+			resumen,
+			equipos: grupo.equipos,
+			prioridad: anfitrion ? 2 : plazasPendientes > 0 ? 1 : 0,
+		}
+	})
+	.sort((a, b) => b.prioridad - a.prioridad)
+	.slice(0, 3)
 ---
 
 <Base titulo="Grupos — Mundial 2026" descripcion="Tablas de grupos del Mundial 2026 con lectura editorial y acceso a cada selección." pageTone="groups">
@@ -21,14 +52,102 @@ const clasificacion = calcularClasificacion()
 		]}
 	/>
 
+	<EditorialTicker
+		items={[
+			{
+				label: 'Lectura',
+				value: '24 + 8',
+				note: 'Los dos primeros de cada grupo y los ocho mejores terceros empujan la primera gran criba del torneo.',
+			},
+			{
+				label: 'Abiertos',
+				value: String(gruposConPendientes),
+				note: 'Todavia quedan grupos con una plaza sin nombre definitivo y eso altera la lectura de fuerzas.',
+			},
+			{
+				label: 'Anfitrion',
+				value: String(gruposConAnfitrion),
+				note: 'Tres grupos cargan el peso emocional y mediatico de los paises sede desde la fase inicial.',
+			},
+			{
+				label: 'Cerrados',
+				value: String(gruposCerrados),
+				note: 'La mayoria del cuadro ya se puede leer como combate directo de perfiles bien definidos.',
+			},
+		]}
+	/>
+
+	<section class="groups-stage" data-reveal="up">
+		<div class="panel groups-stage__lead">
+			<p class="section-kicker">Cómo mirar el cuadro</p>
+			<h2 class="feature-title">Doce mesas, una misma tensión.</h2>
+			<p class="feature-copy">
+				Aquí no solo importa ser primero. La expansión obliga a leer también la pelea por los mejores terceros, la diferencia de goles y los grupos que todavía esperan una última plaza.
+			</p>
+		</div>
+
+		<div class="panel groups-stage__aside">
+			<p class="section-kicker">Claves de lectura</p>
+			<div class="groups-stage__notes">
+				<p>Los anfitriones condicionan el tono de sus grupos desde el arranque y arrastran atención extra.</p>
+				<p>Las plazas pendientes convierten algunos grupos en estructuras abiertas, todavía sin forma definitiva.</p>
+				<p>En los grupos cerrados, cada decimal de diferencia de goles pesa como material de clasificación real.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="editorial-section panel" data-reveal="up">
+		<div class="editorial-section__head">
+			<div>
+				<p class="section-kicker">Zonas calientes</p>
+				<h2 class="editorial-section__title">Grupos a seguir</h2>
+			</div>
+		</div>
+
+		<div class="groups-spotlight-grid">
+			{gruposDestacados.map((grupo, index) => (
+				<article class="groups-spotlight-card tarjeta tarjeta-hover" data-reveal="up" style={`--reveal-delay: ${0.08 * index}s;`}>
+					<p class="feature-link-card__label">{grupo.kicker}</p>
+					<div class="groups-spotlight-card__head">
+						<h3 class="feature-title">{grupo.nombre}</h3>
+						<span class="fixture-count-badge">Líder actual: {grupo.lider}</span>
+					</div>
+					<p class="feature-copy">{grupo.resumen}</p>
+					<div class="groups-spotlight-card__teams">
+						{grupo.equipos.map((equipo) => (
+							<span class="fixture-count-badge">{equipo}</span>
+						))}
+					</div>
+				</article>
+			))}
+		</div>
+	</section>
+
 	<div class="group-grid">
 		{grupos.map(grupo => {
 			const tabla = clasificacion.get(grupo.nombre) ?? []
+			const plazasPendientes = grupo.equipos.filter((equipo) => equipo === 'Por definir').length
 			return (
-				<article class="group-card tarjeta tarjeta-hover">
+				<article class="group-card tarjeta tarjeta-hover" data-reveal="up">
 					<div class="group-card__topline">
 						<span>{grupo.nombre}</span>
 						<strong>4 equipos</strong>
+					</div>
+					<div class="group-card__summary">
+						<h2 class="group-card__name">{grupo.nombre.replace('Grupo ', '')}</h2>
+						<p class="group-card__copy">
+							{plazasPendientes > 0
+								? `${plazasPendientes} plaza pendiente y tres nombres ya situados en el tablero.`
+								: `Cuadro completo con ${grupo.equipos.join(', ')} como bloque de lectura.`}
+						</p>
+						<div class="group-card__signals">
+							{plazasPendientes > 0
+								? <span class="fixture-count-badge">{plazasPendientes} por definir</span>
+								: <span class="fixture-count-badge">cuadro cerrado</span>}
+							{grupo.equipos.some((equipo) => anfitriones.has(equipo)) && (
+								<span class="fixture-count-badge">anfitrión</span>
+							)}
+						</div>
 					</div>
 					<div class="overflow-x-auto">
 						<table class="group-table">

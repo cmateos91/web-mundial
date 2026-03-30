@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro'
+import EditorialTicker from '../../components/EditorialTicker.astro'
 import { grupos } from '../../data/grupos'
 import { jornadas } from '../../data/partidos'
 import { paises } from '../../data/paises'
@@ -36,6 +37,7 @@ const grupo = grupos.find(g => g.nombre === nombreGrupo)
 const clasificacion = calcularClasificacion()
 const tablaGrupo = clasificacion.get(nombreGrupo) ?? []
 const posicion = tablaGrupo.findIndex(e => e.equipo === nombre) + 1
+const statsEquipo = tablaGrupo.find((equipo) => equipo.equipo === nombre)
 
 // Partidos del equipo
 const partidosEquipo = jornadas.flatMap(j =>
@@ -50,10 +52,29 @@ const sedesUnicas = [...new Set(
 		.filter(p => p.estadio !== 'Por confirmar')
 		.map(p => `${p.estadio}, ${p.ciudad}`)
 )]
+
+const rivalesGrupo = (grupo?.equipos ?? []).filter((equipo) => equipo !== nombre)
+const rivalesConfirmados = rivalesGrupo.filter((equipo) => equipo !== 'Por definir')
+const plazasPendientes = rivalesGrupo.filter((equipo) => equipo === 'Por definir').length
+const siguientePartido = partidosEquipo.find((partido) => partido.estado !== 'finalizado') ?? partidosEquipo[0]
+const rivalSiguiente = siguientePartido
+	? (siguientePartido.equipo1 === nombre ? siguientePartido.equipo2 : siguientePartido.equipo1)
+	: null
+const anfitriones = new Set(['México', 'Estados Unidos', 'Canadá'])
+const esAnfitrion = anfitriones.has(nombre)
+const diferenciaGoles = statsEquipo ? statsEquipo.gf - statsEquipo.gc : 0
+const balance = statsEquipo ? `${statsEquipo.pg}-${statsEquipo.pe}-${statsEquipo.pp}` : '0-0-0'
+const resumenRuta = statsEquipo && statsEquipo.pj > 0
+	? `${nombre} ocupa ahora la ${posicion}ª plaza de ${nombreGrupo} con ${statsEquipo.pts} puntos, balance ${balance} y una diferencia de goles de ${diferenciaGoles >= 0 ? '+' : ''}${diferenciaGoles}.`
+	: esAnfitrion
+		? `${nombre} llega a la fase inicial bajo presión anfitriona, con foco total sobre su grupo y una lectura que mezcla expectativa, calendario y narrativa nacional.`
+		: plazasPendientes > 0
+			? `${nombreGrupo} todavía mantiene ${plazasPendientes} plaza por definir, así que el recorrido de ${nombre} se lee con margen para un último giro competitivo.`
+			: `${nombre} comparte grupo con ${rivalesConfirmados.join(', ')} en un cuadro ya cerrado y listo para medirse por jerarquía, ritmo y detalle.`
 ---
 
 <Base titulo={`${nombre} — Mundial 2026`} descripcion={`Perfil editorial de ${nombre} en el Mundial 2026.`} pageTone="team">
-	<section class="team-hero panel p-5">
+	<section class="team-hero panel p-5" data-reveal="up">
 		<div>
 			<a href="/grupos" class="editorial-link">← Volver a grupos</a>
 			<div class="team-hero__identity mt-5">
@@ -88,9 +109,84 @@ const sedesUnicas = [...new Set(
 		</div>
 	</section>
 
+	<EditorialTicker
+		items={[
+			{
+				label: 'Grupo',
+				value: nombreGrupo.replace('Grupo ', ''),
+				note: `${nombre} comparte cuadro con ${rivalesConfirmados.join(', ')}${plazasPendientes > 0 ? ' y una plaza pendiente.' : '.'}`,
+			},
+			{
+				label: 'Balance',
+				value: balance,
+				note: statsEquipo && statsEquipo.pj > 0 ? 'Victorias, empates y derrotas en la tabla provisional.' : 'La fase todavía no deja balance competitivo real.',
+			},
+			{
+				label: 'Siguiente foco',
+				value: rivalSiguiente ?? 'Por definir',
+				note: siguientePartido ? `${siguientePartido.fecha} · ${siguientePartido.estadio === 'Por confirmar' ? 'sede pendiente' : siguientePartido.estadio}` : 'Sin partido asignado en este momento.',
+			},
+			{
+				label: 'Escenarios',
+				value: String(sedesUnicas.length || 1),
+				note: sedesUnicas.length > 0 ? 'Sedes ya visibles dentro de la agenda conocida.' : 'La ruta aún espera confirmación de estadios.',
+			},
+		]}
+	/>
+
+	<section class="team-editorial-shell" data-reveal="up">
+		<div class="team-panel tarjeta team-panel--lead">
+			<p class="section-kicker">Estado de la ruta</p>
+			<h2 class="feature-title">Hoja de grupo</h2>
+			<p class="feature-copy">{resumenRuta}</p>
+
+			<div class="team-metric-grid">
+				<div>
+					<strong>{statsEquipo?.pts ?? 0}</strong>
+					<span>puntos</span>
+				</div>
+				<div>
+					<strong>{statsEquipo?.gf ?? 0}</strong>
+					<span>goles a favor</span>
+				</div>
+				<div>
+					<strong>{statsEquipo?.gc ?? 0}</strong>
+					<span>goles en contra</span>
+				</div>
+				<div>
+					<strong>{diferenciaGoles >= 0 ? `+${diferenciaGoles}` : diferenciaGoles}</strong>
+					<span>diferencia</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="team-panel tarjeta team-panel--aside" data-reveal="up" style="--reveal-delay: 0.08s;">
+			<p class="section-kicker">Siguiente foco</p>
+			{siguientePartido ? (
+				<div class="team-next-match">
+					<h2 class="feature-title">{rivalSiguiente}</h2>
+					<p class="feature-copy">
+						{nombre} volverá a escena el {siguientePartido.fecha} a las <span data-utc={siguientePartido.fechaUTC}>{siguientePartido.hora}</span>.
+					</p>
+					<div class="team-next-match__meta">
+						<span class="fixture-count-badge">{siguientePartido.estado === 'finalizado' ? 'jugado' : 'pendiente'}</span>
+						<span class="fixture-count-badge">
+							{siguientePartido.estadio === 'Por confirmar' ? 'sede pendiente' : siguientePartido.estadio}
+						</span>
+					</div>
+				</div>
+			) : (
+				<div class="team-next-match">
+					<h2 class="feature-title">Agenda en espera</h2>
+					<p class="feature-copy">Todavía no hay un siguiente cruce visible para esta selección.</p>
+				</div>
+			)}
+		</div>
+	</section>
+
 	<div class="team-grid">
 		<div class="grid gap-5">
-			<section class="team-panel tarjeta">
+			<section class="team-panel tarjeta" data-reveal="up">
 				<p class="section-kicker">Grupo</p>
 				<h2 class="feature-title">{nombreGrupo}</h2>
 				<div class="overflow-x-auto mt-5">
@@ -126,8 +222,26 @@ const sedesUnicas = [...new Set(
 				</div>
 			</section>
 
+			<section class="team-panel tarjeta" data-reveal="up" style="--reveal-delay: 0.06s;">
+				<p class="section-kicker">Rivales del grupo</p>
+				<h2 class="feature-title">El marco competitivo</h2>
+				<div class="team-opponent-list mt-5">
+					{rivalesGrupo.map((equipo) => (
+						equipo === 'Por definir' ? (
+							<span class="team-opponent-badge">Por definir</span>
+						) : slugPorEquipo.has(equipo) ? (
+							<a href={`/equipos/${slugPorEquipo.get(equipo)}`} class="team-opponent-link" data-equipo={equipo}>
+								{equipo}
+							</a>
+						) : (
+							<span class="team-opponent-badge" data-equipo={equipo}>{equipo}</span>
+						)
+					))}
+				</div>
+			</section>
+
 			{sedesUnicas.length > 0 && (
-				<section class="team-panel tarjeta">
+				<section class="team-panel tarjeta" data-reveal="up" style="--reveal-delay: 0.12s;">
 					<p class="section-kicker">Escenario</p>
 					<h2 class="feature-title">Sedes previstas</h2>
 					<div class="grid gap-3 mt-5">
@@ -139,7 +253,7 @@ const sedesUnicas = [...new Set(
 			)}
 		</div>
 
-		<section class="team-panel tarjeta">
+		<section class="team-panel tarjeta" data-reveal="up">
 			<p class="section-kicker">Agenda de la selección</p>
 			<h2 class="feature-title">Partidos ({partidosEquipo.length})</h2>
 			<div class="grid gap-4 mt-5">
