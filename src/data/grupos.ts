@@ -1,4 +1,4 @@
-// Última actualización: 2026-04-01T07:08:41.122Z
+// Última actualización: 2026-04-01T12:55:17.013Z
 export const grupos = [
   {
     nombre: "Grupo A",
@@ -75,7 +75,7 @@ export const grupos = [
   {
     nombre: "Grupo I",
     equipos: [
-      "Por definir",
+      "Iraq",
       "Francia",
       "Senegal",
       "Noruega"
@@ -93,7 +93,7 @@ export const grupos = [
   {
     nombre: "Grupo K",
     equipos: [
-      "Por definir",
+      "Congo DR",
       "Portugal",
       "Uzbekistán",
       "Colombia"
