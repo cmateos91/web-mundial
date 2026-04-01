@@ -15,7 +15,7 @@ export interface Jornada {
   partidos: Partido[]
 }
 
-// Última actualización: 2026-04-01T12:55:16.866Z
+// Última actualización: 2026-04-01T18:46:04.911Z
 // Zona horaria: America/Mexico_City
 export const jornadas: Jornada[] = [
   {
@@ -392,8 +392,8 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
-        fechaUTC: "2026-06-20T01:00:00Z",
-        hora: "19:00",
+        fechaUTC: "2026-06-20T00:30:00Z",
+        hora: "18:30",
         equipo1: "Brasil",
         equipo2: "Haití",
         estadio: "Por confirmar",
@@ -403,8 +403,8 @@ export const jornadas: Jornada[] = [
         estado: "programado"
       },
       {
-        fechaUTC: "2026-06-20T04:00:00Z",
-        hora: "22:00",
+        fechaUTC: "2026-06-20T03:00:00Z",
+        hora: "21:00",
         equipo1: "Turkey",
         equipo2: "Paraguay",
         estadio: "Por confirmar",
