@@ -15,7 +15,7 @@ export interface Jornada {
   partidos: Partido[]
 }
 
-// Última actualización: 2026-03-31T18:46:17.129Z
+// Última actualización: 2026-04-01T01:29:14.534Z
 // Zona horaria: America/Mexico_City
 export const jornadas: Jornada[] = [
   {
@@ -36,7 +36,7 @@ export const jornadas: Jornada[] = [
         fechaUTC: "2026-06-12T02:00:00Z",
         hora: "20:00",
         equipo1: "Corea del Sur",
-        equipo2: "Por definir",
+        equipo2: "Czechia",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
         goles1: null,
@@ -52,7 +52,7 @@ export const jornadas: Jornada[] = [
         fechaUTC: "2026-06-12T19:00:00Z",
         hora: "13:00",
         equipo1: "Canadá",
-        equipo2: "Por definir",
+        equipo2: "Bosnia-Herzegovina",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
         goles1: null,
@@ -74,7 +74,7 @@ export const jornadas: Jornada[] = [
         fechaUTC: "2026-06-13T04:00:00Z",
         hora: "22:00",
         equipo1: "Australia",
-        equipo2: "Por definir",
+        equipo2: "Turkey",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
         goles1: null,
@@ -160,7 +160,7 @@ export const jornadas: Jornada[] = [
       {
         fechaUTC: "2026-06-15T02:00:00Z",
         hora: "20:00",
-        equipo1: "Por definir",
+        equipo1: "Sweden",
         equipo2: "Túnez",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
@@ -323,7 +323,7 @@ export const jornadas: Jornada[] = [
       {
         fechaUTC: "2026-06-18T16:00:00Z",
         hora: "10:00",
-        equipo1: "Por definir",
+        equipo1: "Czechia",
         equipo2: "Sudáfrica",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
@@ -335,7 +335,7 @@ export const jornadas: Jornada[] = [
         fechaUTC: "2026-06-18T19:00:00Z",
         hora: "13:00",
         equipo1: "Suiza",
-        equipo2: "Por definir",
+        equipo2: "Bosnia-Herzegovina",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
         goles1: null,
@@ -405,7 +405,7 @@ export const jornadas: Jornada[] = [
       {
         fechaUTC: "2026-06-20T04:00:00Z",
         hora: "22:00",
-        equipo1: "Por definir",
+        equipo1: "Turkey",
         equipo2: "Paraguay",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
@@ -422,7 +422,7 @@ export const jornadas: Jornada[] = [
         fechaUTC: "2026-06-20T17:00:00Z",
         hora: "11:00",
         equipo1: "Países Bajos",
-        equipo2: "Por definir",
+        equipo2: "Sweden",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
         goles1: null,
@@ -628,7 +628,7 @@ export const jornadas: Jornada[] = [
       {
         fechaUTC: "2026-06-24T19:00:00Z",
         hora: "13:00",
-        equipo1: "Por definir",
+        equipo1: "Bosnia-Herzegovina",
         equipo2: "Qatar",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
@@ -661,7 +661,7 @@ export const jornadas: Jornada[] = [
       {
         fechaUTC: "2026-06-25T01:00:00Z",
         hora: "19:00",
-        equipo1: "Por definir",
+        equipo1: "Czechia",
         equipo2: "México",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
@@ -722,7 +722,7 @@ export const jornadas: Jornada[] = [
         fechaUTC: "2026-06-25T23:00:00Z",
         hora: "17:00",
         equipo1: "Japón",
-        equipo2: "Por definir",
+        equipo2: "Sweden",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
         goles1: null,
@@ -732,7 +732,7 @@ export const jornadas: Jornada[] = [
       {
         fechaUTC: "2026-06-26T02:00:00Z",
         hora: "20:00",
-        equipo1: "Por definir",
+        equipo1: "Turkey",
         equipo2: "Estados Unidos",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",

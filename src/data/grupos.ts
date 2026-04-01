@@ -1,9 +1,9 @@
-// Última actualización: 2026-03-31T18:46:17.275Z
+// Última actualización: 2026-04-01T01:29:14.667Z
 export const grupos = [
   {
     nombre: "Grupo A",
     equipos: [
-      "Por definir",
+      "Czechia",
       "México",
       "Sudáfrica",
       "Corea del Sur"
@@ -12,7 +12,7 @@ export const grupos = [
   {
     nombre: "Grupo B",
     equipos: [
-      "Por definir",
+      "Bosnia-Herzegovina",
       "Canadá",
       "Qatar",
       "Suiza"
@@ -30,7 +30,7 @@ export const grupos = [
   {
     nombre: "Grupo D",
     equipos: [
-      "Por definir",
+      "Turkey",
       "Estados Unidos",
       "Paraguay",
       "Australia"
@@ -48,7 +48,7 @@ export const grupos = [
   {
     nombre: "Grupo F",
     equipos: [
-      "Por definir",
+      "Sweden",
       "Países Bajos",
       "Japón",
       "Túnez"
