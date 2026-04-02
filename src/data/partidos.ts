@@ -15,7 +15,7 @@ export interface Jornada {
   partidos: Partido[]
 }
 
-// Última actualización: 2026-04-01T18:46:04.911Z
+// Última actualización: 2026-04-02T01:19:10.717Z
 // Zona horaria: America/Mexico_City
 export const jornadas: Jornada[] = [
   {
@@ -236,7 +236,7 @@ export const jornadas: Jornada[] = [
       {
         fechaUTC: "2026-06-16T22:00:00Z",
         hora: "16:00",
-        equipo1: "Por definir",
+        equipo1: "Iraq",
         equipo2: "Noruega",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
@@ -275,7 +275,7 @@ export const jornadas: Jornada[] = [
         fechaUTC: "2026-06-17T17:00:00Z",
         hora: "11:00",
         equipo1: "Portugal",
-        equipo2: "Por definir",
+        equipo2: "Congo DR",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
         goles1: null,
@@ -531,7 +531,7 @@ export const jornadas: Jornada[] = [
         fechaUTC: "2026-06-22T21:00:00Z",
         hora: "15:00",
         equipo1: "Francia",
-        equipo2: "Por definir",
+        equipo2: "Iraq",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
         goles1: null,
@@ -602,7 +602,7 @@ export const jornadas: Jornada[] = [
         fechaUTC: "2026-06-24T02:00:00Z",
         hora: "20:00",
         equipo1: "Colombia",
-        equipo2: "Por definir",
+        equipo2: "Congo DR",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
         goles1: null,
@@ -771,7 +771,7 @@ export const jornadas: Jornada[] = [
         fechaUTC: "2026-06-26T19:00:00Z",
         hora: "13:00",
         equipo1: "Senegal",
-        equipo2: "Por definir",
+        equipo2: "Iraq",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
         goles1: null,
@@ -863,7 +863,7 @@ export const jornadas: Jornada[] = [
       {
         fechaUTC: "2026-06-27T23:30:00Z",
         hora: "17:30",
-        equipo1: "Por definir",
+        equipo1: "Congo DR",
         equipo2: "Uzbekistán",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
