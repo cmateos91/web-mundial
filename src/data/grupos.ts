@@ -1,4 +1,4 @@
-// Última actualización: 2026-04-26T12:41:49.116Z
+// Última actualización: 2026-04-26T18:37:06.054Z
 export const grupos = [
   {
     nombre: "Grupo A",
