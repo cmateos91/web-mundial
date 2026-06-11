@@ -1,12 +1,12 @@
-// Última actualización: 2026-06-11T15:33:52.178Z
+// Última actualización: 2026-06-11T20:09:24.021Z
 export const grupos = [
   {
     nombre: "Grupo A",
     equipos: [
-      "Czechia",
       "México",
-      "Sudáfrica",
-      "Corea del Sur"
+      "Corea del Sur",
+      "Czechia",
+      "Sudáfrica"
     ]
   },
   {
@@ -22,43 +22,43 @@ export const grupos = [
     nombre: "Grupo C",
     equipos: [
       "Brasil",
-      "Marruecos",
       "Haití",
+      "Marruecos",
       "Escocia"
     ]
   },
   {
     nombre: "Grupo D",
     equipos: [
-      "Turkey",
-      "Estados Unidos",
+      "Australia",
       "Paraguay",
-      "Australia"
+      "Turkey",
+      "Estados Unidos"
     ]
   },
   {
     nombre: "Grupo E",
     equipos: [
-      "Alemania",
       "Curazao",
-      "Costa de Marfil",
-      "Ecuador"
+      "Alemania",
+      "Ecuador",
+      "Costa de Marfil"
     ]
   },
   {
     nombre: "Grupo F",
     equipos: [
-      "Sweden",
-      "Países Bajos",
       "Japón",
+      "Países Bajos",
+      "Sweden",
       "Túnez"
     ]
   },
   {
     nombre: "Grupo G",
     equipos: [
-      "Bélgica",
       "Egipto",
+      "Bélgica",
       "Irán",
       "Nueva Zelanda"
     ]
@@ -66,19 +66,19 @@ export const grupos = [
   {
     nombre: "Grupo H",
     equipos: [
-      "España",
       "Cabo Verde",
       "Arabia Saudita",
+      "España",
       "Uruguay"
     ]
   },
   {
     nombre: "Grupo I",
     equipos: [
-      "Iraq",
       "Francia",
-      "Senegal",
-      "Noruega"
+      "Iraq",
+      "Noruega",
+      "Senegal"
     ]
   },
   {
@@ -94,17 +94,17 @@ export const grupos = [
     nombre: "Grupo K",
     equipos: [
       "Congo DR",
+      "Colombia",
       "Portugal",
-      "Uzbekistán",
-      "Colombia"
+      "Uzbekistán"
     ]
   },
   {
     nombre: "Grupo L",
     equipos: [
       "Inglaterra",
-      "Croacia",
       "Ghana",
+      "Croacia",
       "Panamá"
     ]
   }
