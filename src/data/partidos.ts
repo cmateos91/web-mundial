@@ -15,7 +15,7 @@ export interface Jornada {
   partidos: Partido[]
 }
 
-// Última actualización: 2026-06-11T20:09:23.901Z
+// Última actualización: 2026-06-12T02:34:17.261Z
 // Zona horaria: America/Mexico_City
 export const jornadas: Jornada[] = [
   {
@@ -28,9 +28,9 @@ export const jornadas: Jornada[] = [
         equipo2: "Sudáfrica",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
-        goles1: null,
-        goles2: null,
-        estado: "programado"
+        goles1: 2,
+        goles2: 0,
+        estado: "finalizado"
       },
       {
         fechaUTC: "2026-06-12T02:00:00Z",
@@ -39,9 +39,9 @@ export const jornadas: Jornada[] = [
         equipo2: "Czechia",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
-        goles1: null,
-        goles2: null,
-        estado: "programado"
+        goles1: 0,
+        goles2: 0,
+        estado: "en_juego"
       }
     ]
   },
