@@ -1,4 +1,4 @@
-// Última actualización: 2026-06-20T02:27:58.625Z
+// Última actualización: 2026-06-20T08:39:35.134Z
 export const grupos = [
   {
     nombre: "Grupo A",
@@ -21,8 +21,8 @@ export const grupos = [
   {
     nombre: "Grupo C",
     equipos: [
-      "Marruecos",
       "Brasil",
+      "Marruecos",
       "Escocia",
       "Haití"
     ]
@@ -32,8 +32,8 @@ export const grupos = [
     equipos: [
       "Estados Unidos",
       "Australia",
-      "Turkey",
-      "Paraguay"
+      "Paraguay",
+      "Turkey"
     ]
   },
   {
