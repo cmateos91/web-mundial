@@ -1,12 +1,12 @@
-// Última actualización: 2026-06-25T02:13:03.533Z
+// Última actualización: 2026-06-25T08:45:56.119Z
 export const grupos = [
   {
     nombre: "Grupo A",
     equipos: [
       "México",
+      "Sudáfrica",
       "Corea del Sur",
-      "Czechia",
-      "Sudáfrica"
+      "Czechia"
     ]
   },
   {
