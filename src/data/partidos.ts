@@ -15,7 +15,7 @@ export interface Jornada {
   partidos: Partido[]
 }
 
-// Última actualización: 2026-06-24T19:25:19.517Z
+// Última actualización: 2026-06-25T02:13:03.416Z
 // Zona horaria: America/Mexico_City
 export const jornadas: Jornada[] = [
   {
@@ -621,9 +621,9 @@ export const jornadas: Jornada[] = [
         equipo2: "Canadá",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
-        goles1: 0,
-        goles2: 0,
-        estado: "en_juego"
+        goles1: 2,
+        goles2: 1,
+        estado: "finalizado"
       },
       {
         fechaUTC: "2026-06-24T19:00:00Z",
@@ -632,9 +632,9 @@ export const jornadas: Jornada[] = [
         equipo2: "Qatar",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
-        goles1: 0,
-        goles2: 0,
-        estado: "en_juego"
+        goles1: 3,
+        goles2: 1,
+        estado: "finalizado"
       },
       {
         fechaUTC: "2026-06-24T22:00:00Z",
@@ -643,9 +643,9 @@ export const jornadas: Jornada[] = [
         equipo2: "Haití",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
-        goles1: null,
-        goles2: null,
-        estado: "programado"
+        goles1: 4,
+        goles2: 2,
+        estado: "finalizado"
       },
       {
         fechaUTC: "2026-06-24T22:00:00Z",
@@ -654,9 +654,9 @@ export const jornadas: Jornada[] = [
         equipo2: "Brasil",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
-        goles1: null,
-        goles2: null,
-        estado: "programado"
+        goles1: 0,
+        goles2: 3,
+        estado: "finalizado"
       },
       {
         fechaUTC: "2026-06-25T01:00:00Z",
@@ -665,9 +665,9 @@ export const jornadas: Jornada[] = [
         equipo2: "México",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
-        goles1: null,
-        goles2: null,
-        estado: "programado"
+        goles1: 0,
+        goles2: 0,
+        estado: "en_juego"
       },
       {
         fechaUTC: "2026-06-25T01:00:00Z",
@@ -676,9 +676,9 @@ export const jornadas: Jornada[] = [
         equipo2: "Corea del Sur",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
-        goles1: null,
-        goles2: null,
-        estado: "programado"
+        goles1: 0,
+        goles2: 0,
+        estado: "en_juego"
       }
     ]
   },
