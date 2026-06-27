@@ -11,47 +11,12 @@ export interface Ronda {
   partidos: PartidoEliminatoria[]
 }
 
-// Última actualización: 2026-06-27T08:25:21.239Z
+// Última actualización: 2026-06-27T13:08:44.925Z
 export const eliminatorias: Ronda[] = [
   {
     nombre: "Dieciseisavos",
     partidos: [
       {
-        equipo1: "Sudáfrica",
-        equipo2: "Canadá",
-        goles1: null,
-        goles2: null,
-        estado: "programado"
-      },
-      {
-        equipo1: "Brasil",
-        equipo2: "Japón",
-        goles1: null,
-        goles2: null,
-        estado: "programado"
-      },
-      {
-        equipo1: "Alemania",
-        equipo2: "Por definir",
-        goles1: null,
-        goles2: null,
-        estado: "programado"
-      },
-      {
-        equipo1: "Países Bajos",
-        equipo2: "Marruecos",
-        goles1: null,
-        goles2: null,
-        estado: "programado"
-      },
-      {
-        equipo1: "Costa de Marfil",
-        equipo2: "Por definir",
-        goles1: null,
-        goles2: null,
-        estado: "programado"
-      },
-      {
         equipo1: "Por definir",
         equipo2: "Por definir",
         goles1: null,
@@ -59,7 +24,7 @@ export const eliminatorias: Ronda[] = [
         estado: "programado"
       },
       {
-        equipo1: "México",
+        equipo1: "Por definir",
         equipo2: "Por definir",
         goles1: null,
         goles2: null,
@@ -80,8 +45,15 @@ export const eliminatorias: Ronda[] = [
         estado: "programado"
       },
       {
-        equipo1: "Estados Unidos",
-        equipo2: "Bosnia-Herzegovina",
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
         goles1: null,
         goles2: null,
         estado: "programado"
@@ -101,21 +73,49 @@ export const eliminatorias: Ronda[] = [
         estado: "programado"
       },
       {
-        equipo1: "Suiza",
+        equipo1: "Por definir",
         equipo2: "Por definir",
         goles1: null,
         goles2: null,
         estado: "programado"
       },
       {
-        equipo1: "Australia",
+        equipo1: "Por definir",
         equipo2: "Por definir",
         goles1: null,
         goles2: null,
         estado: "programado"
       },
       {
-        equipo1: "Argentina",
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
+        equipo2: "Por definir",
+        goles1: null,
+        goles2: null,
+        estado: "programado"
+      },
+      {
+        equipo1: "Por definir",
         equipo2: "Por definir",
         goles1: null,
         goles2: null,
