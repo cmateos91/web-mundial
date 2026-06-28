@@ -11,7 +11,7 @@ export interface Ronda {
   partidos: PartidoEliminatoria[]
 }
 
-// Última actualización: 2026-06-28T02:31:37.962Z
+// Última actualización: 2026-06-28T08:39:30.018Z
 export const eliminatorias: Ronda[] = [
   {
     nombre: "Dieciseisavos",
@@ -32,7 +32,7 @@ export const eliminatorias: Ronda[] = [
       },
       {
         equipo1: "Alemania",
-        equipo2: "Por definir",
+        equipo2: "Paraguay",
         goles1: null,
         goles2: null,
         estado: "programado"
@@ -46,35 +46,35 @@ export const eliminatorias: Ronda[] = [
       },
       {
         equipo1: "Costa de Marfil",
-        equipo2: "Por definir",
+        equipo2: "Noruega",
         goles1: null,
         goles2: null,
         estado: "programado"
       },
       {
-        equipo1: "Por definir",
-        equipo2: "Por definir",
+        equipo1: "Francia",
+        equipo2: "Sweden",
         goles1: null,
         goles2: null,
         estado: "programado"
       },
       {
         equipo1: "México",
-        equipo2: "Por definir",
+        equipo2: "Ecuador",
         goles1: null,
         goles2: null,
         estado: "programado"
       },
       {
-        equipo1: "Por definir",
-        equipo2: "Por definir",
+        equipo1: "Inglaterra",
+        equipo2: "Congo DR",
         goles1: null,
         goles2: null,
         estado: "programado"
       },
       {
-        equipo1: "Por definir",
-        equipo2: "Por definir",
+        equipo1: "Bélgica",
+        equipo2: "Senegal",
         goles1: null,
         goles2: null,
         estado: "programado"
@@ -87,43 +87,43 @@ export const eliminatorias: Ronda[] = [
         estado: "programado"
       },
       {
-        equipo1: "Por definir",
-        equipo2: "Por definir",
+        equipo1: "España",
+        equipo2: "Austria",
         goles1: null,
         goles2: null,
         estado: "programado"
       },
       {
-        equipo1: "Por definir",
-        equipo2: "Por definir",
+        equipo1: "Portugal",
+        equipo2: "Croacia",
         goles1: null,
         goles2: null,
         estado: "programado"
       },
       {
         equipo1: "Suiza",
-        equipo2: "Por definir",
+        equipo2: "Argelia",
         goles1: null,
         goles2: null,
         estado: "programado"
       },
       {
         equipo1: "Australia",
-        equipo2: "Por definir",
+        equipo2: "Egipto",
         goles1: null,
         goles2: null,
         estado: "programado"
       },
       {
         equipo1: "Argentina",
-        equipo2: "Por definir",
+        equipo2: "Cabo Verde",
         goles1: null,
         goles2: null,
         estado: "programado"
       },
       {
-        equipo1: "Por definir",
-        equipo2: "Por definir",
+        equipo1: "Colombia",
+        equipo2: "Ghana",
         goles1: null,
         goles2: null,
         estado: "programado"
