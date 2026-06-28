@@ -15,7 +15,7 @@ export interface Jornada {
   partidos: Partido[]
 }
 
-// Última actualización: 2026-06-27T19:03:32.040Z
+// Última actualización: 2026-06-28T02:31:37.961Z
 // Zona horaria: America/Mexico_City
 export const jornadas: Jornada[] = [
   {
@@ -834,9 +834,9 @@ export const jornadas: Jornada[] = [
         equipo2: "Inglaterra",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
-        goles1: null,
-        goles2: null,
-        estado: "programado"
+        goles1: 0,
+        goles2: 2,
+        estado: "finalizado"
       },
       {
         fechaUTC: "2026-06-27T21:00:00Z",
@@ -845,9 +845,9 @@ export const jornadas: Jornada[] = [
         equipo2: "Ghana",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
-        goles1: null,
-        goles2: null,
-        estado: "programado"
+        goles1: 2,
+        goles2: 1,
+        estado: "finalizado"
       },
       {
         fechaUTC: "2026-06-27T23:30:00Z",
@@ -856,9 +856,9 @@ export const jornadas: Jornada[] = [
         equipo2: "Portugal",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
-        goles1: null,
-        goles2: null,
-        estado: "programado"
+        goles1: 0,
+        goles2: 0,
+        estado: "finalizado"
       },
       {
         fechaUTC: "2026-06-27T23:30:00Z",
@@ -867,9 +867,9 @@ export const jornadas: Jornada[] = [
         equipo2: "Uzbekistán",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
-        goles1: null,
-        goles2: null,
-        estado: "programado"
+        goles1: 3,
+        goles2: 1,
+        estado: "finalizado"
       },
       {
         fechaUTC: "2026-06-28T02:00:00Z",
@@ -878,9 +878,9 @@ export const jornadas: Jornada[] = [
         equipo2: "Argentina",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
-        goles1: null,
-        goles2: null,
-        estado: "programado"
+        goles1: 0,
+        goles2: 1,
+        estado: "en_juego"
       },
       {
         fechaUTC: "2026-06-28T02:00:00Z",
@@ -889,8 +889,8 @@ export const jornadas: Jornada[] = [
         equipo2: "Austria",
         estadio: "Por confirmar",
         ciudad: "Por confirmar",
-        goles1: null,
-        goles2: null,
+        goles1: 0,
+        goles2: 0,
         estado: "programado"
       }
     ]
