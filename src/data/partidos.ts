@@ -15,7 +15,7 @@ export interface Jornada {
   partidos: Partido[]
 }
 
-// Última actualización: 2026-07-11T18:44:03.479Z
+// Última actualización: 2026-07-12T01:45:35.200Z
 // Zona horaria: America/Mexico_City
 export const jornadas: Jornada[] = [
   {
