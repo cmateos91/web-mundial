@@ -11,7 +11,7 @@ export interface Ronda {
   partidos: PartidoEliminatoria[]
 }
 
-// Última actualización: 2026-08-11T12:39:44.904Z
+// Última actualización: 2026-08-11T18:45:42.693Z
 export const eliminatorias: Ronda[] = [
   {
     nombre: "Dieciseisavos",
